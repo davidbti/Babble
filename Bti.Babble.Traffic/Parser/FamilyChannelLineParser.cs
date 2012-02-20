@@ -19,13 +19,13 @@ namespace Bti.Babble.Traffic
         public TrafficEvent Parse(string line)
         {
             TrafficEvent te = new TrafficEvent();
-            te.Date = Date.ParseMMDDYY(line);
-            te.Primary = Primary.ParseSEC(line);
-            te.SequenceId = SequenceId.Parse(line);
-            te.StartTime = StartTime.ParseSplit(line, ':');
-            te.Duration = Duration.ParseSplit(line, ':');
-            te.TargetDevice = TargetDevice.Parse(line);
-            te.TargetId = TargetId.Parse(line);
+            //te.Date = Date.ParseMMDDYY(line);
+            //te.Primary = Primary.ParseSEC(line);
+            //te.SequenceId = SequenceId.Parse(line);
+            //te.StartTime = StartTime.ParseSplit(line, ':');
+            //te.Duration = Duration.ParseSplit(line, ':');
+            //te.TargetDevice = TargetDevice.Parse(line);
+            //te.TargetId = TargetId.Parse(line);
             te.Description = Description.Parse(line);
             te.Classification = Classify(te);
             return te;
@@ -33,24 +33,25 @@ namespace Bti.Babble.Traffic
 
         private TrafficEventClassification Classify(TrafficEvent te)
         {
-            switch (te.TargetDevice)
-            {
-                case "FLX3":
-                    return TrafficEventClassification.Show;
-                case "DEKO4":
-                    return TrafficEventClassification.CG;
-                case "SVR6C":
-                    if (te.TargetId.StartsWith("FPR"))
-                    {
-                        return TrafficEventClassification.Promo;
-                    }
-                    else
-                    {
-                        return TrafficEventClassification.Commercial;
-                    }
-                default:
-                    return TrafficEventClassification.None;
-            }
+            return TrafficEventClassification.None;
+            //switch (te.TargetDevice)
+            //{
+            //    case "FLX3":
+            //        return TrafficEventClassification.Show;
+            //    case "DEKO4":
+            //        return TrafficEventClassification.CG;
+            //    case "SVR6C":
+            //        if (te.TargetId.StartsWith("FPR"))
+            //        {
+            //            return TrafficEventClassification.Promo;
+            //        }
+            //        else
+            //        {
+            //            return TrafficEventClassification.Commercial;
+            //        }
+            //    default:
+            //        return TrafficEventClassification.None;
+            //}
         }
     }
 }

@@ -36,8 +36,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bing">
+      <HintPath>..\Assemblies\Bing.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assemblies\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -45,6 +55,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIControls">
+      <HintPath>..\Assemblies\UIControls.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -55,9 +68,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BabbleEventView.xaml.cs">
+      <DependentUpon>BabbleEventView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Behaviors\TakeFocusAndSelectTextOnVisibleBehavior.cs" />
+    <Compile Include="ViewModel\BabbleEventClassificationImages.cs" />
+    <Compile Include="ViewModel\BabbleEventViewModel.cs" />
+    <Compile Include="ViewModel\TrafficLogViewModel.cs" />
     <Page Include="BabbleEventView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Brushes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DataGrid.Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TrafficLogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -67,10 +99,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BabbleEventView.xaml.cs">
-      <DependentUpon>BabbleEventView.xaml</DependentUpon>
+    <Compile Include="TrafficLogView.xaml.cs">
+      <DependentUpon>TrafficLogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\BabbleEventViewModel.cs" />
     <Compile Include="Infrastructure\ObservableObject.cs" />
     <Compile Include="Infrastructure\PropertySupport.cs" />
     <Compile Include="Infrastructure\RelayCommand.cs" />
@@ -112,6 +143,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -119,21 +151,31 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\arrow_left_blue.png" />
-    <Resource Include="Resources\arrow_right_blue.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\EventManager.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="TrafficLogs\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\info.png" />
-    <Resource Include="Resources\question.png" />
-    <Resource Include="Resources\rating.png" />
-    <Resource Include="Resources\rss.bmp" />
-    <Resource Include="Resources\twitter.bmp" />
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\comment.png" />
+    <Resource Include="Images\poll.png" />
+    <Resource Include="Images\rating.png" />
+    <Resource Include="Images\rss.png" />
+    <Resource Include="Images\tease.png" />
+    <Resource Include="Images\twitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Babble.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow_left_blue.png" />
+    <Resource Include="Images\arrow_right_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\log.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\event.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

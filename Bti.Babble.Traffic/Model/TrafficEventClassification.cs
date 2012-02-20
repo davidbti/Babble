@@ -5,9 +5,9 @@ namespace Bti.Babble.Traffic
     public enum TrafficEventClassification
     {
         None,
-        Show,
+        Id,
+        Program,
         Promo,
-        CG,
-        Commercial
+        Spot
     }
 }

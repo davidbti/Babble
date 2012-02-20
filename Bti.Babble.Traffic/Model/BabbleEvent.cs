@@ -7,7 +7,6 @@ namespace Bti.Babble.Traffic
     {
         private string body;
         private BabbleEventClassification classification;
-        private BabbleEventFeed feed;
         private string link;
         private string name;
 
@@ -28,16 +27,6 @@ namespace Bti.Babble.Traffic
             {
                 this.classification = value;
                 RaisePropertyChanged("Classification");
-            }
-        }
-
-        public BabbleEventFeed Feed
-        {
-            get { return this.feed; }
-            set
-            {
-                this.feed = value;
-                RaisePropertyChanged("Feed");
             }
         }
 

@@ -1,49 +1,79 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
+using System.Xml;
+using System.Windows.Media;
 
 namespace Bti.Babble.Traffic
 {
-    class BabbleEventViewModel : ObservableObject
+    public class BabbleEventViewModel : ObservableObject
     {
-        private BabbleEvent activeEvent;
-        readonly IBabbleEventRepository repository;
-        ObservableCollection<BabbleEvent> events;
-
-        public BabbleEvent ActiveEvent
+        private BabbleEvent babbleEvent;
+        private ImageSource imageSource;
+        
+        public string Body
         {
-            get { return this.activeEvent; }
+            get { return this.babbleEvent.Body; }
             set
             {
-                this.activeEvent = value;
-                RaisePropertyChanged("ActiveEvent");
+                this.babbleEvent.Body = value;
+                RaisePropertyChanged("Body");
             }
         }
 
-        public ObservableCollection<BabbleEvent> Events
+        public BabbleEventClassification Classification
         {
-            get { return this.events; }
+            get { return this.babbleEvent.Classification; }
             set
             {
-                this.events = value;
-                RaisePropertyChanged("Events");
+                this.babbleEvent.Classification = value;
+                RaisePropertyChanged("Classification");
             }
         }
 
-        public BabbleEventViewModel() :
-            this(new BabbleEventRepository())
+        public ImageSource ClassificationImage
         {
+            get 
+            {
+                return imageSource; 
+            }
         }
 
-        public BabbleEventViewModel(IBabbleEventRepository repository)
+        public string ClassificationName
         {
-            this.repository = repository;
-            LoadEvents();
+            get
+            {
+                return Enum.GetName(typeof(BabbleEventClassification), Classification);
+            }
+            set
+            {
+                Classification = (BabbleEventClassification)Enum.Parse(typeof(BabbleEventClassification), value);
+            }
         }
 
-        void LoadEvents()
+        public string Link
         {
-            this.events = new ObservableCollection<BabbleEvent>(this.repository.GetAll());
+            get { return this.babbleEvent.Link; }
+            set
+            {
+                this.babbleEvent.Link = value;
+                RaisePropertyChanged("Link");
+            }
+        }
+
+        public string Name
+        {
+            get { return this.babbleEvent.Name; }
+            set
+            {
+                this.babbleEvent.Name = value;
+                RaisePropertyChanged("Name");
+            }
+        }
+
+        public BabbleEventViewModel(BabbleEvent babbleEvent, BabbleEventClassificationImages images)
+        {
+            this.babbleEvent = babbleEvent;
+            this.imageSource = images.Images[babbleEvent.Classification];
         }
     }
 }
+

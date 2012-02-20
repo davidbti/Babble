@@ -5,8 +5,10 @@ namespace Bti.Babble.Traffic
     public enum BabbleEventClassification
     {
         Comment,
-        Headline,
         Poll,
-        Rating
+        Rating,
+        Rss,
+        Tease,
+        Twitter
     }
 }

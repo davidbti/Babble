@@ -5,6 +5,6 @@ namespace Bti.Babble.Traffic
 {
     public interface IBabbleEventRepository
     {
-        IEnumerable<BabbleEvent> GetAll();
+        IEnumerable<BabbleEvent> GetForTrafficEvent(TrafficEvent evt);
     }
 }

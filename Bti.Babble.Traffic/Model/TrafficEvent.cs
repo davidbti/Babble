@@ -5,83 +5,29 @@ namespace Bti.Babble.Traffic
 {
     public class TrafficEvent : ObservableObject
     {
-        private DateTime date;
-        private bool primary;
-        private int sequenceId;
-        private TimeSpan startTime;
-        private TimeSpan duration;
-        private string targetDevice;
-        private string targetId;
+        private TimeSpan time;
+        private TimeSpan length;
         private string description;
         private TrafficEventClassification classification;
+        private string barcode;
 
-        public DateTime Date
+        public TimeSpan Time
         {
-            get { return this.date; }
+            get { return this.time; }
             set
             {
-                this.date = value;
-                RaisePropertyChanged("Date");
+                this.time = value;
+                RaisePropertyChanged("Time");
             }
         }
 
-        public bool Primary
+        public TimeSpan Length
         {
-            get { return this.primary; }
+            get { return this.length; }
             set
             {
-                this.primary = value;
-                RaisePropertyChanged("Primary");
-            }
-        }
-
-        public int SequenceId
-        {
-            get { return this.sequenceId; }
-            set
-            {
-                this.sequenceId = value;
-                RaisePropertyChanged("SequenceId");
-            }
-        }
-
-        public TimeSpan StartTime
-        {
-            get { return this.startTime; }
-            set
-            {
-                this.startTime = value;
-                RaisePropertyChanged("StartTime");
-            }
-        }
-
-        public TimeSpan Duration
-        {
-            get { return this.duration; }
-            set
-            {
-                this.duration = value;
-                RaisePropertyChanged("Duration");
-            }
-        }
-
-        public string TargetDevice
-        {
-            get { return this.targetDevice; }
-            set
-            {
-                this.targetDevice = value;
-                RaisePropertyChanged("TargetDevice");
-            }
-        }
-
-        public string TargetId
-        {
-            get { return this.targetId; }
-            set
-            {
-                this.targetId = value;
-                RaisePropertyChanged("TargetId");
+                this.length = value;
+                RaisePropertyChanged("Length");
             }
         }
 
@@ -105,29 +51,24 @@ namespace Bti.Babble.Traffic
             }
         }
 
+        public string Barcode
+        {
+            get { return this.barcode; }
+            set
+            {
+                this.barcode = value;
+                RaisePropertyChanged("Barcode");
+            }
+        }
+
         public void Write(XmlWriter writer)
         {
             writer.WriteStartElement("Event");
-            writer.WriteStartElement("Date");
-            writer.WriteValue(Date);
+            writer.WriteStartElement("Time");
+            writer.WriteValue(Time.Hours.ToString("00") + ":" + Time.Minutes.ToString("00") + ":" + Time.Seconds.ToString("00"));
             writer.WriteEndElement();
-            writer.WriteStartElement("Primary");
-            writer.WriteValue(Primary);
-            writer.WriteEndElement();
-            writer.WriteStartElement("SequenceId");
-            writer.WriteValue(SequenceId);
-            writer.WriteEndElement();
-            writer.WriteStartElement("StartTime");
-            writer.WriteValue(StartTime.Hours.ToString("00") + ":" + StartTime.Minutes.ToString("00") + ":" + StartTime.Seconds.ToString("00"));
-            writer.WriteEndElement();
-            writer.WriteStartElement("Duration");
-            writer.WriteValue(Duration.Hours.ToString("00") + ":" + Duration.Minutes.ToString("00") + ":" + Duration.Seconds.ToString("00"));
-            writer.WriteEndElement();
-            writer.WriteStartElement("TargetDevice");
-            writer.WriteValue(TargetDevice);
-            writer.WriteEndElement();
-            writer.WriteStartElement("TargetId");
-            writer.WriteValue(TargetId);
+            writer.WriteStartElement("Length");
+            writer.WriteValue(Length.Hours.ToString("00") + ":" + Length.Minutes.ToString("00") + ":" + Length.Seconds.ToString("00"));
             writer.WriteEndElement();
             writer.WriteStartElement("Description");
             writer.WriteValue(Description);
@@ -135,6 +76,9 @@ namespace Bti.Babble.Traffic
             writer.WriteStartElement("Classification");
             string classification = Enum.GetName(typeof(TrafficEventClassification), Classification);
             writer.WriteValue(classification);
+            writer.WriteEndElement();
+            writer.WriteStartElement("Barcode");
+            writer.WriteValue(Barcode);
             writer.WriteEndElement();
             writer.WriteEndElement(); //Event
         }
