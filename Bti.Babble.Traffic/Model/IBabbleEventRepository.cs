@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Bti.Babble.Traffic
+namespace Bti.Babble.Traffic.Model
 {
     public interface IBabbleEventRepository
     {

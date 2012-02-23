@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Xml;
 using System.Windows.Media;
+using System.ComponentModel;
+using Bti.Babble.Traffic.Model;
 
 namespace Bti.Babble.Traffic
 {
     public class BabbleEventViewModel : ObservableObject
     {
         private BabbleEvent babbleEvent;
-        private ImageSource imageSource;
+        private BabbleEventTypeViewModel babbleType;
         
         public string Body
         {
@@ -16,36 +18,6 @@ namespace Bti.Babble.Traffic
             {
                 this.babbleEvent.Body = value;
                 RaisePropertyChanged("Body");
-            }
-        }
-
-        public BabbleEventClassification Classification
-        {
-            get { return this.babbleEvent.Classification; }
-            set
-            {
-                this.babbleEvent.Classification = value;
-                RaisePropertyChanged("Classification");
-            }
-        }
-
-        public ImageSource ClassificationImage
-        {
-            get 
-            {
-                return imageSource; 
-            }
-        }
-
-        public string ClassificationName
-        {
-            get
-            {
-                return Enum.GetName(typeof(BabbleEventClassification), Classification);
-            }
-            set
-            {
-                Classification = (BabbleEventClassification)Enum.Parse(typeof(BabbleEventClassification), value);
             }
         }
 
@@ -69,10 +41,27 @@ namespace Bti.Babble.Traffic
             }
         }
 
-        public BabbleEventViewModel(BabbleEvent babbleEvent, BabbleEventClassificationImages images)
+        public BabbleEventTypeViewModel Type
+        {
+            get
+            {
+                return babbleType;
+            }
+            set
+            {
+                this.babbleType = value;
+            }
+        }
+
+        public BabbleEventViewModel()
+            : this(new BabbleEvent(), new BabbleEventTypeViewModel())
+        {
+        }
+
+        public BabbleEventViewModel(BabbleEvent babbleEvent, BabbleEventTypeViewModel babbleType)
         {
             this.babbleEvent = babbleEvent;
-            this.imageSource = images.Images[babbleEvent.Classification];
+            this.babbleType = babbleType;
         }
     }
 }

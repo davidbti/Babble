@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Xml;
 
-namespace Bti.Babble.Traffic
+namespace Bti.Babble.Traffic.Model
 {
     public class BabbleEvent : ObservableObject
     {
         private string body;
-        private BabbleEventClassification classification;
+        private BabbleEventType type;
         private string link;
         private string name;
 
@@ -20,13 +19,13 @@ namespace Bti.Babble.Traffic
             }
         }
 
-        public BabbleEventClassification Classification
+        public BabbleEventType Type
         {
-            get { return this.classification; }
+            get { return this.type; }
             set
             {
-                this.classification = value;
-                RaisePropertyChanged("Classification");
+                this.type = value;
+                RaisePropertyChanged("Type");
             }
         }
 
@@ -48,6 +47,13 @@ namespace Bti.Babble.Traffic
                 this.name = value;
                 RaisePropertyChanged("Name");
             }
+        }
+
+        public BabbleEvent()
+        {
+            this.body = "";
+            this.Link = "";
+            this.Name = "";
         }
     }
 }

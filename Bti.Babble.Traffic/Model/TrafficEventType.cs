@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Bti.Babble.Traffic
+namespace Bti.Babble.Traffic.Model
 {
-    public enum TrafficEventClassification
+    public enum TrafficEventType
     {
         None,
         Id,

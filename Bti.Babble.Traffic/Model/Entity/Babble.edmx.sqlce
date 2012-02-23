@@ -1,0 +1,115 @@
+
+-- --------------------------------------------------
+-- Entity Designer DDL Script for SQL Server Compact Edition
+-- --------------------------------------------------
+-- Date Created: 02/22/2012 13:12:49
+-- Generated from EDMX file: C:\BTi\Projects\Babble\Bti.Babble.Traffic\Model\Babble.edmx
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Dropping existing FOREIGN KEY constraints
+-- NOTE: if the constraint does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Dropping existing tables
+-- NOTE: if the table does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Creating all tables
+-- --------------------------------------------------
+
+-- Creating table 'TrafficLogs'
+CREATE TABLE [TrafficLogs] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Date] datetime  NOT NULL,
+    [ParseDate] datetime  NOT NULL,
+    [StationName] nvarchar(4000)  NOT NULL
+);
+GO
+
+-- Creating table 'TrafficEvents'
+CREATE TABLE [TrafficEvents] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Time] nvarchar(4000)  NOT NULL,
+    [Length] nvarchar(4000)  NOT NULL,
+    [ISCI] nvarchar(4000)  NOT NULL,
+    [Description] nvarchar(4000)  NOT NULL,
+    [Type] int  NOT NULL,
+    [Barcode] nvarchar(4000)  NOT NULL,
+    [TrafficLogId] int  NOT NULL
+);
+GO
+
+-- Creating table 'BabbleEvents'
+CREATE TABLE [BabbleEvents] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Body] nvarchar(4000)  NOT NULL,
+    [Type] int  NOT NULL,
+    [Link] nvarchar(4000)  NOT NULL,
+    [Name] nvarchar(4000)  NOT NULL,
+    [TrafficEventId] int  NOT NULL
+);
+GO
+
+-- --------------------------------------------------
+-- Creating all PRIMARY KEY constraints
+-- --------------------------------------------------
+
+-- Creating primary key on [Id] in table 'TrafficLogs'
+ALTER TABLE [TrafficLogs]
+ADD CONSTRAINT [PK_TrafficLogs]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'TrafficEvents'
+ALTER TABLE [TrafficEvents]
+ADD CONSTRAINT [PK_TrafficEvents]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'BabbleEvents'
+ALTER TABLE [BabbleEvents]
+ADD CONSTRAINT [PK_BabbleEvents]
+    PRIMARY KEY ([Id] );
+GO
+
+-- --------------------------------------------------
+-- Creating all FOREIGN KEY constraints
+-- --------------------------------------------------
+
+-- Creating foreign key on [TrafficLogId] in table 'TrafficEvents'
+ALTER TABLE [TrafficEvents]
+ADD CONSTRAINT [FK_TrafficLogTrafficEvent]
+    FOREIGN KEY ([TrafficLogId])
+    REFERENCES [TrafficLogs]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TrafficLogTrafficEvent'
+CREATE INDEX [IX_FK_TrafficLogTrafficEvent]
+ON [TrafficEvents]
+    ([TrafficLogId]);
+GO
+
+-- Creating foreign key on [TrafficEventId] in table 'BabbleEvents'
+ALTER TABLE [BabbleEvents]
+ADD CONSTRAINT [FK_TrafficEventBabbleEvent]
+    FOREIGN KEY ([TrafficEventId])
+    REFERENCES [TrafficEvents]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TrafficEventBabbleEvent'
+CREATE INDEX [IX_FK_TrafficEventBabbleEvent]
+ON [BabbleEvents]
+    ([TrafficEventId]);
+GO
+
+-- --------------------------------------------------
+-- Script has ended
+-- --------------------------------------------------

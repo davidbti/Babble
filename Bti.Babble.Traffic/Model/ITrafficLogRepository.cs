@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bti.Babble.Traffic
+namespace Bti.Babble.Traffic.Model
 {
     interface ITrafficLogRepository
     {

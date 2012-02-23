@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Babble.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="BabbleStoreContainer">
+    <EntitySet Name="TrafficLogs" EntityType="Babble.Store.TrafficLogs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TrafficEvents" EntityType="Babble.Store.TrafficEvents" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BabbleEvents" EntityType="Babble.Store.BabbleEvents" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="TrafficLogTrafficEvent" Association="Babble.Store.TrafficLogTrafficEvent">
+      <End Role="TrafficLog" EntitySet="TrafficLogs" />
+      <End Role="TrafficEvent" EntitySet="TrafficEvents" />
+    </AssociationSet>
+    <AssociationSet Name="TrafficEventBabbleEvent" Association="Babble.Store.TrafficEventBabbleEvent">
+      <End Role="TrafficEvent" EntitySet="TrafficEvents" />
+      <End Role="BabbleEvent" EntitySet="BabbleEvents" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TrafficLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="ParseDate" Type="datetime" Nullable="false" />
+    <Property Name="StationName" Type="nvarchar" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrafficEvents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Time" Type="nvarchar" Nullable="false" />
+    <Property Name="Length" Type="nvarchar" Nullable="false" />
+    <Property Name="ISCI" Type="nvarchar" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Barcode" Type="nvarchar" Nullable="false" />
+    <Property Name="TrafficLogId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BabbleEvents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Body" Type="nvarchar" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Link" Type="nvarchar" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" />
+    <Property Name="TrafficEventId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="TrafficLogTrafficEvent">
+    <End Role="TrafficLog" Type="Babble.Store.TrafficLogs" Multiplicity="1" />
+    <End Role="TrafficEvent" Type="Babble.Store.TrafficEvents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrafficLog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrafficEvent">
+        <PropertyRef Name="TrafficLogId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrafficEventBabbleEvent">
+    <End Role="TrafficEvent" Type="Babble.Store.TrafficEvents" Multiplicity="1" />
+    <End Role="BabbleEvent" Type="Babble.Store.BabbleEvents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrafficEvent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BabbleEvent">
+        <PropertyRef Name="TrafficEventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Babble" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="BabbleContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TrafficLogs" EntityType="Babble.TrafficLog" />
+          <EntitySet Name="TrafficEvents" EntityType="Babble.TrafficEvent" />
+          <AssociationSet Name="TrafficLogTrafficEvent" Association="Babble.TrafficLogTrafficEvent">
+            <End Role="TrafficLog" EntitySet="TrafficLogs" />
+            <End Role="TrafficEvent" EntitySet="TrafficEvents" />
+          </AssociationSet>
+          <EntitySet Name="BabbleEvents" EntityType="Babble.BabbleEvent" />
+          <AssociationSet Name="TrafficEventBabbleEvent" Association="Babble.TrafficEventBabbleEvent">
+            <End Role="TrafficEvent" EntitySet="TrafficEvents" />
+            <End Role="BabbleEvent" EntitySet="BabbleEvents" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TrafficLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="DateTime" Name="ParseDate" Nullable="false" />
+          <Property Type="String" Name="StationName" Nullable="false" />
+          <NavigationProperty Name="TrafficEvents" Relationship="Babble.TrafficLogTrafficEvent" FromRole="TrafficLog" ToRole="TrafficEvent" />
+        </EntityType>
+        <EntityType Name="TrafficEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Time" Nullable="false" />
+          <Property Type="String" Name="Length" Nullable="false" />
+          <Property Type="String" Name="ISCI" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" />
+          <Property Type="Int32" Name="Type" Nullable="false" />
+          <Property Type="String" Name="Barcode" Nullable="false" />
+          <NavigationProperty Name="TrafficLog" Relationship="Babble.TrafficLogTrafficEvent" FromRole="TrafficEvent" ToRole="TrafficLog" />
+          <Property Type="Int32" Name="TrafficLogId" Nullable="false" />
+          <NavigationProperty Name="BabbleEvents" Relationship="Babble.TrafficEventBabbleEvent" FromRole="TrafficEvent" ToRole="BabbleEvent" />
+        </EntityType>
+        <Association Name="TrafficLogTrafficEvent">
+          <End Type="Babble.TrafficLog" Role="TrafficLog" Multiplicity="1" />
+          <End Type="Babble.TrafficEvent" Role="TrafficEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrafficLog">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrafficEvent">
+              <PropertyRef Name="TrafficLogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BabbleEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Body" Nullable="false" />
+          <Property Type="Int32" Name="Type" Nullable="false" />
+          <Property Type="String" Name="Link" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <NavigationProperty Name="TrafficEvent" Relationship="Babble.TrafficEventBabbleEvent" FromRole="BabbleEvent" ToRole="TrafficEvent" />
+          <Property Type="Int32" Name="TrafficEventId" Nullable="false" />
+        </EntityType>
+        <Association Name="TrafficEventBabbleEvent">
+          <End Type="Babble.TrafficEvent" Role="TrafficEvent" Multiplicity="1" />
+          <End Type="Babble.BabbleEvent" Role="BabbleEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrafficEvent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BabbleEvent">
+              <PropertyRef Name="TrafficEventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BabbleStoreContainer" CdmEntityContainer="BabbleContainer">
+    <EntitySetMapping Name="TrafficLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(Babble.TrafficLog)">
+        <MappingFragment StoreEntitySet="TrafficLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ParseDate" ColumnName="ParseDate" />
+          <ScalarProperty Name="StationName" ColumnName="StationName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrafficEvents">
+      <EntityTypeMapping TypeName="IsTypeOf(Babble.TrafficEvent)">
+        <MappingFragment StoreEntitySet="TrafficEvents">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="ISCI" ColumnName="ISCI" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+          <ScalarProperty Name="TrafficLogId" ColumnName="TrafficLogId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BabbleEvents">
+      <EntityTypeMapping TypeName="IsTypeOf(Babble.BabbleEvent)">
+        <MappingFragment StoreEntitySet="BabbleEvents">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TrafficEventId" ColumnName="TrafficEventId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="Babble" >
+        <EntityTypeShape EntityType="Babble.TrafficLog" Width="1.5" PointX="0.5" PointY="1.75" Height="1.787985026041667" />
+        <EntityTypeShape EntityType="Babble.TrafficEvent" Width="1.5" PointX="2.75" PointY="1.75" Height="2.3648893229166656" />
+        <AssociationConnector Association="Babble.TrafficLogTrafficEvent">
+          <ConnectorPoint PointX="2" PointY="2.7401432291666667" />
+          <ConnectorPoint PointX="2.75" PointY="2.7401432291666667" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Babble.BabbleEvent" Width="1.5" PointX="5.125" PointY="1.875" Height="1.9802864583333331" />
+        <AssociationConnector Association="Babble.TrafficEventBabbleEvent">
+          <ConnectorPoint PointX="4.25" PointY="3.0574446614583337" />
+          <ConnectorPoint PointX="5.125" PointY="3.0574446614583337" />
+        </AssociationConnector>
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Xml;
 
-namespace Bti.Babble.Traffic
+namespace Bti.Babble.Traffic.Model
 {
     public class TrafficEvent : ObservableObject
     {
         private TimeSpan time;
         private TimeSpan length;
         private string description;
-        private TrafficEventClassification classification;
+        private TrafficEventType type;
         private string barcode;
 
         public TimeSpan Time
@@ -41,13 +41,13 @@ namespace Bti.Babble.Traffic
             }
         }
 
-        public TrafficEventClassification Classification
+        public TrafficEventType Type
         {
-            get { return this.classification; }
+            get { return this.type; }
             set
             {
-                this.classification = value;
-                RaisePropertyChanged("Classification");
+                this.type = value;
+                RaisePropertyChanged("Type");
             }
         }
 
@@ -73,9 +73,9 @@ namespace Bti.Babble.Traffic
             writer.WriteStartElement("Description");
             writer.WriteValue(Description);
             writer.WriteEndElement();
-            writer.WriteStartElement("Classification");
-            string classification = Enum.GetName(typeof(TrafficEventClassification), Classification);
-            writer.WriteValue(classification);
+            writer.WriteStartElement("Type");
+            string type = Enum.GetName(typeof(TrafficEventType), Type);
+            writer.WriteValue(type);
             writer.WriteEndElement();
             writer.WriteStartElement("Barcode");
             writer.WriteValue(Barcode);

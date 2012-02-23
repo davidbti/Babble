@@ -42,10 +42,10 @@
 
         <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" AutoGenerateColumns="False" ItemsSource="{Binding BabbleEvents}">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Class" Width="1*">
+                <DataGridTemplateColumn Header="Type" Width="1*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Width ="32" Height="32" Source="{Binding Classification}" />
+                            <Image Width ="32" Height="32" Source="{Binding Type}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

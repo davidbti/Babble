@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Bing;
 
-namespace Bti.Babble.Traffic
+namespace Bti.Babble.Traffic.Model.Mock
 {
     public class BabbleEventRepository : IBabbleEventRepository
     {
@@ -10,15 +10,15 @@ namespace Bti.Babble.Traffic
 
         public IEnumerable<BabbleEvent> GetForTrafficEvent(TrafficEvent evt)
         {
-            switch (evt.Classification)
+            switch (evt.Type)
             {
-                case TrafficEventClassification.Id:
+                case TrafficEventType.Id:
                     return GetForIdEvent(evt);
-                case TrafficEventClassification.Program:
+                case TrafficEventType.Program:
                     return GetForProgramEvent(evt);
-                case TrafficEventClassification.Promo:
+                case TrafficEventType.Promo:
                     return GetForPromoEvent(evt);
-                case TrafficEventClassification.Spot:
+                case TrafficEventType.Spot:
                     return GetForSpotEvent(evt);
             }
             return new List<BabbleEvent>();
@@ -30,7 +30,7 @@ namespace Bti.Babble.Traffic
             var b1 = new BabbleEvent()
             {
                 Body = "Thank you for watching News 2. Your local source for late breaking news, sports, weather and traffic",
-                Classification = BabbleEventClassification.Tease,
+                Type = BabbleEventType.Tease,
                 Link = @"http://www.wkrn.com",
                 Name = "Station Id"
             };
@@ -44,7 +44,7 @@ namespace Bti.Babble.Traffic
             var b1 = new BabbleEvent()
             {
                 Body = "#News2",
-                Classification = BabbleEventClassification.Twitter,
+                Type = BabbleEventType.Twitter,
                 Link = "",
                 Name = evt.Description + " Twitter Feed"
             };
@@ -52,7 +52,7 @@ namespace Bti.Babble.Traffic
             var b2 = new BabbleEvent()
             {
                 Body = "",
-                Classification = BabbleEventClassification.Rss,
+                Type = BabbleEventType.Rss,
                 Link = @"http://www.wkrn.com/global/Category.asp?c=126083&clienttype=rss",
                 Name = evt.Description + " Rss Feed"
             };
@@ -66,7 +66,7 @@ namespace Bti.Babble.Traffic
             var b1 = new BabbleEvent()
             {
                 Body = "Tragedy strikes the mayor and his family. Tonight @ 6",
-                Classification = BabbleEventClassification.Tease,
+                Type = BabbleEventType.Tease,
                 Link = @"http://www.wkrn.com",
                 Name = "6 pm promo"
             };
@@ -87,7 +87,7 @@ namespace Bti.Babble.Traffic
                 var b1 = new BabbleEvent()
                 {
                     Body = result.Description,
-                    Classification = BabbleEventClassification.Tease,
+                    Type = BabbleEventType.Tease,
                     Link = result.Url,
                     Name = evt.Description + " Information"
                 };
@@ -96,7 +96,7 @@ namespace Bti.Babble.Traffic
             var b2 = new BabbleEvent()
             {
                 Body = "Let us know what you think of this " + evt.Description + " commercial",
-                Classification = BabbleEventClassification.Rating,
+                Type = BabbleEventType.Rating,
                 Link = "",
                 Name = evt.Description + " Rating"
             };

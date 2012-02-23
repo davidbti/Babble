@@ -4,18 +4,31 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media;
+using Bti.Babble.Traffic.Model;
 
 namespace Bti.Babble.Traffic
 {
     class TrafficLogViewModel : ObservableObject
     {
         private TrafficLog log;
-        readonly ITrafficLogRepository logRepository;
+        private ITrafficLogRepository logRepository;
+        private DateTime activeDate;
         private TrafficEvent activeEvent;
+        private DateTime selectedDate;
         private TrafficEvent selectedEvent;
-        readonly IBabbleEventRepository babbleEventRepository;
+        private IBabbleEventRepository babbleEventRepository;
         ObservableCollection<BabbleEventViewModel> babbleEvents;
-        BabbleEventClassificationImages babbleImages;
+        BabbleEventTypeViewModels babbleTypes;
+
+        public DateTime ActiveDate
+        {
+            get { return this.activeDate; }
+            set
+            {
+                this.activeDate = value;
+                RaisePropertyChanged("ActiveDate");
+            }
+        }
 
         public TrafficEvent ActiveEvent
         {
@@ -34,6 +47,22 @@ namespace Bti.Babble.Traffic
             {
                 this.babbleEvents = value;
                 RaisePropertyChanged("BabbleEvents");
+            }
+        }
+
+        public BabbleEventTypeViewModels BabbleEventTypes
+        {
+            get { return this.babbleTypes; }
+        }
+
+        public DateTime SelectedDate
+        {
+            get { return this.selectedDate; }
+            set
+            {
+                this.selectedDate = value;
+                RaisePropertyChanged("SelectedDate");
+                DateSelected(value);
             }
         }
 
@@ -59,7 +88,7 @@ namespace Bti.Babble.Traffic
         }
 
         public TrafficLogViewModel() :
-            this(new TrafficLogRepository(), new BabbleEventRepository())
+            this(new Model.Mock.TrafficLogRepository(), new Model.Mock.BabbleEventRepository())
         {
         }
 
@@ -67,23 +96,29 @@ namespace Bti.Babble.Traffic
         {
             this.logRepository = logRepository;
             this.babbleEventRepository = babbleEventRepository;
-            this.babbleImages = new BabbleEventClassificationImages();
+            this.babbleTypes = new BabbleEventTypeViewModels();
+            SelectedDate = DateTime.Now;
             LoadLog();
         }
 
-        void EventSelected(TrafficEvent evt)
+        private void DateSelected(DateTime date)
+        {
+            this.ActiveDate = date;
+        }
+
+        private void EventSelected(TrafficEvent evt)
         {
             LoadBabbleEvents(evt);
             this.ActiveEvent = evt;
         }
 
-        void LoadBabbleEvents(TrafficEvent evt)
+        private void LoadBabbleEvents(TrafficEvent evt)
         {
             this.BabbleEvents = new ObservableCollection<BabbleEventViewModel>
-                (this.babbleEventRepository.GetForTrafficEvent(evt).Select(o => new BabbleEventViewModel(o, babbleImages)));
+                (this.babbleEventRepository.GetForTrafficEvent(evt).Select(o => new BabbleEventViewModel(o, babbleTypes.GetImageForType(o.Type))));
         }
 
-        void LoadLog()
+        private void LoadLog()
         {
             this.log = this.logRepository.GetByDate(DateTime.Now);
         }

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Bti.Babble.Traffic.Model;
 
-namespace Bti.Babble.Traffic
+namespace Bti.Babble.Traffic.Parser
 {
     class FamilyChannelLineParser : ILineParser
     {
@@ -27,13 +25,13 @@ namespace Bti.Babble.Traffic
             //te.TargetDevice = TargetDevice.Parse(line);
             //te.TargetId = TargetId.Parse(line);
             te.Description = Description.Parse(line);
-            te.Classification = Classify(te);
+            te.Type = Classify(te);
             return te;
         }
 
-        private TrafficEventClassification Classify(TrafficEvent te)
+        private TrafficEventType Classify(TrafficEvent te)
         {
-            return TrafficEventClassification.None;
+            return TrafficEventType.None;
             //switch (te.TargetDevice)
             //{
             //    case "FLX3":

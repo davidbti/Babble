@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Bti.Babble.Traffic
+namespace Bti.Babble.Traffic.Model
 {
     public class TrafficLog
     {
         public DateTime Date { get; set; }
-        public DateTime ReadDate { get; set; }
+        public DateTime ParseDate { get; set; }
         public string Station { get; set; }
         public List<TrafficEvent> Events { get; set; }
 
@@ -20,7 +20,7 @@ namespace Bti.Babble.Traffic
             return new TrafficLog()
             {
                 Date = new DateTime(2000, 1, 1),
-                ReadDate = new DateTime(2000, 1, 1),
+                ParseDate = new DateTime(2000, 1, 1),
                 Station = "",
                 Events = new List<TrafficEvent>()
             };
@@ -37,7 +37,7 @@ namespace Bti.Babble.Traffic
                 writer.WriteValue(Date);
                 writer.WriteEndElement();
                 writer.WriteStartElement("ReadDate");
-                writer.WriteValue(ReadDate);
+                writer.WriteValue(ParseDate);
                 writer.WriteEndElement();
                 writer.WriteStartElement("Station");
                 writer.WriteValue(Station);
@@ -55,9 +55,9 @@ namespace Bti.Babble.Traffic
                                               "_" + 
                                               Date.Year + Date.Month.ToString("00") + Date.Day.ToString("00") + 
                                               "_" +
-                                              ReadDate.Year + ReadDate.Month.ToString("00") + ReadDate.Day.ToString("00") +
+                                              ParseDate.Year + ParseDate.Month.ToString("00") + ParseDate.Day.ToString("00") +
                                               "_" +
-                                              ReadDate.Hour.ToString("00") + ReadDate.Minute.ToString("00") + ReadDate.Second.ToString("00") + 
+                                              ParseDate.Hour.ToString("00") + ParseDate.Minute.ToString("00") + ParseDate.Second.ToString("00") + 
                                               ".xml");
             doc.Save(path);
         }
