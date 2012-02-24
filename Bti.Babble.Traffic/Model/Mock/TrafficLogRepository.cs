@@ -25,7 +25,7 @@ namespace Bti.Babble.Traffic.Model.Mock
             var e2 = new TrafficEvent()
             {
                 Barcode = "53752",
-                Type = TrafficEventType.Spot,
+                Type = TrafficEventType.Commercial,
                 Description = "Centerstone",
                 Length = new TimeSpan(0, 0, 15),
                 Time = new TimeSpan(4, 10, 0)
@@ -35,7 +35,7 @@ namespace Bti.Babble.Traffic.Model.Mock
             var e3 = new TrafficEvent()
             {
                 Barcode = "50947",
-                Type = TrafficEventType.Spot,
+                Type = TrafficEventType.Commercial,
                 Description = "Belmont University",
                 Length = new TimeSpan(0, 0, 30),
                 Time = new TimeSpan(4, 10, 15)
@@ -45,7 +45,7 @@ namespace Bti.Babble.Traffic.Model.Mock
             var e4 = new TrafficEvent()
             {
                 Barcode = "52823",
-                Type = TrafficEventType.Spot,
+                Type = TrafficEventType.Commercial,
                 Description = "Great Southern Wood",
                 Length = new TimeSpan(0, 0, 30),
                 Time = new TimeSpan(4, 10, 45)
@@ -55,7 +55,7 @@ namespace Bti.Babble.Traffic.Model.Mock
             var e5 = new TrafficEvent()
             {
                 Barcode = "53874",
-                Type = TrafficEventType.Spot,
+                Type = TrafficEventType.Commercial,
                 Description = "Smiley Dental Associates",
                 Length = new TimeSpan(0, 0, 30),
                 Time = new TimeSpan(4, 10, 0)

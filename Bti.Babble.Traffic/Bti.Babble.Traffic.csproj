@@ -93,9 +93,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BabbleEventView.xaml.cs">
-      <DependentUpon>BabbleEventView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Behaviors\TakeFocusAndSelectTextOnVisibleBehavior.cs" />
     <Compile Include="Model\Entity\Babble.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -105,15 +102,16 @@
     <Compile Include="Model\Entity\BabbleEvent.cs" />
     <Compile Include="Model\Entity\TrafficEvent.cs" />
     <Compile Include="Model\Entity\TrafficLog.cs" />
+    <Compile Include="Model\Entity\TrafficLogRepository.cs" />
+    <Compile Include="Parser\ILogParser.cs" />
+    <Compile Include="TrafficLogHeaderView.xaml.cs">
+      <DependentUpon>TrafficLogHeaderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\BabbleEventTypeViewModel.cs" />
     <Compile Include="ViewModel\BabbleEventTypeViewModels.cs" />
     <Compile Include="ViewModel\BabbleEventValidationRule.cs" />
     <Compile Include="ViewModel\BabbleEventViewModel.cs" />
     <Compile Include="ViewModel\TrafficLogViewModel.cs" />
-    <Page Include="BabbleEventView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Themes\Brushes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -121,6 +119,14 @@
     <Page Include="Themes\DataGrid.Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\segd-arrow-symbols-icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TrafficLogHeaderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TrafficLogView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -153,12 +159,11 @@
     <Compile Include="Model\ITrafficLogRepository.cs" />
     <Compile Include="Model\Mock\TrafficLogRepository.cs" />
     <Compile Include="Parser\Column.cs" />
-    <Compile Include="Parser\FamilyChannelLineParser.cs" />
+    <Compile Include="Parser\WkrnLineParser.cs" />
     <Compile Include="Parser\WkrnLogParser.cs" />
     <Compile Include="Parser\ILineParser.cs" />
     <Compile Include="Model\TrafficEventType.cs" />
     <Compile Include="Model\TrafficLog.cs" />
-    <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="Model\TrafficEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

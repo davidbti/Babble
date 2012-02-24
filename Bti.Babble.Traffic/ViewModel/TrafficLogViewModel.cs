@@ -5,16 +5,17 @@ using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media;
 using Bti.Babble.Traffic.Model;
+using Bti.Babble.Traffic.Parser;
 
 namespace Bti.Babble.Traffic
 {
     class TrafficLogViewModel : ObservableObject
     {
         private TrafficLog log;
+        private ILogParser logParser;
         private ITrafficLogRepository logRepository;
         private DateTime activeDate;
         private TrafficEvent activeEvent;
-        private DateTime selectedDate;
         private TrafficEvent selectedEvent;
         private IBabbleEventRepository babbleEventRepository;
         ObservableCollection<BabbleEventViewModel> babbleEvents;
@@ -55,17 +56,6 @@ namespace Bti.Babble.Traffic
             get { return this.babbleTypes; }
         }
 
-        public DateTime SelectedDate
-        {
-            get { return this.selectedDate; }
-            set
-            {
-                this.selectedDate = value;
-                RaisePropertyChanged("SelectedDate");
-                DateSelected(value);
-            }
-        }
-
         public TrafficEvent SelectedEvent
         {
             get { return this.selectedEvent; }
@@ -88,7 +78,7 @@ namespace Bti.Babble.Traffic
         }
 
         public TrafficLogViewModel() :
-            this(new Model.Mock.TrafficLogRepository(), new Model.Mock.BabbleEventRepository())
+            this(new Model.Entity.TrafficLogRepository(), new Model.Mock.BabbleEventRepository())
         {
         }
 
@@ -97,9 +87,62 @@ namespace Bti.Babble.Traffic
             this.logRepository = logRepository;
             this.babbleEventRepository = babbleEventRepository;
             this.babbleTypes = new BabbleEventTypeViewModels();
-            SelectedDate = DateTime.Now;
+            this.logParser = new WkrnLogParser();
+            ActiveDate = DateTime.Now;
             LoadLog();
         }
+
+        #region Commands
+
+        public ICommand PreviousCommand
+        {
+            get { return new RelayCommand(PreviousExecute, CanPreviousExecute); }
+        }
+
+        private Boolean CanPreviousExecute()
+        {
+            return true;
+        }
+
+        private void PreviousExecute()
+        {
+            if (!CanPreviousExecute()) return;
+            ActiveDate = activeDate.Subtract(new TimeSpan(24, 0, 0));
+        }
+
+        public ICommand NextCommand
+        {
+            get { return new RelayCommand(NextExecute, CanNextExecute); }
+        }
+
+        private Boolean CanNextExecute()
+        {
+            return true;
+        }
+
+        private void NextExecute()
+        {
+            if (!CanNextExecute()) return;
+            ActiveDate = activeDate.Add(new TimeSpan(24, 0, 0));
+        }
+
+        public ICommand ImportCommand
+        {
+            get { return new RelayCommand(ImportExecute, CanImportExecute); }
+        }
+
+        private Boolean CanImportExecute()
+        {
+            return this.logParser.CanParse(ActiveDate);
+        }
+
+        private void ImportExecute()
+        {
+            if (!CanImportExecute()) return;
+            var log = this.logParser.Parse(ActiveDate);
+        }
+
+        #endregion 
 
         private void DateSelected(DateTime date)
         {

@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Bti.Babble.Traffic
 {
     /// <summary>
-    /// Interaction logic for BabbleEventView.xaml
+    /// Interaction logic for TrafficLogHeaderView.xaml
     /// </summary>
-    public partial class BabbleEventView : UserControl
+    public partial class TrafficLogHeaderView : UserControl
     {
-        public BabbleEventView()
+        public TrafficLogHeaderView()
         {
             InitializeComponent();
         }

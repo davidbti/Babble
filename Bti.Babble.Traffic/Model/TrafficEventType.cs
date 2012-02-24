@@ -8,6 +8,6 @@ namespace Bti.Babble.Traffic.Model
         Id,
         Program,
         Promo,
-        Spot
+        Commercial
     }
 }

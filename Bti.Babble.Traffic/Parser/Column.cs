@@ -56,6 +56,15 @@ namespace Bti.Babble.Traffic.Parser
 
     class TimeSpanColumn : Column
     {
+        public TimeSpan Parse(string line)
+        {
+            string spanval = line.Substring(StartPos, Length);
+            int hour = Int32.Parse(spanval.Substring(0, 2));
+            int minute = Int32.Parse(spanval.Substring(2, 2));
+            int second = Int32.Parse(spanval.Substring(4,2));
+            return new TimeSpan(hour, minute, second);
+        }
+
         public TimeSpan ParseSplit(string line, char splitchar)
         {
             string spanval = line.Substring(StartPos, Length);

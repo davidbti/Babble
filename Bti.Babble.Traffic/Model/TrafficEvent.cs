@@ -10,6 +10,7 @@ namespace Bti.Babble.Traffic.Model
         private string description;
         private TrafficEventType type;
         private string barcode;
+        private string isci;
 
         public TimeSpan Time
         {
@@ -61,26 +62,14 @@ namespace Bti.Babble.Traffic.Model
             }
         }
 
-        public void Write(XmlWriter writer)
+        public string Isci
         {
-            writer.WriteStartElement("Event");
-            writer.WriteStartElement("Time");
-            writer.WriteValue(Time.Hours.ToString("00") + ":" + Time.Minutes.ToString("00") + ":" + Time.Seconds.ToString("00"));
-            writer.WriteEndElement();
-            writer.WriteStartElement("Length");
-            writer.WriteValue(Length.Hours.ToString("00") + ":" + Length.Minutes.ToString("00") + ":" + Length.Seconds.ToString("00"));
-            writer.WriteEndElement();
-            writer.WriteStartElement("Description");
-            writer.WriteValue(Description);
-            writer.WriteEndElement();
-            writer.WriteStartElement("Type");
-            string type = Enum.GetName(typeof(TrafficEventType), Type);
-            writer.WriteValue(type);
-            writer.WriteEndElement();
-            writer.WriteStartElement("Barcode");
-            writer.WriteValue(Barcode);
-            writer.WriteEndElement();
-            writer.WriteEndElement(); //Event
+            get { return this.isci; }
+            set
+            {
+                this.isci = value;
+                RaisePropertyChanged("Isci");
+            }
         }
     }
 }

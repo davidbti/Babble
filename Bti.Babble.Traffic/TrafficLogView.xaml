@@ -22,44 +22,21 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3" />
-            <ColumnDefinition Width="42" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="42" />
+            <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="3" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="3" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="3" />
         </Grid.RowDefinitions>
-
-        <Button Grid.Column="1" Grid.Row="1">
-            <StackPanel>
-                <Image Source="/Bti.Babble.Traffic;component/Images/arrow_left_blue.png" />
-            </StackPanel>
-        </Button>
-
-        <WrapPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center">
-            <TextBlock HorizontalAlignment="Center" Text="WKRN" FontSize="24" Foreground="{StaticResource DefaultLabelForegroundBrush}" />
-            <TextBlock HorizontalAlignment="Center" Text=" Traffic Log for " FontSize="24" Foreground="{StaticResource DefaultLabelForegroundBrush}" />
-            <TextBlock HorizontalAlignment="Center" Text="{Binding ActiveDate, StringFormat=D}" FontSize="24" Foreground="{StaticResource DefaultLabelForegroundBrush}" />
-        </WrapPanel>
         
-        <Button Grid.Column="3" Grid.Row="1">
-            <StackPanel>
-                <Image Source="/Bti.Babble.Traffic;component/Images/arrow_right_blue.png" />
-            </StackPanel>
-        </Button>
-
-        <Button Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2">
-            <TextBlock HorizontalAlignment="Center" Text="Import" FontSize="24" Foreground="{StaticResource DefaultControlForegroundBrush}" />
-        </Button>
-
-        <DataGrid Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3"  AutoGenerateColumns="False" ItemsSource="{Binding Log.Events}" 
+        <local:TrafficLogHeaderView Grid.Column="1" Grid.Row="1" />
+        
+        <DataGrid Grid.Column="1" Grid.Row="2"  AutoGenerateColumns="False" ItemsSource="{Binding Log.Events}" 
                   SelectedItem="{Binding Path=SelectedEvent, Mode=TwoWay}" 
                   CanUserAddRows="False">
             <DataGrid.Columns>
@@ -70,13 +47,13 @@
                 <DataGridTextColumn Header="Barcode" Width="1*" Binding="{Binding Barcode}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-
-        <WrapPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center">
+        
+        <WrapPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
             <TextBlock HorizontalAlignment="Center" Text="Babble events for " FontSize="18" Foreground="{StaticResource DefaultLabelForegroundBrush}" />
             <TextBlock HorizontalAlignment="Center" Text=" News 2 Early Morning " FontSize="18" Foreground="{StaticResource DefaultLabelForegroundBrush}" />
         </WrapPanel>
 
-        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="5" AutoGenerateColumns="False" ItemsSource="{Binding BabbleEvents}">
+        <DataGrid Grid.Column="1" Grid.Row="4" AutoGenerateColumns="False" ItemsSource="{Binding BabbleEvents}">
             <DataGrid.RowValidationRules>
                 <local:BabbleEventValidationRule ValidationStep="UpdatedValue"/>
             </DataGrid.RowValidationRules>

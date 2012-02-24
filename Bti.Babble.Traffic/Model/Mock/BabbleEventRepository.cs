@@ -18,7 +18,7 @@ namespace Bti.Babble.Traffic.Model.Mock
                     return GetForProgramEvent(evt);
                 case TrafficEventType.Promo:
                     return GetForPromoEvent(evt);
-                case TrafficEventType.Spot:
+                case TrafficEventType.Commercial:
                     return GetForSpotEvent(evt);
             }
             return new List<BabbleEvent>();
