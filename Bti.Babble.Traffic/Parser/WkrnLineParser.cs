@@ -1,4 +1,5 @@
 ﻿using System;
+using Bti.Babble.Traffic;
 using Bti.Babble.Traffic.Model;
 
 namespace Bti.Babble.Traffic.Parser
@@ -12,7 +13,7 @@ namespace Bti.Babble.Traffic.Parser
         private StringColumn ISCI = new StringColumn() {StartPos = 69, Length = 30};
         private StringColumn Description = new StringColumn() {StartPos = 131, Length = 100};
 
-        public TrafficEvent Parse(string line)
+        public Tuple<bool, TrafficEvent> Parse(string line)
         {
             TrafficEvent te = new TrafficEvent();
             te.Time = Time.Parse(line);
@@ -22,9 +23,8 @@ namespace Bti.Babble.Traffic.Parser
             te.Isci = ISCI.Parse(line);
             te.Description = Description.Parse(line);
             te.Type = Classify(te, programid);
-            //TODO: Transform
-            //TODO: Validate
-            return te;
+            te = Translate(te);
+            return new Tuple<bool,TrafficEvent>(Validate(te), te);
         }
 
         private TrafficEventType Classify(TrafficEvent te, string programId)
@@ -82,6 +82,23 @@ namespace Bti.Babble.Traffic.Parser
                 }
             }
             return false;
+        }
+
+        private TrafficEvent Translate(TrafficEvent te)
+        {
+            if (te.Type == TrafficEventType.Program)
+            {
+                var description = te.Isci;
+                description = description.Right(")");
+                description = description.Left("/");
+                te.Description = description.Trim();
+            }
+            return te;
+        }
+
+        private bool Validate(TrafficEvent te)
+        {
+            return true;
         }
     }
 }

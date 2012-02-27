@@ -33,10 +33,542 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="3" />
         </Grid.RowDefinitions>
-        
-        <local:TrafficLogHeaderView Grid.Column="1" Grid.Row="1" />
-        
-        <DataGrid Grid.Column="1" Grid.Row="2"  AutoGenerateColumns="False" ItemsSource="{Binding Log.Events}" 
+
+        <Grid Grid.Column="1" Grid.Row="1" Height="44">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="48" />
+                <ColumnDefinition Width="48" />
+                <ColumnDefinition Width="48" />
+                <ColumnDefinition Width="48" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="44" />
+            </Grid.RowDefinitions>
+
+            <Button Grid.Column="0" Command="{Binding Path=NextCommand}">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Next</TextBlock>
+                            <TextBlock>View the traffic log for the next day</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Height="32" Width="32" Background="#00FFFFFF">
+                            <Ellipse Name="Circle" StrokeThickness="1">
+                                <Ellipse.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Offset="0" Color="#FFFFFFFF" />
+                                            <GradientStop Offset="0.1" Color="#FFCCD4E9" />
+                                            <GradientStop Offset="0.47" Color="#FF4881D2" />
+                                            <GradientStop Offset="0.47" Color="#FF001A5A" />
+                                            <GradientStop Offset="0.7" Color="#FF4881D2" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Ellipse.Fill>
+                                <Ellipse.Stroke>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Offset="0" Color="#FF6C90C4" />
+                                            <GradientStop Offset="0.5" Color="#FF315BB4" />
+                                            <GradientStop Offset="0.5" Color="#FF002091" />
+                                            <GradientStop Offset="1" Color="#FF08377C" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Ellipse.Stroke>
+                            </Ellipse>
+                            <Path RenderTransformOrigin="0.5,0" Data="M0.37,7.69L5.74,14.2A1.5,1.5,0,1,0,10.26,12.27L8.42,10.42 14.9,10.39A1.5,1.5,0,1,0,14.92,5.87L8.44,5.9 10.31,4.03A1.5,1.5,0,1,0,5.79,1.77z" HorizontalAlignment="Center" Name="Arrow" VerticalAlignment="Center" StrokeThickness="0.75">
+                                <Path.Fill>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Offset="0.5" Color="#FFFFFFFF" />
+                                            <GradientStop Offset="0.5" Color="#FFEEEEEE" />
+                                            <GradientStop Offset="1" Color="#FFB0B0B0" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Path.Fill>
+                                <Path.Stroke>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Offset="0" Color="#FF8AB1FB" />
+                                            <GradientStop Offset="1" Color="#FF002874" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Path.Stroke>
+                            </Path>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="UIElement.IsEnabled" Value="false">
+                                <Setter Property="Shape.Fill" TargetName="Circle">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <LinearGradientBrush.GradientStops>
+                                                <GradientStop Offset="0" Color="#FFFFFFFF" />
+                                                <GradientStop Offset="0.5" Color="#FFEBEEF5" />
+                                                <GradientStop Offset="0.5" Color="#FFD8DDEB" />
+                                                <GradientStop Offset="1" Color="#FFDFE2F0" />
+                                            </LinearGradientBrush.GradientStops>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Shape.Stroke" TargetName="Circle">
+                                    <Setter.Value>
+                                        <SolidColorBrush>#FFB5BACE</SolidColorBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Shape.Stroke" TargetName="Arrow">
+                                    <Setter.Value>
+                                        <SolidColorBrush>#B0B5BACE</SolidColorBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Shape.Fill" TargetName="Arrow">
+                                    <Setter.Value>
+                                        <SolidColorBrush>#D0FFFFFF</SolidColorBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="UIElement.IsMouseOver" Value="true">
+                                <Setter Property="Shape.Fill" TargetName="Circle">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <LinearGradientBrush.GradientStops>
+                                                <GradientStop Offset="0" Color="#FFFFFFFF" />
+                                                <GradientStop Offset="0.1" Color="#FFDFEDF9" />
+                                                <GradientStop Offset="0.47" Color="#FF3086E1" />
+                                                <GradientStop Offset="0.47" Color="#FF003B91" />
+                                                <GradientStop Offset="0.7" Color="#FF1793EF" />
+                                                <GradientStop Offset="0.85" Color="#FF5AD4FF" />
+                                                <GradientStop Offset="0.95" Color="#FFBDFFFF" />
+                                                <GradientStop Offset="1" Color="#FFFFFFFF" />
+                                            </LinearGradientBrush.GradientStops>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+
+                            </Trigger>
+                            <Trigger Property="ButtonBase.IsPressed" Value="True">
+                                <Setter Property="Shape.Fill" TargetName="Circle">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <LinearGradientBrush.GradientStops>
+                                                <GradientStop Offset="0" Color="#FFC0D2F5" />
+                                                <GradientStop Offset="0.47" Color="#FF5E7A9C" />
+                                                <GradientStop Offset="0.47" Color="#FF00062D" />
+                                                <GradientStop Offset="0.7" Color="#FF005F9F" />
+                                                <GradientStop Offset="0.85" Color="#FF1FA4E2" />
+                                                <GradientStop Offset="0.95" Color="#FF61DAFF" />
+                                                <GradientStop Offset="1" Color="#FF48CFFF" />
+                                            </LinearGradientBrush.GradientStops>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Grid.Column="1" Command="{Binding Path=NextCommand}">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Next</TextBlock>
+                            <TextBlock>View the traffic log for the next day</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Height="32" Width="32" Background="#00FFFFFF">
+                            <Ellipse Name="Circle" StrokeThickness="1">
+                                <Ellipse.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Offset="0" Color="#FFFFFFFF" />
+                                            <GradientStop Offset="0.1" Color="#FFCCD4E9" />
+                                            <GradientStop Offset="0.47" Color="#FF4881D2" />
+                                            <GradientStop Offset="0.47" Color="#FF001A5A" />
+                                            <GradientStop Offset="0.7" Color="#FF4881D2" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Ellipse.Fill>
+                                <Ellipse.Stroke>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Offset="0" Color="#FF6C90C4" />
+                                            <GradientStop Offset="0.5" Color="#FF315BB4" />
+                                            <GradientStop Offset="0.5" Color="#FF002091" />
+                                            <GradientStop Offset="1" Color="#FF08377C" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Ellipse.Stroke>
+                            </Ellipse>
+                            <Path RenderTransformOrigin="0.5,0" Data="M0.37,7.69L5.74,14.2A1.5,1.5,0,1,0,10.26,12.27L8.42,10.42 14.9,10.39A1.5,1.5,0,1,0,14.92,5.87L8.44,5.9 10.31,4.03A1.5,1.5,0,1,0,5.79,1.77z" HorizontalAlignment="Center" Name="Arrow" VerticalAlignment="Center" StrokeThickness="0.75">
+                                <Path.LayoutTransform>
+                                    <RotateTransform Angle="180"/>
+                                </Path.LayoutTransform>
+                                <Path.Fill>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Offset="0.5" Color="#FFFFFFFF" />
+                                            <GradientStop Offset="0.5" Color="#FFEEEEEE" />
+                                            <GradientStop Offset="1" Color="#FFB0B0B0" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Path.Fill>
+                                <Path.Stroke>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Offset="0" Color="#FF8AB1FB" />
+                                            <GradientStop Offset="1" Color="#FF002874" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Path.Stroke>
+                            </Path>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="UIElement.IsEnabled" Value="false">
+                                <Setter Property="Shape.Fill" TargetName="Circle">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <LinearGradientBrush.GradientStops>
+                                                <GradientStop Offset="0" Color="#FFFFFFFF" />
+                                                <GradientStop Offset="0.5" Color="#FFEBEEF5" />
+                                                <GradientStop Offset="0.5" Color="#FFD8DDEB" />
+                                                <GradientStop Offset="1" Color="#FFDFE2F0" />
+                                            </LinearGradientBrush.GradientStops>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Shape.Stroke" TargetName="Circle">
+                                    <Setter.Value>
+                                        <SolidColorBrush>#FFB5BACE</SolidColorBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Shape.Stroke" TargetName="Arrow">
+                                    <Setter.Value>
+                                        <SolidColorBrush>#B0B5BACE</SolidColorBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Shape.Fill" TargetName="Arrow">
+                                    <Setter.Value>
+                                        <SolidColorBrush>#D0FFFFFF</SolidColorBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="UIElement.IsMouseOver" Value="true">
+                                <Setter Property="Shape.Fill" TargetName="Circle">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <LinearGradientBrush.GradientStops>
+                                                <GradientStop Offset="0" Color="#FFFFFFFF" />
+                                                <GradientStop Offset="0.1" Color="#FFDFEDF9" />
+                                                <GradientStop Offset="0.47" Color="#FF3086E1" />
+                                                <GradientStop Offset="0.47" Color="#FF003B91" />
+                                                <GradientStop Offset="0.7" Color="#FF1793EF" />
+                                                <GradientStop Offset="0.85" Color="#FF5AD4FF" />
+                                                <GradientStop Offset="0.95" Color="#FFBDFFFF" />
+                                                <GradientStop Offset="1" Color="#FFFFFFFF" />
+                                            </LinearGradientBrush.GradientStops>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+
+                            </Trigger>
+                            <Trigger Property="ButtonBase.IsPressed" Value="True">
+                                <Setter Property="Shape.Fill" TargetName="Circle">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <LinearGradientBrush.GradientStops>
+                                                <GradientStop Offset="0" Color="#FFC0D2F5" />
+                                                <GradientStop Offset="0.47" Color="#FF5E7A9C" />
+                                                <GradientStop Offset="0.47" Color="#FF00062D" />
+                                                <GradientStop Offset="0.7" Color="#FF005F9F" />
+                                                <GradientStop Offset="0.85" Color="#FF1FA4E2" />
+                                                <GradientStop Offset="0.95" Color="#FF61DAFF" />
+                                                <GradientStop Offset="1" Color="#FF48CFFF" />
+                                            </LinearGradientBrush.GradientStops>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Grid.Column="2" Command="{Binding Path=ImportCommand}">>
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Import</TextBlock>
+                            <TextBlock>Import the traffic log</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Height="32" Width="32" Background="#00FFFFFF">
+                            <Ellipse Name="Circle" StrokeThickness="1">
+                                <Ellipse.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Offset="0" Color="#FFFFFFFF" />
+                                            <GradientStop Offset="0.1" Color="#FFCCD4E9" />
+                                            <GradientStop Offset="0.47" Color="#FF4881D2" />
+                                            <GradientStop Offset="0.47" Color="#FF001A5A" />
+                                            <GradientStop Offset="0.7" Color="#FF4881D2" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Ellipse.Fill>
+                                <Ellipse.Stroke>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Offset="0" Color="#FF6C90C4" />
+                                            <GradientStop Offset="0.5" Color="#FF315BB4" />
+                                            <GradientStop Offset="0.5" Color="#FF002091" />
+                                            <GradientStop Offset="1" Color="#FF08377C" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Ellipse.Stroke>
+                            </Ellipse>
+                            <Path  RenderTransformOrigin="0.5,0" Stretch="Fill" Width="20" Height="20" Data="F1 M 287.743,487.708C 284.649,486.353 281.239,485.584 277.604,485.549C 277.035,485.544 276.475,485.567 275.916,485.602C 275.525,485.625 275.139,485.663 274.752,485.701C 274.691,485.708 274.629,485.711 274.568,485.717L 274.568,485.723C 270.041,486.217 265.856,487.867 262.339,490.4L 259.811,486.673C 259.661,486.455 259.399,486.349 259.141,486.404C 258.881,486.459 258.685,486.661 258.637,486.921L 257.068,495.58L 255.963,501.69C 255.925,501.887 255.98,502.084 256.113,502.234C 256.236,502.373 256.411,502.453 256.635,502.453L 263.5,502.088L 271.231,501.677C 271.491,501.663 271.715,501.497 271.805,501.251C 271.895,501.008 271.831,500.734 271.64,500.559L 268.449,497.549C 270.448,496.252 272.741,495.381 275.205,495.053L 275.211,495.127C 275.964,495.029 276.728,494.966 277.511,494.973C 286.673,495.065 294.027,502.567 293.935,511.728C 293.844,520.891 286.343,528.244 277.18,528.152C 268.019,528.061 260.664,520.56 260.755,511.397C 260.763,510.597 260.848,509.817 260.965,509.049L 252.128,505.713C 251.735,507.465 251.508,509.28 251.489,511.148C 251.347,525.43 262.808,537.122 277.088,537.264C 291.369,537.407 303.063,525.945 303.204,511.664C 303.309,501.027 296.975,491.836 287.836,487.773 Z" HorizontalAlignment="Center" Name="Arrow" VerticalAlignment="Center" StrokeThickness="0.75">
+                                <Path.Fill>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Offset="0.5" Color="#FFFFFFFF" />
+                                            <GradientStop Offset="0.5" Color="#FFEEEEEE" />
+                                            <GradientStop Offset="1" Color="#FFB0B0B0" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Path.Fill>
+                                <Path.Stroke>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Offset="0" Color="#FF8AB1FB" />
+                                            <GradientStop Offset="1" Color="#FF002874" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Path.Stroke>
+                            </Path>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="UIElement.IsEnabled" Value="false">
+                                <Setter Property="Shape.Fill" TargetName="Circle">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <LinearGradientBrush.GradientStops>
+                                                <GradientStop Offset="0" Color="#FFFFFFFF" />
+                                                <GradientStop Offset="0.5" Color="#FFEBEEF5" />
+                                                <GradientStop Offset="0.5" Color="#FFD8DDEB" />
+                                                <GradientStop Offset="1" Color="#FFDFE2F0" />
+                                            </LinearGradientBrush.GradientStops>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Shape.Stroke" TargetName="Circle">
+                                    <Setter.Value>
+                                        <SolidColorBrush>#FFB5BACE</SolidColorBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Shape.Stroke" TargetName="Arrow">
+                                    <Setter.Value>
+                                        <SolidColorBrush>#B0B5BACE</SolidColorBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Shape.Fill" TargetName="Arrow">
+                                    <Setter.Value>
+                                        <SolidColorBrush>#D0FFFFFF</SolidColorBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="UIElement.IsMouseOver" Value="true">
+                                <Setter Property="Shape.Fill" TargetName="Circle">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <LinearGradientBrush.GradientStops>
+                                                <GradientStop Offset="0" Color="#FFFFFFFF" />
+                                                <GradientStop Offset="0.1" Color="#FFDFEDF9" />
+                                                <GradientStop Offset="0.47" Color="#FF3086E1" />
+                                                <GradientStop Offset="0.47" Color="#FF003B91" />
+                                                <GradientStop Offset="0.7" Color="#FF1793EF" />
+                                                <GradientStop Offset="0.85" Color="#FF5AD4FF" />
+                                                <GradientStop Offset="0.95" Color="#FFBDFFFF" />
+                                                <GradientStop Offset="1" Color="#FFFFFFFF" />
+                                            </LinearGradientBrush.GradientStops>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+
+                            </Trigger>
+                            <Trigger Property="ButtonBase.IsPressed" Value="True">
+                                <Setter Property="Shape.Fill" TargetName="Circle">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <LinearGradientBrush.GradientStops>
+                                                <GradientStop Offset="0" Color="#FFC0D2F5" />
+                                                <GradientStop Offset="0.47" Color="#FF5E7A9C" />
+                                                <GradientStop Offset="0.47" Color="#FF00062D" />
+                                                <GradientStop Offset="0.7" Color="#FF005F9F" />
+                                                <GradientStop Offset="0.85" Color="#FF1FA4E2" />
+                                                <GradientStop Offset="0.95" Color="#FF61DAFF" />
+                                                <GradientStop Offset="1" Color="#FF48CFFF" />
+                                            </LinearGradientBrush.GradientStops>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Grid.Column="3">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Export</TextBlock>
+                            <TextBlock>Export the traffic log to the Babble service</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Height="32" Width="32" Background="#00FFFFFF">
+                            <Ellipse Name="Circle" StrokeThickness="1">
+                                <Ellipse.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Offset="0" Color="#FFFFFFFF" />
+                                            <GradientStop Offset="0.1" Color="#FFCCD4E9" />
+                                            <GradientStop Offset="0.47" Color="#FF4881D2" />
+                                            <GradientStop Offset="0.47" Color="#FF001A5A" />
+                                            <GradientStop Offset="0.7" Color="#FF4881D2" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Ellipse.Fill>
+                                <Ellipse.Stroke>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Offset="0" Color="#FF6C90C4" />
+                                            <GradientStop Offset="0.5" Color="#FF315BB4" />
+                                            <GradientStop Offset="0.5" Color="#FF002091" />
+                                            <GradientStop Offset="1" Color="#FF08377C" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Ellipse.Stroke>
+                            </Ellipse>
+                            <Path  RenderTransformOrigin="0.5,0" Stretch="Fill" Width="20" Height="20" Data="M 494.718,633.76C 508.77,634.067 520.133,622.527 519.738,608.563C 519.534,601.327 516.378,595.502 512.286,591.527C 508.354,587.711 502.225,583.955 493.832,584.608C 482.414,585.496 475.704,591.912 472.184,601.111L 501.638,601.111C 501.668,599.118 501.62,595.698 501.638,593.124C 505.862,596.766 509.822,601.13 513.884,605.191C 514.376,605.684 517.992,608.638 517.965,609.272C 517.962,609.336 516.478,610.758 516.013,611.224C 513.753,613.483 511.846,615.214 509.802,617.258C 506.906,620.154 504.43,623.172 501.638,625.066C 501.618,622.551 501.669,619.192 501.638,617.258L 472.184,617.258C 475.668,626.822 483.53,633.515 494.718,633.76 Z " HorizontalAlignment="Center" Name="Arrow" VerticalAlignment="Center" StrokeThickness="0.75">
+                                <Path.LayoutTransform>
+                                    <RotateTransform Angle="270"/>
+                                </Path.LayoutTransform>
+                                <Path.Fill>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Offset="0.5" Color="#FFFFFFFF" />
+                                            <GradientStop Offset="0.5" Color="#FFEEEEEE" />
+                                            <GradientStop Offset="1" Color="#FFB0B0B0" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Path.Fill>
+                                <Path.Stroke>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Offset="0" Color="#FF8AB1FB" />
+                                            <GradientStop Offset="1" Color="#FF002874" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Path.Stroke>
+                            </Path>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="UIElement.IsEnabled" Value="false">
+                                <Setter Property="Shape.Fill" TargetName="Circle">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <LinearGradientBrush.GradientStops>
+                                                <GradientStop Offset="0" Color="#FFFFFFFF" />
+                                                <GradientStop Offset="0.5" Color="#FFEBEEF5" />
+                                                <GradientStop Offset="0.5" Color="#FFD8DDEB" />
+                                                <GradientStop Offset="1" Color="#FFDFE2F0" />
+                                            </LinearGradientBrush.GradientStops>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Shape.Stroke" TargetName="Circle">
+                                    <Setter.Value>
+                                        <SolidColorBrush>#FFB5BACE</SolidColorBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Shape.Stroke" TargetName="Arrow">
+                                    <Setter.Value>
+                                        <SolidColorBrush>#B0B5BACE</SolidColorBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Shape.Fill" TargetName="Arrow">
+                                    <Setter.Value>
+                                        <SolidColorBrush>#D0FFFFFF</SolidColorBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="UIElement.IsMouseOver" Value="true">
+                                <Setter Property="Shape.Fill" TargetName="Circle">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <LinearGradientBrush.GradientStops>
+                                                <GradientStop Offset="0" Color="#FFFFFFFF" />
+                                                <GradientStop Offset="0.1" Color="#FFDFEDF9" />
+                                                <GradientStop Offset="0.47" Color="#FF3086E1" />
+                                                <GradientStop Offset="0.47" Color="#FF003B91" />
+                                                <GradientStop Offset="0.7" Color="#FF1793EF" />
+                                                <GradientStop Offset="0.85" Color="#FF5AD4FF" />
+                                                <GradientStop Offset="0.95" Color="#FFBDFFFF" />
+                                                <GradientStop Offset="1" Color="#FFFFFFFF" />
+                                            </LinearGradientBrush.GradientStops>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+
+                            </Trigger>
+                            <Trigger Property="ButtonBase.IsPressed" Value="True">
+                                <Setter Property="Shape.Fill" TargetName="Circle">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <LinearGradientBrush.GradientStops>
+                                                <GradientStop Offset="0" Color="#FFC0D2F5" />
+                                                <GradientStop Offset="0.47" Color="#FF5E7A9C" />
+                                                <GradientStop Offset="0.47" Color="#FF00062D" />
+                                                <GradientStop Offset="0.7" Color="#FF005F9F" />
+                                                <GradientStop Offset="0.85" Color="#FF1FA4E2" />
+                                                <GradientStop Offset="0.95" Color="#FF61DAFF" />
+                                                <GradientStop Offset="1" Color="#FF48CFFF" />
+                                            </LinearGradientBrush.GradientStops>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <WrapPanel Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center" Text="WKRN" FontSize="24" Foreground="{StaticResource DefaultLabelForegroundBrush}" />
+                <TextBlock HorizontalAlignment="Center" Text=" Traffic Log for " FontSize="24" Foreground="{StaticResource DefaultLabelForegroundBrush}" />
+                <TextBlock Grid.Row ="1" HorizontalAlignment="Center" Text="{Binding ActiveDate, StringFormat=D}" FontSize="24" Foreground="{StaticResource DefaultLabelForegroundBrush}" />
+            </WrapPanel>
+        </Grid>
+
+        <DataGrid Grid.Column="1" Grid.Row="2"  AutoGenerateColumns="False" ItemsSource="{Binding TrafficEvents}" 
                   SelectedItem="{Binding Path=SelectedEvent, Mode=TwoWay}" 
                   CanUserAddRows="False">
             <DataGrid.Columns>
@@ -47,13 +579,19 @@
                 <DataGridTextColumn Header="Barcode" Width="1*" Binding="{Binding Barcode}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-        
+
+        <Viewbox Visibility="Hidden" Width="200" Height="200" Grid.Column="1" Grid.Row="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+            <local:CircularProgressBar />
+        </Viewbox>
+
         <WrapPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
             <TextBlock HorizontalAlignment="Center" Text="Babble events for " FontSize="18" Foreground="{StaticResource DefaultLabelForegroundBrush}" />
             <TextBlock HorizontalAlignment="Center" Text=" News 2 Early Morning " FontSize="18" Foreground="{StaticResource DefaultLabelForegroundBrush}" />
         </WrapPanel>
-
-        <DataGrid Grid.Column="1" Grid.Row="4" AutoGenerateColumns="False" ItemsSource="{Binding BabbleEvents}">
+        
+        <DataGrid Grid.Column="1" Grid.Row="4" CanUserAddRows="{Binding CanAddBabbleEvents}"  AutoGenerateColumns="False" ItemsSource="{Binding BabbleEvents}">
             <DataGrid.RowValidationRules>
                 <local:BabbleEventValidationRule ValidationStep="UpdatedValue"/>
             </DataGrid.RowValidationRules>
@@ -68,7 +606,7 @@
                 </ControlTemplate>
             </DataGrid.RowValidationErrorTemplate>
             <DataGrid.Columns>
-                <DataGridComboBoxColumn Width="1*" MinWidth="40" Header="Type" SelectedItemBinding="{Binding Type}">
+                <DataGridComboBoxColumn Width="100" MinWidth="40" Header="Type" SelectedItemBinding="{Binding Type}">
                     <DataGridComboBoxColumn.ElementStyle>
                         <Style TargetType="ComboBox">
                             <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.BabbleEventTypes}"/>
@@ -78,6 +616,7 @@
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
                                             <Image Source="{Binding Image}" Width="32" Height="32"/>
+                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="5,0,0,0"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </Setter.Value>
@@ -100,25 +639,7 @@
                         </Style>
                     </DataGridComboBoxColumn.EditingElementStyle>
                 </DataGridComboBoxColumn>
-                <DataGridTemplateColumn Header="Name" Width="2*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <TextBox IsReadOnly="False" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay}">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="Loaded">
-                                        <local:TakeFocusAndSelectTextOnVisibleBehavior />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </TextBox>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Body" Width="4*">
+                <DataGridTemplateColumn Header="Body" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock TextWrapping="Wrap" Text="{Binding Body, Mode=TwoWay}" />

@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Bti.Babble.Traffic.Model;
 using Bti.Babble.Traffic.Parser;
+using System.Configuration;
 
 namespace Bti.Babble.Traffic
 {
@@ -17,9 +18,9 @@ namespace Bti.Babble.Traffic
         private DateTime activeDate;
         private TrafficEvent activeEvent;
         private TrafficEvent selectedEvent;
-        private IBabbleEventRepository babbleEventRepository;
         ObservableCollection<BabbleEventViewModel> babbleEvents;
         BabbleEventTypeViewModels babbleTypes;
+        ObservableCollection<TrafficEvent> trafficEvents;
 
         public DateTime ActiveDate
         {
@@ -38,7 +39,13 @@ namespace Bti.Babble.Traffic
             {
                 this.activeEvent = value;
                 RaisePropertyChanged("ActiveEvent");
+                RaisePropertyChanged("CanAddBabbleEvents");
             }
+        }
+
+        public bool CanAddBabbleEvents
+        {
+            get { return (this.activeEvent != null); }
         }
 
         public ObservableCollection<BabbleEventViewModel> BabbleEvents
@@ -67,29 +74,29 @@ namespace Bti.Babble.Traffic
             }
         }
 
-        public TrafficLog Log
+        public ObservableCollection<TrafficEvent> TrafficEvents
         {
-            get { return this.log; }
+            get { return this.trafficEvents; }
             set
             {
-                this.log = value;
-                RaisePropertyChanged("Log");
+                this.trafficEvents = value;
+                RaisePropertyChanged("TrafficEvents");
             }
         }
 
-        public TrafficLogViewModel() :
-            this(new Model.Entity.TrafficLogRepository(), new Model.Mock.BabbleEventRepository())
+        public TrafficLogViewModel()
+            :this(new Model.Mock.TrafficLogRepository())
         {
         }
 
-        public TrafficLogViewModel(ITrafficLogRepository logRepository, IBabbleEventRepository babbleEventRepository)
+        public TrafficLogViewModel(ITrafficLogRepository logRepository)
         {
+            //string connection = ConfigurationManager.ConnectionStrings["BabbleContainer"].ConnectionString;
             this.logRepository = logRepository;
-            this.babbleEventRepository = babbleEventRepository;
             this.babbleTypes = new BabbleEventTypeViewModels();
             this.logParser = new WkrnLogParser();
             ActiveDate = DateTime.Now;
-            LoadLog();
+            LoadTrafficEvents();
         }
 
         #region Commands
@@ -139,7 +146,11 @@ namespace Bti.Babble.Traffic
         private void ImportExecute()
         {
             if (!CanImportExecute()) return;
-            var log = this.logParser.Parse(ActiveDate);
+            this.TrafficEvents = new ObservableCollection<TrafficEvent>();
+            this.BabbleEvents = new ObservableCollection<BabbleEventViewModel>();
+            //this.log = this.logParser.Parse(ActiveDate);
+            //this.logRepository.Save(log);
+            //LoadLog();
         }
 
         #endregion 
@@ -151,6 +162,11 @@ namespace Bti.Babble.Traffic
 
         private void EventSelected(TrafficEvent evt)
         {
+            if (evt == null)
+            {
+                this.ActiveEvent = null;
+                return;
+            }
             LoadBabbleEvents(evt);
             this.ActiveEvent = evt;
         }
@@ -158,12 +174,13 @@ namespace Bti.Babble.Traffic
         private void LoadBabbleEvents(TrafficEvent evt)
         {
             this.BabbleEvents = new ObservableCollection<BabbleEventViewModel>
-                (this.babbleEventRepository.GetForTrafficEvent(evt).Select(o => new BabbleEventViewModel(o, babbleTypes.GetImageForType(o.Type))));
+                (evt.BabbleEvents.Select(o => new BabbleEventViewModel(o, babbleTypes.GetImageForType(o.Type))));
         }
 
-        private void LoadLog()
+        private void LoadTrafficEvents()
         {
-            this.log = this.logRepository.GetByDate(DateTime.Now);
+            this.log = this.logRepository.GetByDate(ActiveDate);
+            this.TrafficEvents = this.log.Events;
         }
     }
 }

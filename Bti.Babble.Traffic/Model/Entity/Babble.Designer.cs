@@ -171,16 +171,14 @@ namespace Bti.Babble.Traffic.Model.Entity
         /// <param name="body">Initial value of the Body property.</param>
         /// <param name="type">Initial value of the Type property.</param>
         /// <param name="link">Initial value of the Link property.</param>
-        /// <param name="name">Initial value of the Name property.</param>
         /// <param name="trafficEventId">Initial value of the TrafficEventId property.</param>
-        public static BabbleEvent CreateBabbleEvent(global::System.Int32 id, global::System.String body, global::System.Int32 type, global::System.String link, global::System.String name, global::System.Int32 trafficEventId)
+        public static BabbleEvent CreateBabbleEvent(global::System.Int32 id, global::System.String body, global::System.Int32 type, global::System.String link, global::System.Int32 trafficEventId)
         {
             BabbleEvent babbleEvent = new BabbleEvent();
             babbleEvent.Id = id;
             babbleEvent.Body = body;
             babbleEvent.Type = type;
             babbleEvent.Link = link;
-            babbleEvent.Name = name;
             babbleEvent.TrafficEventId = trafficEventId;
             return babbleEvent;
         }
@@ -286,30 +284,6 @@ namespace Bti.Babble.Traffic.Model.Entity
         private global::System.String _Link;
         partial void OnLinkChanging(global::System.String value);
         partial void OnLinkChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Name
-        {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Name");
-                OnNameChanged();
-            }
-        }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

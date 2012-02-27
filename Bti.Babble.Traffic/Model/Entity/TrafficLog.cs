@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Data.Objects.DataClasses;
@@ -14,7 +15,7 @@ namespace Bti.Babble.Traffic.Model.Entity
             return new Model.TrafficLog()
             {
                 Date = this.Date,
-                Events = (from o in this.TrafficEvents select o.ToModelObject()).ToList(),
+                Events = (from o in this.TrafficEvents select o.ToModelObject()).ToObservable(),
                 ParseDate = this.ParseDate,
                 Station = this.StationName
             };
@@ -32,7 +33,7 @@ namespace Bti.Babble.Traffic.Model.Entity
             };
         }
 
-        internal static EntityCollection<TrafficEvent> ToEntityCollection(List<Model.TrafficEvent> events)
+        internal static EntityCollection<TrafficEvent> ToEntityCollection(ObservableCollection<Model.TrafficEvent> events)
         {
             var collection = new EntityCollection<TrafficEvent>();
             foreach (var evt in events)

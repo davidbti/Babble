@@ -5,6 +5,6 @@ namespace Bti.Babble.Traffic
 {
     interface ILineParser
     {
-        TrafficEvent Parse(string line);
+        Tuple<bool, TrafficEvent> Parse(string line);
     }
 }

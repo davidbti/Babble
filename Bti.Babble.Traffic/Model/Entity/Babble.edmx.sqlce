@@ -51,7 +51,6 @@ CREATE TABLE [BabbleEvents] (
     [Body] nvarchar(4000)  NOT NULL,
     [Type] int  NOT NULL,
     [Link] nvarchar(4000)  NOT NULL,
-    [Name] nvarchar(4000)  NOT NULL,
     [TrafficEventId] int  NOT NULL
 );
 GO

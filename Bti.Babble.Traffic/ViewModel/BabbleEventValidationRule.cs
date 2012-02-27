@@ -16,12 +16,6 @@ namespace Bti.Babble.Traffic
                     "Select a type for this babble event");
             }
 
-            if (evt.Name.Length == 0)
-            {
-                return new ValidationResult(false,
-                    "Give this babble event a name");
-            }
-
             return ValidationResult.ValidResult;
         }
     }

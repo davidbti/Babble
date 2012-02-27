@@ -19,7 +19,7 @@ namespace Bti.Babble.Traffic.Model.Mock
                 case TrafficEventType.Promo:
                     return GetForPromoEvent(evt);
                 case TrafficEventType.Commercial:
-                    return GetForSpotEvent(evt);
+                    return GetForCommercialEvent(evt);
             }
             return new List<BabbleEvent>();
         }
@@ -32,7 +32,6 @@ namespace Bti.Babble.Traffic.Model.Mock
                 Body = "Thank you for watching News 2. Your local source for late breaking news, sports, weather and traffic",
                 Type = BabbleEventType.Tease,
                 Link = @"http://www.wkrn.com",
-                Name = "Station Id"
             };
             events.Add(b1);
             return events;
@@ -46,7 +45,6 @@ namespace Bti.Babble.Traffic.Model.Mock
                 Body = "#News2",
                 Type = BabbleEventType.Twitter,
                 Link = "",
-                Name = evt.Description + " Twitter Feed"
             };
             events.Add(b1);
             var b2 = new BabbleEvent()
@@ -54,7 +52,6 @@ namespace Bti.Babble.Traffic.Model.Mock
                 Body = "",
                 Type = BabbleEventType.Rss,
                 Link = @"http://www.wkrn.com/global/Category.asp?c=126083&clienttype=rss",
-                Name = evt.Description + " Rss Feed"
             };
             events.Add(b2);
             return events;
@@ -68,13 +65,12 @@ namespace Bti.Babble.Traffic.Model.Mock
                 Body = "Tragedy strikes the mayor and his family. Tonight @ 6",
                 Type = BabbleEventType.Tease,
                 Link = @"http://www.wkrn.com",
-                Name = "6 pm promo"
             };
             events.Add(b1);
             return events;
         }
 
-        public IEnumerable<BabbleEvent> GetForSpotEvent(TrafficEvent evt)
+        public IEnumerable<BabbleEvent> GetForCommercialEvent(TrafficEvent evt)
         {
             var events = new List<BabbleEvent>();
 
@@ -89,7 +85,6 @@ namespace Bti.Babble.Traffic.Model.Mock
                     Body = result.Description,
                     Type = BabbleEventType.Tease,
                     Link = result.Url,
-                    Name = evt.Description + " Information"
                 };
                 events.Add(b1);
             }
@@ -98,9 +93,15 @@ namespace Bti.Babble.Traffic.Model.Mock
                 Body = "Let us know what you think of this " + evt.Description + " commercial",
                 Type = BabbleEventType.Rating,
                 Link = "",
-                Name = evt.Description + " Rating"
             };
             events.Add(b2);
+            var b3 = new BabbleEvent()
+            {
+                Body = "Like us on Facebook",
+                Type = BabbleEventType.Facebook,
+                Link = "",
+            };
+            events.Add(b3);
             return events;
         }
 

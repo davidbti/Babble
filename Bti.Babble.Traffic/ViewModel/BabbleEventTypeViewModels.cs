@@ -11,10 +11,18 @@ namespace Bti.Babble.Traffic
     {
         public BabbleEventTypeViewModels()
         {
+            var noneName = Enum.GetName(typeof(BabbleEventType), BabbleEventType.None);
+            var noneUri = @"pack://application:,,,/Bti.Babble.Traffic;component/Images/none.png";
+            var noneImage = new ImageSourceConverter().ConvertFromString(noneUri) as ImageSource;
+            Items.Add(new BabbleEventTypeViewModel(noneName, noneImage));
             var commentName = Enum.GetName(typeof(BabbleEventType), BabbleEventType.Comment);
             var commentUri = @"pack://application:,,,/Bti.Babble.Traffic;component/Images/comment.png";
             var commentImage = new ImageSourceConverter().ConvertFromString(commentUri) as ImageSource;
             Items.Add(new BabbleEventTypeViewModel(commentName, commentImage));
+            var facebookName = Enum.GetName(typeof(BabbleEventType), BabbleEventType.Facebook);
+            var facebookUri = @"pack://application:,,,/Bti.Babble.Traffic;component/Images/facebook.png";
+            var facebookImage = new ImageSourceConverter().ConvertFromString(facebookUri) as ImageSource;
+            Items.Add(new BabbleEventTypeViewModel(facebookName, facebookImage));
             var pollName = Enum.GetName(typeof(BabbleEventType), BabbleEventType.Poll);
             var pollUri = @"pack://application:,,,/Bti.Babble.Traffic;component/Images/poll.png";
             var pollImage = new ImageSourceConverter().ConvertFromString(pollUri) as ImageSource;

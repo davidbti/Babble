@@ -15,7 +15,6 @@ namespace Bti.Babble.Traffic.Model.Entity
             {
                 Body = this.Body,
                 Link = this.Link,
-                Name = this.Name,
                 Type = (BabbleEventType) this.Type
             };
         }
@@ -27,7 +26,6 @@ namespace Bti.Babble.Traffic.Model.Entity
             {
                 Body = o.Body,
                 Link = o.Link,
-                Name = o.Name,
                 Type = (int)o.Type
             };
         }

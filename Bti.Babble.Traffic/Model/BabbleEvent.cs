@@ -7,7 +7,6 @@ namespace Bti.Babble.Traffic.Model
         private string body;
         private BabbleEventType type;
         private string link;
-        private string name;
 
         public string Body
         {
@@ -39,21 +38,11 @@ namespace Bti.Babble.Traffic.Model
             }
         }
 
-        public string Name
-        {
-            get { return this.name; }
-            set
-            {
-                this.name = value;
-                RaisePropertyChanged("Name");
-            }
-        }
-
         public BabbleEvent()
         {
-            this.body = "";
+            this.Body = "";
             this.Link = "";
-            this.Name = "";
+            this.Type = BabbleEventType.None;
         }
     }
 }

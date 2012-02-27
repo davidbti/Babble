@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.IO;
 using Bti.Babble.Traffic.Model;
 
@@ -33,7 +34,7 @@ namespace Bti.Babble.Traffic.Parser
             var file = GetFileForDate(date);
             var lines = File.ReadAllLines(file.ToString());
             var logline = lines[0];
-            TrafficLog log = new TrafficLog().ToInitializedObject();
+            TrafficLog log = new TrafficLog();
             log.Station = Station.Parse(logline);
             log.Date = Date.ParseMMDDYY(logline);
             log.ParseDate = DateTime.Now;
@@ -41,7 +42,14 @@ namespace Bti.Babble.Traffic.Parser
             {
                 eventLine += 1;
                 if (eventLine <= eventStartLine) continue;
-                log.Events.Add(lineParser.Parse(line));
+                var result = lineParser.Parse(line);
+                var valid = result.Item1;
+                var evt = result.Item2;
+                if (valid)
+                {
+                    evt.BabbleEvents = BabbleEventGenerator.Generate(log, evt).ToObservable();
+                    log.Events.Add(evt);
+                }
             }
             return log;
         }

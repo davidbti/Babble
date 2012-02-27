@@ -31,16 +31,6 @@ namespace Bti.Babble.Traffic
             }
         }
 
-        public string Name
-        {
-            get { return this.babbleEvent.Name; }
-            set
-            {
-                this.babbleEvent.Name = value;
-                RaisePropertyChanged("Name");
-            }
-        }
-
         public BabbleEventTypeViewModel Type
         {
             get

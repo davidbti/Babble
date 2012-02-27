@@ -19,7 +19,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
+    <Grid Height="44" Width="800">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="48" />
             <ColumnDefinition Width="48" />
@@ -32,12 +32,12 @@
             <RowDefinition Height="44" />
         </Grid.RowDefinitions>
 
-        <Button Grid.Column="0" Command="{Binding Path=PreviousCommand}">
+        <Button Grid.Column="0" Command="{Binding Path=NextCommand}">
             <Button.ToolTip>
                 <ToolTip>
                     <StackPanel>
-                        <TextBlock FontWeight="Bold">Previous</TextBlock>
-                        <TextBlock>View the traffic log for the previous day</TextBlock>
+                        <TextBlock FontWeight="Bold">Next</TextBlock>
+                        <TextBlock>View the traffic log for the next day</TextBlock>
                     </StackPanel>
                 </ToolTip>
             </Button.ToolTip>

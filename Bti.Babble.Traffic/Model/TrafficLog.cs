@@ -4,26 +4,63 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using System.Collections.ObjectModel;
 
 namespace Bti.Babble.Traffic.Model
 {
-    public class TrafficLog
+    public class TrafficLog : ObservableObject
     {
-        public DateTime Date { get; set; }
-        public DateTime ParseDate { get; set; }
-        public string Station { get; set; }
-        public List<TrafficEvent> Events { get; set; }
+        private DateTime date;
+        public DateTime parseDate;
+        public string station;
+        public ObservableCollection<TrafficEvent> events;
 
-        public TrafficLog ToInitializedObject()
+        public DateTime Date
         {
-            if (this == null) return null;
-            return new TrafficLog()
+            get { return this.date; }
+            set
             {
-                Date = new DateTime(2000, 1, 1),
-                ParseDate = new DateTime(2000, 1, 1),
-                Station = "",
-                Events = new List<TrafficEvent>()
-            };
+                this.date = value;
+                RaisePropertyChanged("Date");
+            }
+        }
+
+        public DateTime ParseDate
+        {
+            get { return this.parseDate; }
+            set
+            {
+                this.parseDate = value;
+                RaisePropertyChanged("ParseDate");
+            }
+        }
+
+        public string Station
+        {
+            get { return this.station; }
+            set
+            {
+                this.station = value;
+                RaisePropertyChanged("Station");
+            }
+        }
+
+        public ObservableCollection<TrafficEvent> Events
+        {
+            get { return this.events; }
+            set
+            {
+                this.events = value;
+                RaisePropertyChanged("Events");
+            }
+        }
+
+        public TrafficLog()
+        {
+            Date = new DateTime(2000, 1, 1);
+            ParseDate = new DateTime(2000, 1, 1);
+            Station = "";
+            Events = new ObservableCollection<TrafficEvent>();
         }
     }
 }

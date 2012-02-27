@@ -56,6 +56,7 @@
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
@@ -94,6 +95,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Behaviors\TakeFocusAndSelectTextOnVisibleBehavior.cs" />
+    <Compile Include="CircularButton.xaml.cs">
+      <DependentUpon>CircularButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CircularProgressBar.xaml.cs">
+      <DependentUpon>CircularProgressBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\EnumerableExtensions.cs" />
+    <Compile Include="Infrastructure\StringExtensions.cs" />
     <Compile Include="Model\Entity\Babble.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -103,6 +112,7 @@
     <Compile Include="Model\Entity\TrafficEvent.cs" />
     <Compile Include="Model\Entity\TrafficLog.cs" />
     <Compile Include="Model\Entity\TrafficLogRepository.cs" />
+    <Compile Include="Parser\BabbleEventGenerator.cs" />
     <Compile Include="Parser\ILogParser.cs" />
     <Compile Include="TrafficLogHeaderView.xaml.cs">
       <DependentUpon>TrafficLogHeaderView.xaml</DependentUpon>
@@ -112,6 +122,14 @@
     <Compile Include="ViewModel\BabbleEventValidationRule.cs" />
     <Compile Include="ViewModel\BabbleEventViewModel.cs" />
     <Compile Include="ViewModel\TrafficLogViewModel.cs" />
+    <Page Include="CircularButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CircularProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Brushes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -231,14 +249,10 @@
     <Resource Include="Images\Babble.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\arrow_left_blue.png" />
-    <Resource Include="Images\arrow_right_blue.png" />
+    <Resource Include="Images\none.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\log.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\event.png" />
+    <Resource Include="Images\facebook.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml;
+using System.Collections.ObjectModel;
 
 namespace Bti.Babble.Traffic.Model
 {
@@ -11,6 +13,7 @@ namespace Bti.Babble.Traffic.Model
         private TrafficEventType type;
         private string barcode;
         private string isci;
+        private ObservableCollection<BabbleEvent> babbleEvents;
 
         public TimeSpan Time
         {
@@ -70,6 +73,27 @@ namespace Bti.Babble.Traffic.Model
                 this.isci = value;
                 RaisePropertyChanged("Isci");
             }
+        }
+
+        public ObservableCollection<BabbleEvent> BabbleEvents
+        {
+            get { return this.babbleEvents; }
+            set
+            {
+                this.babbleEvents = value;
+                RaisePropertyChanged("BabbleEvents");
+            }
+        }
+
+        public TrafficEvent()
+        {
+            this.Barcode = "";
+            this.Description = "";
+            this.Isci = "";
+            this.Length = new TimeSpan(0, 0, 0);
+            this.Time = new TimeSpan(0, 0, 0);
+            this.Type = TrafficEventType.None;
+            this.BabbleEvents = new ObservableCollection<BabbleEvent>();
         }
     }
 }
