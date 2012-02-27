@@ -2,15 +2,14 @@
 using System.Linq;
 using System.IO;
 using Bti.Babble.Traffic.Model;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace Bti.Babble.Traffic.Parser
 {
     public class WkrnLogParser : ILogParser
     {
         private ILineParser lineParser = new WkrnLineParser();
-        private int eventLine = 0;
-        private int eventStartLine = 1;
-        
         private DateColumn Date = new DateColumn() { StartPos = 7, Length = 6 };
         private StringColumn Station = new StringColumn() { StartPos = 13, Length = 4 };
 
@@ -29,15 +28,18 @@ namespace Bti.Babble.Traffic.Parser
             return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Traffic Logs", fileName);
         }
 
-        public TrafficLog Parse(DateTime date)
+        public TrafficLog Parse(DateTime date, Action<int> statusCallback)
         {
             var file = GetFileForDate(date);
             var lines = File.ReadAllLines(file.ToString());
+            double linesCount = lines.Count();
             var logline = lines[0];
             TrafficLog log = new TrafficLog();
             log.Station = Station.Parse(logline);
             log.Date = Date.ParseMMDDYY(logline);
             log.ParseDate = DateTime.Now;
+            double eventLine = 0;
+            int eventStartLine = 1;
             foreach (var line in lines)
             {
                 eventLine += 1;
@@ -50,8 +52,40 @@ namespace Bti.Babble.Traffic.Parser
                     evt.BabbleEvents = BabbleEventGenerator.Generate(log, evt).ToObservable();
                     log.Events.Add(evt);
                 }
+                double done = (eventLine / linesCount) * 100;
+                statusCallback((int)done);
             }
             return log;
+        }
+
+        public void ParseAsync(DateTime date, Action<int> statusCallback, Action<TrafficLog> resultCallback, Action<Exception> errorCallback)
+        {
+            Task<ParseResult<TrafficLog>> task =
+                Task.Factory.StartNew(() =>
+                {
+                    try
+                    {
+                        return new ParseResult<TrafficLog>(this.Parse(date, statusCallback), null);
+                    }
+                    catch (Exception ex)
+                    {
+                        return new ParseResult<TrafficLog>(null, ex);
+                    }
+                });
+
+            task.ContinueWith(r =>
+            {
+                if (r.Result.Error != null)
+                {
+                    errorCallback(r.Result.Error);
+                }
+                else
+                {
+                    resultCallback(r.Result.Package);
+                }
+            }, CancellationToken.None, TaskContinuationOptions.None,
+                TaskScheduler.FromCurrentSynchronizationContext());
+
         }
     }
 }

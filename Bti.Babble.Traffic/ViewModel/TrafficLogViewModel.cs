@@ -12,11 +12,12 @@ namespace Bti.Babble.Traffic
 {
     class TrafficLogViewModel : ObservableObject
     {
+        private DateTime activeDate;
+        private TrafficEvent activeEvent;
+        private int importProgress;
         private TrafficLog log;
         private ILogParser logParser;
         private ITrafficLogRepository logRepository;
-        private DateTime activeDate;
-        private TrafficEvent activeEvent;
         private TrafficEvent selectedEvent;
         ObservableCollection<BabbleEventViewModel> babbleEvents;
         BabbleEventTypeViewModels babbleTypes;
@@ -43,11 +44,6 @@ namespace Bti.Babble.Traffic
             }
         }
 
-        public bool CanAddBabbleEvents
-        {
-            get { return (this.activeEvent != null); }
-        }
-
         public ObservableCollection<BabbleEventViewModel> BabbleEvents
         {
             get { return this.babbleEvents; }
@@ -61,6 +57,21 @@ namespace Bti.Babble.Traffic
         public BabbleEventTypeViewModels BabbleEventTypes
         {
             get { return this.babbleTypes; }
+        }
+
+        public bool CanAddBabbleEvents
+        {
+            get { return (this.activeEvent != null); }
+        }
+
+        public int ImportProgress
+        {
+            get { return this.importProgress; }
+            set
+            {
+                this.importProgress = value;
+                RaisePropertyChanged("ImportProgress");
+            }
         }
 
         public TrafficEvent SelectedEvent
@@ -146,11 +157,28 @@ namespace Bti.Babble.Traffic
         private void ImportExecute()
         {
             if (!CanImportExecute()) return;
+            this.ImportProgress = 0;
             this.TrafficEvents = new ObservableCollection<TrafficEvent>();
             this.BabbleEvents = new ObservableCollection<BabbleEventViewModel>();
-            //this.log = this.logParser.Parse(ActiveDate);
+            this.logParser.ParseAsync(ActiveDate, ImportProgressCallBack, ImportCompleteCallBack, ImportExceptionCallback);
             //this.logRepository.Save(log);
             //LoadLog();
+        }
+
+        private void ImportProgressCallBack(int progress)
+        {
+            this.ImportProgress = progress;
+        }
+
+        private void ImportCompleteCallBack(TrafficLog log)
+        {
+            this.log = log;
+            this.TrafficEvents = this.log.Events;
+        }
+
+        private void ImportExceptionCallback(Exception ex)
+        {
+            throw ex;
         }
 
         #endregion 

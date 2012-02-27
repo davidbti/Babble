@@ -95,11 +95,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Behaviors\TakeFocusAndSelectTextOnVisibleBehavior.cs" />
-    <Compile Include="CircularButton.xaml.cs">
+    <Compile Include="Controls\CircularButton\CircularButton.xaml.cs">
       <DependentUpon>CircularButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CircularProgressBar.xaml.cs">
-      <DependentUpon>CircularProgressBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\StringExtensions.cs" />
@@ -114,6 +111,7 @@
     <Compile Include="Model\Entity\TrafficLogRepository.cs" />
     <Compile Include="Parser\BabbleEventGenerator.cs" />
     <Compile Include="Parser\ILogParser.cs" />
+    <Compile Include="Parser\ParseResult.cs" />
     <Compile Include="TrafficLogHeaderView.xaml.cs">
       <DependentUpon>TrafficLogHeaderView.xaml</DependentUpon>
     </Compile>
@@ -122,17 +120,17 @@
     <Compile Include="ViewModel\BabbleEventValidationRule.cs" />
     <Compile Include="ViewModel\BabbleEventViewModel.cs" />
     <Compile Include="ViewModel\TrafficLogViewModel.cs" />
-    <Page Include="CircularButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CircularProgressBar.xaml">
+    <Page Include="Controls\CircularButton\CircularButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Brushes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ProgressBar.Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\DataGrid.Generic.xaml">
       <Generator>MSBuild:Compile</Generator>

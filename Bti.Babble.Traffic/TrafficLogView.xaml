@@ -47,7 +47,7 @@
                 <RowDefinition Height="44" />
             </Grid.RowDefinitions>
 
-            <Button Grid.Column="0" Command="{Binding Path=NextCommand}">
+            <Button Grid.Column="0" Command="{Binding Path=PreviousCommand}">
                 <Button.ToolTip>
                     <ToolTip>
                         <StackPanel>
@@ -568,7 +568,9 @@
             </WrapPanel>
         </Grid>
 
-        <DataGrid Grid.Column="1" Grid.Row="2"  AutoGenerateColumns="False" ItemsSource="{Binding TrafficEvents}" 
+        <ProgressBar Value="{Binding ImportProgress}" Grid.Column="1" Grid.Row="2" Width="400" Height="20" />
+
+        <DataGrid Visibility="Hidden"  Grid.Column="1" Grid.Row="2"  AutoGenerateColumns="False" ItemsSource="{Binding TrafficEvents}" 
                   SelectedItem="{Binding Path=SelectedEvent, Mode=TwoWay}" 
                   CanUserAddRows="False">
             <DataGrid.Columns>
@@ -579,12 +581,6 @@
                 <DataGridTextColumn Header="Barcode" Width="1*" Binding="{Binding Barcode}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-
-        <Viewbox Visibility="Hidden" Width="200" Height="200" Grid.Column="1" Grid.Row="2"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
-            <local:CircularProgressBar />
-        </Viewbox>
 
         <WrapPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
             <TextBlock HorizontalAlignment="Center" Text="Babble events for " FontSize="18" Foreground="{StaticResource DefaultLabelForegroundBrush}" />
