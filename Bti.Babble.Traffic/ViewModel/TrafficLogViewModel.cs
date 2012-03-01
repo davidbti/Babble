@@ -15,6 +15,7 @@ namespace Bti.Babble.Traffic
         private DateTime activeDate;
         private TrafficEvent activeEvent;
         private int importProgress;
+        private bool isImporting;
         private TrafficLog log;
         private ILogParser logParser;
         private ITrafficLogRepository logRepository;
@@ -74,6 +75,16 @@ namespace Bti.Babble.Traffic
             }
         }
 
+        public bool IsImporting
+        {
+            get { return this.isImporting; }
+            set
+            {
+                this.isImporting = value;
+                RaisePropertyChanged("IsImporting");
+            }
+        }
+
         public TrafficEvent SelectedEvent
         {
             get { return this.selectedEvent; }
@@ -102,12 +113,12 @@ namespace Bti.Babble.Traffic
 
         public TrafficLogViewModel(ITrafficLogRepository logRepository)
         {
-            //string connection = ConfigurationManager.ConnectionStrings["BabbleContainer"].ConnectionString;
             this.logRepository = logRepository;
             this.babbleTypes = new BabbleEventTypeViewModels();
             this.logParser = new WkrnLogParser();
-            ActiveDate = DateTime.Now;
-            LoadTrafficEvents();
+            DateTime now = DateTime.Now;
+            ActiveDate = new DateTime(now.Year, now.Month, now.Day);
+            LoadTrafficLog();
         }
 
         #region Commands
@@ -119,6 +130,7 @@ namespace Bti.Babble.Traffic
 
         private Boolean CanPreviousExecute()
         {
+            if (IsImporting) return false;
             return true;
         }
 
@@ -126,6 +138,7 @@ namespace Bti.Babble.Traffic
         {
             if (!CanPreviousExecute()) return;
             ActiveDate = activeDate.Subtract(new TimeSpan(24, 0, 0));
+            LoadTrafficLog();
         }
 
         public ICommand NextCommand
@@ -135,6 +148,7 @@ namespace Bti.Babble.Traffic
 
         private Boolean CanNextExecute()
         {
+            if (IsImporting) return false;
             return true;
         }
 
@@ -142,6 +156,7 @@ namespace Bti.Babble.Traffic
         {
             if (!CanNextExecute()) return;
             ActiveDate = activeDate.Add(new TimeSpan(24, 0, 0));
+            LoadTrafficLog();
         }
 
         public ICommand ImportCommand
@@ -151,18 +166,18 @@ namespace Bti.Babble.Traffic
 
         private Boolean CanImportExecute()
         {
+            if (IsImporting) return false;
             return this.logParser.CanParse(ActiveDate);
         }
 
         private void ImportExecute()
         {
             if (!CanImportExecute()) return;
+            this.IsImporting = true;
             this.ImportProgress = 0;
             this.TrafficEvents = new ObservableCollection<TrafficEvent>();
             this.BabbleEvents = new ObservableCollection<BabbleEventViewModel>();
             this.logParser.ParseAsync(ActiveDate, ImportProgressCallBack, ImportCompleteCallBack, ImportExceptionCallback);
-            //this.logRepository.Save(log);
-            //LoadLog();
         }
 
         private void ImportProgressCallBack(int progress)
@@ -172,8 +187,11 @@ namespace Bti.Babble.Traffic
 
         private void ImportCompleteCallBack(TrafficLog log)
         {
-            this.log = log;
-            this.TrafficEvents = this.log.Events;
+            this.logRepository.Delete(this.log);
+            this.logRepository.Save(log);
+            LoadTrafficLog();
+            this.IsImporting = false;
+            this.ImportProgress = 0;
         }
 
         private void ImportExceptionCallback(Exception ex)
@@ -205,9 +223,11 @@ namespace Bti.Babble.Traffic
                 (evt.BabbleEvents.Select(o => new BabbleEventViewModel(o, babbleTypes.GetImageForType(o.Type))));
         }
 
-        private void LoadTrafficEvents()
+        private void LoadTrafficLog()
         {
-            this.log = this.logRepository.GetByDate(ActiveDate);
+            var log = this.logRepository.GetByDate(ActiveDate);
+            if (log == null) { log = new TrafficLog(); }
+            this.log = log;
             this.TrafficEvents = this.log.Events;
         }
     }

@@ -20,5 +20,10 @@ namespace Bti.Babble.Traffic
             if (pos < 1) return s;
             return s.Substring(pos + 1);
         }
+
+        public static bool Contains(this string source, string toCheck, StringComparison comp)
+        {
+            return source.IndexOf(toCheck, comp) >= 0;
+        } 
     }
 }

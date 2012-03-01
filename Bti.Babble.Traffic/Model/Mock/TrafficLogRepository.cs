@@ -8,6 +8,11 @@ namespace Bti.Babble.Traffic.Model.Mock
     {
         private IBabbleEventRepository repository = new BabbleEventRepository();
 
+        public void Delete(Model.TrafficLog log)
+        {
+
+        }
+
         public TrafficLog GetByDate(DateTime date)
         {
             var log = new TrafficLog();

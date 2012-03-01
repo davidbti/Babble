@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Xml.Linq;
+using System.Configuration;
 
 namespace Bti.Babble.Traffic.Model.Entity
 {
@@ -7,19 +9,29 @@ namespace Bti.Babble.Traffic.Model.Entity
     {
         private readonly BabbleContainer context;
 
-        public TrafficLogRepository(string connection)
+        public TrafficLogRepository()
         {
-            if (connection == null)
-            {
-                throw new ArgumentNullException("connection");
-            }
+            string connection = ConfigurationManager.ConnectionStrings["BabbleContainer"].ConnectionString;
             context = new BabbleContainer(connection);
+        }
+
+        public void Delete(Model.TrafficLog log)
+        {
+            var entity = TrafficLog.ToEntityObject(log);
+            context.TrafficLogs.DeleteObject(entity);
+            context.SaveChanges();
         }
 
         public Model.TrafficLog GetByDate(DateTime date)
         {
-            var log = new TrafficLog().ToModelObject();
-            return log;
+            if (date == null)
+            {
+                throw new ArgumentNullException("date");
+            }
+            var query = (from log in context.TrafficLogs
+                         where log.Date == date
+                         select log).AsEnumerable().Select(o => o.ToModelObject());
+            return query.SingleOrDefault();
         }
 
         public void Save(Model.TrafficLog log)

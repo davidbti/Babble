@@ -7,6 +7,7 @@ namespace Bti.Babble.Traffic.Model
 {
     public class TrafficEvent : ObservableObject
     {
+        private int id;
         private TimeSpan time;
         private TimeSpan length;
         private string description;
@@ -14,6 +15,16 @@ namespace Bti.Babble.Traffic.Model
         private string barcode;
         private string isci;
         private ObservableCollection<BabbleEvent> babbleEvents;
+
+        public int Id
+        {
+            get { return this.id; }
+            set
+            {
+                this.id = value;
+                RaisePropertyChanged("Id");
+            }
+        }
 
         public TimeSpan Time
         {
@@ -87,6 +98,7 @@ namespace Bti.Babble.Traffic.Model
 
         public TrafficEvent()
         {
+            this.Id = 0;
             this.Barcode = "";
             this.Description = "";
             this.Isci = "";

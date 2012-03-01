@@ -60,11 +60,11 @@ namespace Bti.Babble.Traffic.Parser
 
         private bool IsPromo(TrafficEvent te)
         {
-            if (string.Compare(te.Description, " promo", true) == 0)
+            if (te.Description.Contains(" promo", StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }
-            if (string.Compare(te.Description, "promo ", true) == 0)
+            if (te.Description.Contains("promo ", StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }
@@ -98,6 +98,7 @@ namespace Bti.Babble.Traffic.Parser
 
         private bool Validate(TrafficEvent te)
         {
+            if (te.Type == TrafficEventType.None) return false;
             return true;
         }
     }

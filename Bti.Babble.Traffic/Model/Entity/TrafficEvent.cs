@@ -14,6 +14,7 @@ namespace Bti.Babble.Traffic.Model.Entity
             if (this == null) return null;
             return new Model.TrafficEvent()
             {
+                Id = this.Id,
                 BabbleEvents = (from o in this.BabbleEvents select o.ToModelObject()).ToObservable(),
                 Barcode = this.Barcode,
                 Description = this.Description,

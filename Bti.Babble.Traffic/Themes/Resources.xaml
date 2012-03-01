@@ -1,0 +1,6 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:local="clr-namespace:Bti.Babble.Traffic" >
+    <local:BoolToVisibleOrHidden x:Key="BoolToVisible" Collapse="True" Reverse="False" />
+    <local:BoolToVisibleOrHidden x:Key="BoolToVisibleReverse" Collapse="True" Reverse="True" />
+</ResourceDictionary>
