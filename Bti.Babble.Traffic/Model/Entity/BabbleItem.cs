@@ -6,23 +6,23 @@ using System.Data.Objects.DataClasses;
 
 namespace Bti.Babble.Traffic.Model.Entity
 {
-    partial class BabbleEvent
+    partial class BabbleItem
     {
-        internal Model.BabbleEvent ToModelObject()
+        internal Model.BabbleItem ToModelObject()
         {
             if (this == null) return null;
-            return new Model.BabbleEvent()
+            return new Model.BabbleItem()
             {
                 Body = this.Body,
                 Link = this.Link,
-                Type = (BabbleEventType) this.Type
+                Type = (BabbleItemType) this.Type
             };
         }
 
-        internal static BabbleEvent ToEntityObject(Model.BabbleEvent o)
+        internal static BabbleItem ToEntityObject(Model.BabbleItem o)
         {
             if (o == null) return null;
-            return new BabbleEvent()
+            return new BabbleItem()
             {
                 Body = o.Body,
                 Link = o.Link,

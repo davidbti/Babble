@@ -2,10 +2,10 @@
 
 namespace Bti.Babble.Traffic.Model
 {
-    public class BabbleEvent : ObservableObject
+    public class BabbleItem : ObservableObject
     {
         private string body;
-        private BabbleEventType type;
+        private BabbleItemType type;
         private string link;
 
         public string Body
@@ -18,7 +18,7 @@ namespace Bti.Babble.Traffic.Model
             }
         }
 
-        public BabbleEventType Type
+        public BabbleItemType Type
         {
             get { return this.type; }
             set
@@ -38,11 +38,11 @@ namespace Bti.Babble.Traffic.Model
             }
         }
 
-        public BabbleEvent()
+        public BabbleItem()
         {
             this.Body = "";
             this.Link = "";
-            this.Type = BabbleEventType.None;
+            this.Type = BabbleItemType.None;
         }
     }
 }

@@ -115,17 +115,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Babble.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\Entity\BabbleEvent.cs" />
+    <Compile Include="Model\Entity\BabbleItem.cs" />
     <Compile Include="Model\Entity\TrafficEvent.cs" />
+    <Compile Include="Model\Entity\TrafficItem.cs" />
+    <Compile Include="Model\Entity\TrafficItemRepository.cs" />
     <Compile Include="Model\Entity\TrafficLog.cs" />
     <Compile Include="Model\Entity\TrafficLogRepository.cs" />
+    <Compile Include="Model\ITrafficItemRepository.cs" />
+    <Compile Include="Model\Mock\TrafficItemRepository.cs" />
+    <Compile Include="Model\Mock\TrafficLogRepository.cs" />
+    <Compile Include="Model\TrafficEvent.cs" />
     <Compile Include="Parser\BabbleEventGenerator.cs" />
     <Compile Include="Parser\ILogParser.cs" />
     <Compile Include="Parser\ParseResult.cs" />
-    <Compile Include="ViewModel\BabbleEventTypeViewModel.cs" />
-    <Compile Include="ViewModel\BabbleEventTypeViewModels.cs" />
-    <Compile Include="ViewModel\BabbleEventValidationRule.cs" />
-    <Compile Include="ViewModel\BabbleEventViewModel.cs" />
+    <Compile Include="ViewModel\BabbleItemTypeViewModel.cs" />
+    <Compile Include="ViewModel\BabbleItemTypeViewModels.cs" />
+    <Compile Include="ViewModel\BabbleItemValidationRule.cs" />
+    <Compile Include="ViewModel\BabbleItemViewModel.cs" />
     <Compile Include="ViewModel\TrafficLogViewModel.cs" />
     <Page Include="Controls\CircularButton\CircularButton.xaml">
       <SubType>Designer</SubType>
@@ -168,19 +174,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\BabbleEvent.cs" />
-    <Compile Include="Model\BabbleEventType.cs" />
-    <Compile Include="Model\Mock\BabbleEventRepository.cs" />
-    <Compile Include="Model\IBabbleEventRepository.cs" />
+    <Compile Include="Model\BabbleItem.cs" />
+    <Compile Include="Model\BabbleItemType.cs" />
+    <Compile Include="Model\IBabbleItemRepository.cs" />
     <Compile Include="Model\ITrafficLogRepository.cs" />
-    <Compile Include="Model\Mock\TrafficLogRepository.cs" />
     <Compile Include="Parser\Column.cs" />
     <Compile Include="Parser\WkrnLineParser.cs" />
     <Compile Include="Parser\WkrnLogParser.cs" />
     <Compile Include="Parser\ILineParser.cs" />
-    <Compile Include="Model\TrafficEventType.cs" />
+    <Compile Include="Model\TrafficItemType.cs" />
     <Compile Include="Model\TrafficLog.cs" />
-    <Compile Include="Model\TrafficEvent.cs" />
+    <Compile Include="Model\TrafficItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -234,9 +238,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\comment.png" />

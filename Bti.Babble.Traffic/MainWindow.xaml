@@ -46,8 +46,8 @@
                 <Button.ToolTip>
                     <ToolTip>
                         <StackPanel>
-                            <TextBlock FontWeight="Bold">Next</TextBlock>
-                            <TextBlock>View the traffic log for the next day</TextBlock>
+                            <TextBlock FontWeight="Bold">Previous</TextBlock>
+                            <TextBlock>View the traffic log for the previous day</TextBlock>
                         </StackPanel>
                     </ToolTip>
                 </Button.ToolTip>
@@ -575,9 +575,9 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Time" Width="1*" Binding="{Binding Time}" IsReadOnly="True" SortMemberPath="Id" />
                 <DataGridTextColumn Header="Length" Width="1*" Binding="{Binding Length}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Description" Width="4*" Binding="{Binding Description}" IsReadOnly="true"/>
-                <DataGridTextColumn Header="Type" Width="1*" Binding="{Binding Type}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Barcode" Width="1*" Binding="{Binding Barcode}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Description" Width="4*" Binding="{Binding Item.Description}" IsReadOnly="true"/>
+                <DataGridTextColumn Header="Type" Width="1*" Binding="{Binding Item.Type}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Barcode" Width="1*" Binding="{Binding Item.Barcode}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -586,9 +586,9 @@
             <TextBlock HorizontalAlignment="Center" Text=" News 2 Early Morning " FontSize="18" Foreground="{StaticResource DefaultLabelForegroundBrush}" />
         </WrapPanel>
 
-        <DataGrid Grid.Column="1" Grid.Row="4" CanUserAddRows="{Binding CanAddBabbleEvents}"  AutoGenerateColumns="False" ItemsSource="{Binding BabbleEvents}">
+        <DataGrid Grid.Column="1" Grid.Row="4" CanUserAddRows="{Binding CanAddBabbleItems}"  AutoGenerateColumns="False" ItemsSource="{Binding BabbleItems}">
             <DataGrid.RowValidationRules>
-                <local:BabbleEventValidationRule ValidationStep="UpdatedValue"/>
+                <local:BabbleItemValidationRule ValidationStep="UpdatedValue"/>
             </DataGrid.RowValidationRules>
             <DataGrid.RowValidationErrorTemplate>
                 <ControlTemplate>

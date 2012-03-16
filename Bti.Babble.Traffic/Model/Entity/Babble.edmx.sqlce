@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server Compact Edition
 -- --------------------------------------------------
--- Date Created: 03/01/2012 15:05:44
--- Generated from EDMX file: C:\BTi\Projects\Babble\Bti.Babble.Traffic\Model\Entity\Babble.edmx
+-- Date Created: 03/13/2012 17:18:05
+-- Generated from EDMX file: C:\Bti\Projects\Babble\Bti.Babble.Traffic\Model\Entity\Babble.edmx
 -- --------------------------------------------------
 
 
@@ -12,12 +12,26 @@
 -- NOTE: if the constraint does not exist, an ignorable error will be reported.
 -- --------------------------------------------------
 
+    ALTER TABLE [TrafficEvents] DROP CONSTRAINT [FK_TrafficLogTrafficEvent];
+GO
+    ALTER TABLE [TrafficEvents] DROP CONSTRAINT [FK_TrafficItemTrafficEvent];
+GO
+    ALTER TABLE [BabbleItems] DROP CONSTRAINT [FK_TrafficItemBabbleItem];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- NOTE: if the table does not exist, an ignorable error will be reported.
 -- --------------------------------------------------
 
+    DROP TABLE [TrafficLogs];
+GO
+    DROP TABLE [TrafficEvents];
+GO
+    DROP TABLE [BabbleItems];
+GO
+    DROP TABLE [TrafficItems];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -37,21 +51,28 @@ CREATE TABLE [TrafficEvents] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Time] nvarchar(4000)  NOT NULL,
     [Length] nvarchar(4000)  NOT NULL,
-    [ISCI] nvarchar(4000)  NOT NULL,
-    [Description] nvarchar(4000)  NOT NULL,
-    [Type] int  NOT NULL,
-    [Barcode] nvarchar(4000)  NOT NULL,
-    [TrafficLogId] int  NOT NULL
+    [TrafficLogId] int  NOT NULL,
+    [TrafficItemId] int  NOT NULL
 );
 GO
 
--- Creating table 'BabbleEvents'
-CREATE TABLE [BabbleEvents] (
+-- Creating table 'BabbleItems'
+CREATE TABLE [BabbleItems] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Body] nvarchar(4000)  NOT NULL,
     [Type] int  NOT NULL,
     [Link] nvarchar(4000)  NOT NULL,
-    [TrafficEventId] int  NOT NULL
+    [TrafficItemId] int  NOT NULL
+);
+GO
+
+-- Creating table 'TrafficItems'
+CREATE TABLE [TrafficItems] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Type] int  NOT NULL,
+    [Description] nvarchar(4000)  NOT NULL,
+    [ISCI] nvarchar(4000)  NOT NULL,
+    [Barcode] nvarchar(4000)  NOT NULL
 );
 GO
 
@@ -71,9 +92,15 @@ ADD CONSTRAINT [PK_TrafficEvents]
     PRIMARY KEY ([Id] );
 GO
 
--- Creating primary key on [Id] in table 'BabbleEvents'
-ALTER TABLE [BabbleEvents]
-ADD CONSTRAINT [PK_BabbleEvents]
+-- Creating primary key on [Id] in table 'BabbleItems'
+ALTER TABLE [BabbleItems]
+ADD CONSTRAINT [PK_BabbleItems]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'TrafficItems'
+ALTER TABLE [TrafficItems]
+ADD CONSTRAINT [PK_TrafficItems]
     PRIMARY KEY ([Id] );
 GO
 
@@ -95,18 +122,32 @@ ON [TrafficEvents]
     ([TrafficLogId]);
 GO
 
--- Creating foreign key on [TrafficEventId] in table 'BabbleEvents'
-ALTER TABLE [BabbleEvents]
-ADD CONSTRAINT [FK_TrafficEventBabbleEvent]
-    FOREIGN KEY ([TrafficEventId])
-    REFERENCES [TrafficEvents]
+-- Creating foreign key on [TrafficItemId] in table 'TrafficEvents'
+ALTER TABLE [TrafficEvents]
+ADD CONSTRAINT [FK_TrafficItemTrafficEvent]
+    FOREIGN KEY ([TrafficItemId])
+    REFERENCES [TrafficItems]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
--- Creating non-clustered index for FOREIGN KEY 'FK_TrafficEventBabbleEvent'
-CREATE INDEX [IX_FK_TrafficEventBabbleEvent]
-ON [BabbleEvents]
-    ([TrafficEventId]);
+-- Creating non-clustered index for FOREIGN KEY 'FK_TrafficItemTrafficEvent'
+CREATE INDEX [IX_FK_TrafficItemTrafficEvent]
+ON [TrafficEvents]
+    ([TrafficItemId]);
+GO
+
+-- Creating foreign key on [TrafficItemId] in table 'BabbleItems'
+ALTER TABLE [BabbleItems]
+ADD CONSTRAINT [FK_TrafficItemBabbleItem]
+    FOREIGN KEY ([TrafficItemId])
+    REFERENCES [TrafficItems]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TrafficItemBabbleItem'
+CREATE INDEX [IX_FK_TrafficItemBabbleItem]
+ON [BabbleItems]
+    ([TrafficItemId]);
 GO
 
 -- --------------------------------------------------

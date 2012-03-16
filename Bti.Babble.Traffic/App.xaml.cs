@@ -30,6 +30,7 @@ namespace Bti.Babble.Traffic
             IUnityContainer container = new UnityContainer();
 
             container.RegisterType<ITrafficLogRepository, Model.Entity.TrafficLogRepository>(new ContainerControlledLifetimeManager());
+            container.RegisterType<ITrafficItemRepository, Model.Entity.TrafficItemRepository>(new ContainerControlledLifetimeManager());
 
             MainWindow window = container.Resolve<MainWindow>();
             window.DataContext = container.Resolve<TrafficLogViewModel>();

@@ -18,10 +18,11 @@ namespace Bti.Babble.Traffic
         private bool isImporting;
         private TrafficLog log;
         private ILogParser logParser;
+        private ITrafficItemRepository itemRepository;
         private ITrafficLogRepository logRepository;
         private TrafficEvent selectedEvent;
-        ObservableCollection<BabbleEventViewModel> babbleEvents;
-        BabbleEventTypeViewModels babbleTypes;
+        ObservableCollection<BabbleItemViewModel> babbleItems;
+        BabbleItemTypeViewModels babbleTypes;
         ObservableCollection<TrafficEvent> trafficEvents;
 
         public DateTime ActiveDate
@@ -45,17 +46,17 @@ namespace Bti.Babble.Traffic
             }
         }
 
-        public ObservableCollection<BabbleEventViewModel> BabbleEvents
+        public ObservableCollection<BabbleItemViewModel> BabbleItems
         {
-            get { return this.babbleEvents; }
+            get { return this.babbleItems; }
             set
             {
-                this.babbleEvents = value;
-                RaisePropertyChanged("BabbleEvents");
+                this.babbleItems = value;
+                RaisePropertyChanged("BabbleItems");
             }
         }
 
-        public BabbleEventTypeViewModels BabbleEventTypes
+        public BabbleItemTypeViewModels BabbleEventTypes
         {
             get { return this.babbleTypes; }
         }
@@ -107,15 +108,16 @@ namespace Bti.Babble.Traffic
         }
 
         public TrafficLogViewModel()
-            :this(new Model.Mock.TrafficLogRepository())
+            :this(new Model.Mock.TrafficLogRepository(), new Model.Mock.TrafficItemRepository())
         {
         }
 
-        public TrafficLogViewModel(ITrafficLogRepository logRepository)
+        public TrafficLogViewModel(ITrafficLogRepository logRepository, ITrafficItemRepository itemRepository)
         {
             this.logRepository = logRepository;
-            this.babbleTypes = new BabbleEventTypeViewModels();
-            this.logParser = new WkrnLogParser();
+            this.itemRepository = itemRepository;
+            this.babbleTypes = new BabbleItemTypeViewModels();
+            this.logParser = new WkrnLogParser(this.itemRepository);
             DateTime now = DateTime.Now;
             ActiveDate = new DateTime(now.Year, now.Month, now.Day);
             LoadTrafficLog();
@@ -176,7 +178,7 @@ namespace Bti.Babble.Traffic
             this.IsImporting = true;
             this.ImportProgress = 0;
             this.TrafficEvents = new ObservableCollection<TrafficEvent>();
-            this.BabbleEvents = new ObservableCollection<BabbleEventViewModel>();
+            this.BabbleItems = new ObservableCollection<BabbleItemViewModel>();
             this.logParser.ParseAsync(ActiveDate, ImportProgressCallBack, ImportCompleteCallBack, ImportExceptionCallback);
         }
 
@@ -213,14 +215,14 @@ namespace Bti.Babble.Traffic
                 this.ActiveEvent = null;
                 return;
             }
-            LoadBabbleEvents(evt);
+            LoadBabbleItems(evt);
             this.ActiveEvent = evt;
         }
 
-        private void LoadBabbleEvents(TrafficEvent evt)
+        private void LoadBabbleItems(TrafficEvent evt)
         {
-            this.BabbleEvents = new ObservableCollection<BabbleEventViewModel>
-                (evt.BabbleEvents.Select(o => new BabbleEventViewModel(o, babbleTypes.GetImageForType(o.Type))));
+            this.BabbleItems = new ObservableCollection<BabbleItemViewModel>
+                (evt.Item.BabbleItems.Select(o => new BabbleItemViewModel(o, babbleTypes.GetImageForType(o.Type))));
         }
 
         private void LoadTrafficLog()

@@ -19,7 +19,8 @@ using System.Runtime.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("Babble", "TrafficLogTrafficEvent", "TrafficLog", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Bti.Babble.Traffic.Model.Entity.TrafficLog), "TrafficEvent", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Bti.Babble.Traffic.Model.Entity.TrafficEvent), true)]
-[assembly: EdmRelationshipAttribute("Babble", "TrafficEventBabbleEvent", "TrafficEvent", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Bti.Babble.Traffic.Model.Entity.TrafficEvent), "BabbleEvent", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Bti.Babble.Traffic.Model.Entity.BabbleEvent), true)]
+[assembly: EdmRelationshipAttribute("Babble", "TrafficItemTrafficEvent", "TrafficItem", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Bti.Babble.Traffic.Model.Entity.TrafficItem), "TrafficEvent", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Bti.Babble.Traffic.Model.Entity.TrafficEvent), true)]
+[assembly: EdmRelationshipAttribute("Babble", "TrafficItemBabbleItem", "TrafficItem", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Bti.Babble.Traffic.Model.Entity.TrafficItem), "BabbleItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Bti.Babble.Traffic.Model.Entity.BabbleItem), true)]
 
 #endregion
 
@@ -106,18 +107,34 @@ namespace Bti.Babble.Traffic.Model.Entity
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<BabbleEvent> BabbleEvents
+        public ObjectSet<BabbleItem> BabbleItems
         {
             get
             {
-                if ((_BabbleEvents == null))
+                if ((_BabbleItems == null))
                 {
-                    _BabbleEvents = base.CreateObjectSet<BabbleEvent>("BabbleEvents");
+                    _BabbleItems = base.CreateObjectSet<BabbleItem>("BabbleItems");
                 }
-                return _BabbleEvents;
+                return _BabbleItems;
             }
         }
-        private ObjectSet<BabbleEvent> _BabbleEvents;
+        private ObjectSet<BabbleItem> _BabbleItems;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<TrafficItem> TrafficItems
+        {
+            get
+            {
+                if ((_TrafficItems == null))
+                {
+                    _TrafficItems = base.CreateObjectSet<TrafficItem>("TrafficItems");
+                }
+                return _TrafficItems;
+            }
+        }
+        private ObjectSet<TrafficItem> _TrafficItems;
 
         #endregion
         #region AddTo Methods
@@ -139,11 +156,19 @@ namespace Bti.Babble.Traffic.Model.Entity
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the BabbleEvents EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the BabbleItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToBabbleEvents(BabbleEvent babbleEvent)
+        public void AddToBabbleItems(BabbleItem babbleItem)
         {
-            base.AddObject("BabbleEvents", babbleEvent);
+            base.AddObject("BabbleItems", babbleItem);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the TrafficItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTrafficItems(TrafficItem trafficItem)
+        {
+            base.AddObject("TrafficItems", trafficItem);
         }
 
         #endregion
@@ -157,30 +182,30 @@ namespace Bti.Babble.Traffic.Model.Entity
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Babble", Name="BabbleEvent")]
+    [EdmEntityTypeAttribute(NamespaceName="Babble", Name="BabbleItem")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class BabbleEvent : EntityObject
+    public partial class BabbleItem : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new BabbleEvent object.
+        /// Create a new BabbleItem object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="body">Initial value of the Body property.</param>
         /// <param name="type">Initial value of the Type property.</param>
         /// <param name="link">Initial value of the Link property.</param>
-        /// <param name="trafficEventId">Initial value of the TrafficEventId property.</param>
-        public static BabbleEvent CreateBabbleEvent(global::System.Int32 id, global::System.String body, global::System.Int32 type, global::System.String link, global::System.Int32 trafficEventId)
+        /// <param name="trafficItemId">Initial value of the TrafficItemId property.</param>
+        public static BabbleItem CreateBabbleItem(global::System.Int32 id, global::System.String body, global::System.Int32 type, global::System.String link, global::System.Int32 trafficItemId)
         {
-            BabbleEvent babbleEvent = new BabbleEvent();
-            babbleEvent.Id = id;
-            babbleEvent.Body = body;
-            babbleEvent.Type = type;
-            babbleEvent.Link = link;
-            babbleEvent.TrafficEventId = trafficEventId;
-            return babbleEvent;
+            BabbleItem babbleItem = new BabbleItem();
+            babbleItem.Id = id;
+            babbleItem.Body = body;
+            babbleItem.Type = type;
+            babbleItem.Link = link;
+            babbleItem.TrafficItemId = trafficItemId;
+            return babbleItem;
         }
 
         #endregion
@@ -290,24 +315,24 @@ namespace Bti.Babble.Traffic.Model.Entity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 TrafficEventId
+        public global::System.Int32 TrafficItemId
         {
             get
             {
-                return _TrafficEventId;
+                return _TrafficItemId;
             }
             set
             {
-                OnTrafficEventIdChanging(value);
-                ReportPropertyChanging("TrafficEventId");
-                _TrafficEventId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("TrafficEventId");
-                OnTrafficEventIdChanged();
+                OnTrafficItemIdChanging(value);
+                ReportPropertyChanging("TrafficItemId");
+                _TrafficItemId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TrafficItemId");
+                OnTrafficItemIdChanged();
             }
         }
-        private global::System.Int32 _TrafficEventId;
-        partial void OnTrafficEventIdChanging(global::System.Int32 value);
-        partial void OnTrafficEventIdChanged();
+        private global::System.Int32 _TrafficItemId;
+        partial void OnTrafficItemIdChanging(global::System.Int32 value);
+        partial void OnTrafficItemIdChanged();
 
         #endregion
     
@@ -319,16 +344,16 @@ namespace Bti.Babble.Traffic.Model.Entity
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Babble", "TrafficEventBabbleEvent", "TrafficEvent")]
-        public TrafficEvent TrafficEvent
+        [EdmRelationshipNavigationPropertyAttribute("Babble", "TrafficItemBabbleItem", "TrafficItem")]
+        public TrafficItem TrafficItem
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TrafficEvent>("Babble.TrafficEventBabbleEvent", "TrafficEvent").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TrafficItem>("Babble.TrafficItemBabbleItem", "TrafficItem").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TrafficEvent>("Babble.TrafficEventBabbleEvent", "TrafficEvent").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TrafficItem>("Babble.TrafficItemBabbleItem", "TrafficItem").Value = value;
             }
         }
         /// <summary>
@@ -336,17 +361,17 @@ namespace Bti.Babble.Traffic.Model.Entity
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<TrafficEvent> TrafficEventReference
+        public EntityReference<TrafficItem> TrafficItemReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TrafficEvent>("Babble.TrafficEventBabbleEvent", "TrafficEvent");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TrafficItem>("Babble.TrafficItemBabbleItem", "TrafficItem");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TrafficEvent>("Babble.TrafficEventBabbleEvent", "TrafficEvent", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TrafficItem>("Babble.TrafficItemBabbleItem", "TrafficItem", value);
                 }
             }
         }
@@ -370,22 +395,16 @@ namespace Bti.Babble.Traffic.Model.Entity
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="time">Initial value of the Time property.</param>
         /// <param name="length">Initial value of the Length property.</param>
-        /// <param name="iSCI">Initial value of the ISCI property.</param>
-        /// <param name="description">Initial value of the Description property.</param>
-        /// <param name="type">Initial value of the Type property.</param>
-        /// <param name="barcode">Initial value of the Barcode property.</param>
         /// <param name="trafficLogId">Initial value of the TrafficLogId property.</param>
-        public static TrafficEvent CreateTrafficEvent(global::System.Int32 id, global::System.String time, global::System.String length, global::System.String iSCI, global::System.String description, global::System.Int32 type, global::System.String barcode, global::System.Int32 trafficLogId)
+        /// <param name="trafficItemId">Initial value of the TrafficItemId property.</param>
+        public static TrafficEvent CreateTrafficEvent(global::System.Int32 id, global::System.String time, global::System.String length, global::System.Int32 trafficLogId, global::System.Int32 trafficItemId)
         {
             TrafficEvent trafficEvent = new TrafficEvent();
             trafficEvent.Id = id;
             trafficEvent.Time = time;
             trafficEvent.Length = length;
-            trafficEvent.ISCI = iSCI;
-            trafficEvent.Description = description;
-            trafficEvent.Type = type;
-            trafficEvent.Barcode = barcode;
             trafficEvent.TrafficLogId = trafficLogId;
+            trafficEvent.TrafficItemId = trafficItemId;
             return trafficEvent;
         }
 
@@ -472,102 +491,6 @@ namespace Bti.Babble.Traffic.Model.Entity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String ISCI
-        {
-            get
-            {
-                return _ISCI;
-            }
-            set
-            {
-                OnISCIChanging(value);
-                ReportPropertyChanging("ISCI");
-                _ISCI = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("ISCI");
-                OnISCIChanged();
-            }
-        }
-        private global::System.String _ISCI;
-        partial void OnISCIChanging(global::System.String value);
-        partial void OnISCIChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Description
-        {
-            get
-            {
-                return _Description;
-            }
-            set
-            {
-                OnDescriptionChanging(value);
-                ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Description");
-                OnDescriptionChanged();
-            }
-        }
-        private global::System.String _Description;
-        partial void OnDescriptionChanging(global::System.String value);
-        partial void OnDescriptionChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Type
-        {
-            get
-            {
-                return _Type;
-            }
-            set
-            {
-                OnTypeChanging(value);
-                ReportPropertyChanging("Type");
-                _Type = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Type");
-                OnTypeChanged();
-            }
-        }
-        private global::System.Int32 _Type;
-        partial void OnTypeChanging(global::System.Int32 value);
-        partial void OnTypeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Barcode
-        {
-            get
-            {
-                return _Barcode;
-            }
-            set
-            {
-                OnBarcodeChanging(value);
-                ReportPropertyChanging("Barcode");
-                _Barcode = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Barcode");
-                OnBarcodeChanged();
-            }
-        }
-        private global::System.String _Barcode;
-        partial void OnBarcodeChanging(global::System.String value);
-        partial void OnBarcodeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
         public global::System.Int32 TrafficLogId
         {
             get
@@ -586,6 +509,30 @@ namespace Bti.Babble.Traffic.Model.Entity
         private global::System.Int32 _TrafficLogId;
         partial void OnTrafficLogIdChanging(global::System.Int32 value);
         partial void OnTrafficLogIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TrafficItemId
+        {
+            get
+            {
+                return _TrafficItemId;
+            }
+            set
+            {
+                OnTrafficItemIdChanging(value);
+                ReportPropertyChanging("TrafficItemId");
+                _TrafficItemId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TrafficItemId");
+                OnTrafficItemIdChanged();
+            }
+        }
+        private global::System.Int32 _TrafficItemId;
+        partial void OnTrafficItemIdChanging(global::System.Int32 value);
+        partial void OnTrafficItemIdChanged();
 
         #endregion
     
@@ -635,18 +582,240 @@ namespace Bti.Babble.Traffic.Model.Entity
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Babble", "TrafficEventBabbleEvent", "BabbleEvent")]
-        public EntityCollection<BabbleEvent> BabbleEvents
+        [EdmRelationshipNavigationPropertyAttribute("Babble", "TrafficItemTrafficEvent", "TrafficItem")]
+        public TrafficItem TrafficItem
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<BabbleEvent>("Babble.TrafficEventBabbleEvent", "BabbleEvent");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TrafficItem>("Babble.TrafficItemTrafficEvent", "TrafficItem").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TrafficItem>("Babble.TrafficItemTrafficEvent", "TrafficItem").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<TrafficItem> TrafficItemReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TrafficItem>("Babble.TrafficItemTrafficEvent", "TrafficItem");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<BabbleEvent>("Babble.TrafficEventBabbleEvent", "BabbleEvent", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TrafficItem>("Babble.TrafficItemTrafficEvent", "TrafficItem", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Babble", Name="TrafficItem")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class TrafficItem : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new TrafficItem object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="type">Initial value of the Type property.</param>
+        /// <param name="description">Initial value of the Description property.</param>
+        /// <param name="iSCI">Initial value of the ISCI property.</param>
+        /// <param name="barcode">Initial value of the Barcode property.</param>
+        public static TrafficItem CreateTrafficItem(global::System.Int32 id, global::System.Int32 type, global::System.String description, global::System.String iSCI, global::System.String barcode)
+        {
+            TrafficItem trafficItem = new TrafficItem();
+            trafficItem.Id = id;
+            trafficItem.Type = type;
+            trafficItem.Description = description;
+            trafficItem.ISCI = iSCI;
+            trafficItem.Barcode = barcode;
+            return trafficItem;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Type
+        {
+            get
+            {
+                return _Type;
+            }
+            set
+            {
+                OnTypeChanging(value);
+                ReportPropertyChanging("Type");
+                _Type = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Type");
+                OnTypeChanged();
+            }
+        }
+        private global::System.Int32 _Type;
+        partial void OnTypeChanging(global::System.Int32 value);
+        partial void OnTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ISCI
+        {
+            get
+            {
+                return _ISCI;
+            }
+            set
+            {
+                OnISCIChanging(value);
+                ReportPropertyChanging("ISCI");
+                _ISCI = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ISCI");
+                OnISCIChanged();
+            }
+        }
+        private global::System.String _ISCI;
+        partial void OnISCIChanging(global::System.String value);
+        partial void OnISCIChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Barcode
+        {
+            get
+            {
+                return _Barcode;
+            }
+            set
+            {
+                OnBarcodeChanging(value);
+                ReportPropertyChanging("Barcode");
+                _Barcode = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Barcode");
+                OnBarcodeChanged();
+            }
+        }
+        private global::System.String _Barcode;
+        partial void OnBarcodeChanging(global::System.String value);
+        partial void OnBarcodeChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Babble", "TrafficItemTrafficEvent", "TrafficEvent")]
+        public EntityCollection<TrafficEvent> TrafficEvents
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TrafficEvent>("Babble.TrafficItemTrafficEvent", "TrafficEvent");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TrafficEvent>("Babble.TrafficItemTrafficEvent", "TrafficEvent", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Babble", "TrafficItemBabbleItem", "BabbleItem")]
+        public EntityCollection<BabbleItem> BabbleItems
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<BabbleItem>("Babble.TrafficItemBabbleItem", "BabbleItem");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<BabbleItem>("Babble.TrafficItemBabbleItem", "BabbleItem", value);
                 }
             }
         }

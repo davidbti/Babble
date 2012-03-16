@@ -8,14 +8,19 @@
   <EntityContainer Name="BabbleStoreContainer">
     <EntitySet Name="TrafficLogs" EntityType="Babble.Store.TrafficLogs" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TrafficEvents" EntityType="Babble.Store.TrafficEvents" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="BabbleEvents" EntityType="Babble.Store.BabbleEvents" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BabbleItems" EntityType="Babble.Store.BabbleItems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TrafficItems" EntityType="Babble.Store.TrafficItems" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="TrafficLogTrafficEvent" Association="Babble.Store.TrafficLogTrafficEvent">
       <End Role="TrafficLog" EntitySet="TrafficLogs" />
       <End Role="TrafficEvent" EntitySet="TrafficEvents" />
     </AssociationSet>
-    <AssociationSet Name="TrafficEventBabbleEvent" Association="Babble.Store.TrafficEventBabbleEvent">
+    <AssociationSet Name="TrafficItemTrafficEvent" Association="Babble.Store.TrafficItemTrafficEvent">
+      <End Role="TrafficItem" EntitySet="TrafficItems" />
       <End Role="TrafficEvent" EntitySet="TrafficEvents" />
-      <End Role="BabbleEvent" EntitySet="BabbleEvents" />
+    </AssociationSet>
+    <AssociationSet Name="TrafficItemBabbleItem" Association="Babble.Store.TrafficItemBabbleItem">
+      <End Role="TrafficItem" EntitySet="TrafficItems" />
+      <End Role="BabbleItem" EntitySet="BabbleItems" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="TrafficLogs">
@@ -34,13 +39,10 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Time" Type="nvarchar" Nullable="false" />
     <Property Name="Length" Type="nvarchar" Nullable="false" />
-    <Property Name="ISCI" Type="nvarchar" Nullable="false" />
-    <Property Name="Description" Type="nvarchar" Nullable="false" />
-    <Property Name="Type" Type="int" Nullable="false" />
-    <Property Name="Barcode" Type="nvarchar" Nullable="false" />
     <Property Name="TrafficLogId" Type="int" Nullable="false" />
+    <Property Name="TrafficItemId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="BabbleEvents">
+  <EntityType Name="BabbleItems">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -48,7 +50,17 @@
     <Property Name="Body" Type="nvarchar" Nullable="false" />
     <Property Name="Type" Type="int" Nullable="false" />
     <Property Name="Link" Type="nvarchar" Nullable="false" />
-    <Property Name="TrafficEventId" Type="int" Nullable="false" />
+    <Property Name="TrafficItemId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrafficItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" />
+    <Property Name="ISCI" Type="nvarchar" Nullable="false" />
+    <Property Name="Barcode" Type="nvarchar" Nullable="false" />
   </EntityType>
   <Association Name="TrafficLogTrafficEvent">
     <End Role="TrafficLog" Type="Babble.Store.TrafficLogs" Multiplicity="1" />
@@ -62,15 +74,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="TrafficEventBabbleEvent">
-    <End Role="TrafficEvent" Type="Babble.Store.TrafficEvents" Multiplicity="1" />
-    <End Role="BabbleEvent" Type="Babble.Store.BabbleEvents" Multiplicity="*" />
+  <Association Name="TrafficItemTrafficEvent">
+    <End Role="TrafficItem" Type="Babble.Store.TrafficItems" Multiplicity="1" />
+    <End Role="TrafficEvent" Type="Babble.Store.TrafficEvents" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="TrafficEvent">
+      <Principal Role="TrafficItem">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="BabbleEvent">
-        <PropertyRef Name="TrafficEventId" />
+      <Dependent Role="TrafficEvent">
+        <PropertyRef Name="TrafficItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrafficItemBabbleItem">
+    <End Role="TrafficItem" Type="Babble.Store.TrafficItems" Multiplicity="1" />
+    <End Role="BabbleItem" Type="Babble.Store.BabbleItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrafficItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BabbleItem">
+        <PropertyRef Name="TrafficItemId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -81,14 +105,19 @@
         <EntityContainer Name="BabbleContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TrafficLogs" EntityType="Babble.TrafficLog" />
           <EntitySet Name="TrafficEvents" EntityType="Babble.TrafficEvent" />
+          <EntitySet Name="BabbleItems" EntityType="Babble.BabbleItem" />
+          <EntitySet Name="TrafficItems" EntityType="Babble.TrafficItem" />
           <AssociationSet Name="TrafficLogTrafficEvent" Association="Babble.TrafficLogTrafficEvent">
             <End Role="TrafficLog" EntitySet="TrafficLogs" />
             <End Role="TrafficEvent" EntitySet="TrafficEvents" />
           </AssociationSet>
-          <EntitySet Name="BabbleEvents" EntityType="Babble.BabbleEvent" />
-          <AssociationSet Name="TrafficEventBabbleEvent" Association="Babble.TrafficEventBabbleEvent">
+          <AssociationSet Name="TrafficItemTrafficEvent" Association="Babble.TrafficItemTrafficEvent">
+            <End Role="TrafficItem" EntitySet="TrafficItems" />
             <End Role="TrafficEvent" EntitySet="TrafficEvents" />
-            <End Role="BabbleEvent" EntitySet="BabbleEvents" />
+          </AssociationSet>
+          <AssociationSet Name="TrafficItemBabbleItem" Association="Babble.TrafficItemBabbleItem">
+            <End Role="TrafficItem" EntitySet="TrafficItems" />
+            <End Role="BabbleItem" EntitySet="BabbleItems" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="TrafficLog">
@@ -108,13 +137,33 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Time" Nullable="false" />
           <Property Type="String" Name="Length" Nullable="false" />
-          <Property Type="String" Name="ISCI" Nullable="false" />
-          <Property Type="String" Name="Description" Nullable="false" />
-          <Property Type="Int32" Name="Type" Nullable="false" />
-          <Property Type="String" Name="Barcode" Nullable="false" />
           <NavigationProperty Name="TrafficLog" Relationship="Babble.TrafficLogTrafficEvent" FromRole="TrafficEvent" ToRole="TrafficLog" />
           <Property Type="Int32" Name="TrafficLogId" Nullable="false" />
-          <NavigationProperty Name="BabbleEvents" Relationship="Babble.TrafficEventBabbleEvent" FromRole="TrafficEvent" ToRole="BabbleEvent" />
+          <NavigationProperty Name="TrafficItem" Relationship="Babble.TrafficItemTrafficEvent" FromRole="TrafficEvent" ToRole="TrafficItem" />
+          <Property Type="Int32" Name="TrafficItemId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BabbleItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Body" Nullable="false" />
+          <Property Type="Int32" Name="Type" Nullable="false" />
+          <Property Type="String" Name="Link" Nullable="false" />
+          <NavigationProperty Name="TrafficItem" Relationship="Babble.TrafficItemBabbleItem" FromRole="BabbleItem" ToRole="TrafficItem" />
+          <Property Type="Int32" Name="TrafficItemId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrafficItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Type" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" />
+          <Property Type="String" Name="ISCI" Nullable="false" />
+          <Property Type="String" Name="Barcode" Nullable="false" />
+          <NavigationProperty Name="TrafficEvents" Relationship="Babble.TrafficItemTrafficEvent" FromRole="TrafficItem" ToRole="TrafficEvent" />
+          <NavigationProperty Name="BabbleItems" Relationship="Babble.TrafficItemBabbleItem" FromRole="TrafficItem" ToRole="BabbleItem" />
         </EntityType>
         <Association Name="TrafficLogTrafficEvent">
           <End Type="Babble.TrafficLog" Role="TrafficLog" Multiplicity="1" />
@@ -128,26 +177,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="BabbleEvent">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Body" Nullable="false" />
-          <Property Type="Int32" Name="Type" Nullable="false" />
-          <Property Type="String" Name="Link" Nullable="false" />
-          <NavigationProperty Name="TrafficEvent" Relationship="Babble.TrafficEventBabbleEvent" FromRole="BabbleEvent" ToRole="TrafficEvent" />
-          <Property Type="Int32" Name="TrafficEventId" Nullable="false" />
-        </EntityType>
-        <Association Name="TrafficEventBabbleEvent">
-          <End Type="Babble.TrafficEvent" Role="TrafficEvent" Multiplicity="1" />
-          <End Type="Babble.BabbleEvent" Role="BabbleEvent" Multiplicity="*" />
+        <Association Name="TrafficItemTrafficEvent">
+          <End Type="Babble.TrafficItem" Role="TrafficItem" Multiplicity="1" />
+          <End Type="Babble.TrafficEvent" Role="TrafficEvent" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TrafficEvent">
+            <Principal Role="TrafficItem">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="BabbleEvent">
-              <PropertyRef Name="TrafficEventId" />
+            <Dependent Role="TrafficEvent">
+              <PropertyRef Name="TrafficItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TrafficItemBabbleItem">
+          <End Type="Babble.TrafficItem" Role="TrafficItem" Multiplicity="1" />
+          <End Type="Babble.BabbleItem" Role="BabbleItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrafficItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BabbleItem">
+              <PropertyRef Name="TrafficItemId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -173,22 +223,30 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Time" ColumnName="Time" />
           <ScalarProperty Name="Length" ColumnName="Length" />
-          <ScalarProperty Name="ISCI" ColumnName="ISCI" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="Barcode" ColumnName="Barcode" />
           <ScalarProperty Name="TrafficLogId" ColumnName="TrafficLogId" />
+          <ScalarProperty Name="TrafficItemId" ColumnName="TrafficItemId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="BabbleEvents">
-      <EntityTypeMapping TypeName="IsTypeOf(Babble.BabbleEvent)">
-        <MappingFragment StoreEntitySet="BabbleEvents">
+    <EntitySetMapping Name="BabbleItems">
+      <EntityTypeMapping TypeName="IsTypeOf(Babble.BabbleItem)">
+        <MappingFragment StoreEntitySet="BabbleItems">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Body" ColumnName="Body" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Link" ColumnName="Link" />
-          <ScalarProperty Name="TrafficEventId" ColumnName="TrafficEventId" />
+          <ScalarProperty Name="TrafficItemId" ColumnName="TrafficItemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrafficItems">
+      <EntityTypeMapping TypeName="IsTypeOf(Babble.TrafficItem)">
+        <MappingFragment StoreEntitySet="TrafficItems">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ISCI" ColumnName="ISCI" />
+          <ScalarProperty Name="Barcode" ColumnName="Barcode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -212,16 +270,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="Babble" >
-        <EntityTypeShape EntityType="Babble.TrafficLog" Width="1.5" PointX="0.5" PointY="1.75" Height="1.787985026041667" />
-        <EntityTypeShape EntityType="Babble.TrafficEvent" Width="1.5" PointX="2.75" PointY="1.75" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="Babble.TrafficLog" Width="1.5" PointX="0.5" PointY="0.5" Height="1.9802864583333339" />
+        <EntityTypeShape EntityType="Babble.TrafficEvent" Width="1.5" PointX="2.75" PointY="0.5" Height="1.59568359375" />
+        <EntityTypeShape EntityType="Babble.BabbleItem" Width="1.5" PointX="5.125" PointY="3.75" Height="1.7879850260416665" />
+        <EntityTypeShape EntityType="Babble.TrafficItem" Width="1.5" PointX="2.75" PointY="3.625" Height="2.1725878906249996" />
         <AssociationConnector Association="Babble.TrafficLogTrafficEvent">
-          <ConnectorPoint PointX="2" PointY="2.7401432291666667" />
-          <ConnectorPoint PointX="2.75" PointY="2.7401432291666667" />
+          <ConnectorPoint PointX="2" PointY="1.4901432291666668" />
+          <ConnectorPoint PointX="2.75" PointY="1.4901432291666668" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="Babble.BabbleEvent" Width="1.5" PointX="5.125" PointY="1.875" Height="2.1725878906249996" />
-        <AssociationConnector Association="Babble.TrafficEventBabbleEvent">
-          <ConnectorPoint PointX="4.25" PointY="2.9612939453125" />
-          <ConnectorPoint PointX="5.125" PointY="2.9612939453125" />
+        <AssociationConnector Association="Babble.TrafficItemTrafficEvent">
+          <ConnectorPoint PointX="3.5" PointY="3.625" />
+          <ConnectorPoint PointX="3.5" PointY="2.8648893229166661" />
+        </AssociationConnector>
+        <AssociationConnector Association="Babble.TrafficItemBabbleItem">
+          <ConnectorPoint PointX="4.25" PointY="4.8362939453125" />
+          <ConnectorPoint PointX="5.125" PointY="4.8362939453125" />
         </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>

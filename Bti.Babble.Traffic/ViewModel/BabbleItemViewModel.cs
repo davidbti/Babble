@@ -6,32 +6,32 @@ using Bti.Babble.Traffic.Model;
 
 namespace Bti.Babble.Traffic
 {
-    public class BabbleEventViewModel : ObservableObject
+    public class BabbleItemViewModel : ObservableObject
     {
-        private BabbleEvent babbleEvent;
-        private BabbleEventTypeViewModel babbleType;
+        private BabbleItem babbleItem;
+        private BabbleItemTypeViewModel babbleType;
         
         public string Body
         {
-            get { return this.babbleEvent.Body; }
+            get { return this.babbleItem.Body; }
             set
             {
-                this.babbleEvent.Body = value;
+                this.babbleItem.Body = value;
                 RaisePropertyChanged("Body");
             }
         }
 
         public string Link
         {
-            get { return this.babbleEvent.Link; }
+            get { return this.babbleItem.Link; }
             set
             {
-                this.babbleEvent.Link = value;
+                this.babbleItem.Link = value;
                 RaisePropertyChanged("Link");
             }
         }
 
-        public BabbleEventTypeViewModel Type
+        public BabbleItemTypeViewModel Type
         {
             get
             {
@@ -43,14 +43,14 @@ namespace Bti.Babble.Traffic
             }
         }
 
-        public BabbleEventViewModel()
-            : this(new BabbleEvent(), new BabbleEventTypeViewModel())
+        public BabbleItemViewModel()
+            : this(new BabbleItem(), new BabbleItemTypeViewModel())
         {
         }
 
-        public BabbleEventViewModel(BabbleEvent babbleEvent, BabbleEventTypeViewModel babbleType)
+        public BabbleItemViewModel(BabbleItem babbleEvent, BabbleItemTypeViewModel babbleType)
         {
-            this.babbleEvent = babbleEvent;
+            this.babbleItem = babbleEvent;
             this.babbleType = babbleType;
         }
     }

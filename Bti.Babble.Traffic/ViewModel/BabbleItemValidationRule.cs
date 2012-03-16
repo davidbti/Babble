@@ -4,12 +4,12 @@ using System.Windows.Data;
 
 namespace Bti.Babble.Traffic
 {
-    public class BabbleEventValidationRule : ValidationRule
+    public class BabbleItemValidationRule : ValidationRule
     {
         public override ValidationResult Validate(object value,
             System.Globalization.CultureInfo cultureInfo)
         {
-            BabbleEventViewModel evt = (value as BindingGroup).Items[0] as BabbleEventViewModel;
+            BabbleItemViewModel evt = (value as BindingGroup).Items[0] as BabbleItemViewModel;
             if (evt.Type.Name.Length == 0)
             {
                 return new ValidationResult(false,

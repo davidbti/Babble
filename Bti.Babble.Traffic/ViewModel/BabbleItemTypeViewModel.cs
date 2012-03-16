@@ -6,7 +6,7 @@ using System.Windows.Media;
 
 namespace Bti.Babble.Traffic
 {
-    public class BabbleEventTypeViewModel : ObservableObject
+    public class BabbleItemTypeViewModel : ObservableObject
     {
         private ImageSource image;
         private string name;
@@ -31,12 +31,12 @@ namespace Bti.Babble.Traffic
             }
         }
 
-        public BabbleEventTypeViewModel()
+        public BabbleItemTypeViewModel()
             : this("", null)
         {
         }
 
-        public BabbleEventTypeViewModel(string name, ImageSource image)
+        public BabbleItemTypeViewModel(string name, ImageSource image)
         {
             this.name = name;
             this.image = image;
@@ -51,7 +51,7 @@ namespace Bti.Babble.Traffic
             }
 
             // If parameter cannot be cast to Point return false.
-            BabbleEventTypeViewModel p = obj as BabbleEventTypeViewModel;
+            BabbleItemTypeViewModel p = obj as BabbleItemTypeViewModel;
             if ((System.Object)p == null)
             {
                 return false;
@@ -61,7 +61,7 @@ namespace Bti.Babble.Traffic
             return (Name == p.Name);
         }
 
-        public bool Equals(BabbleEventTypeViewModel p)
+        public bool Equals(BabbleItemTypeViewModel p)
         {
             // If parameter is null return false:
             if ((object)p == null)
@@ -78,7 +78,7 @@ namespace Bti.Babble.Traffic
             return Name.GetHashCode();
         }
 
-        public static bool operator ==(BabbleEventTypeViewModel a, BabbleEventTypeViewModel b)
+        public static bool operator ==(BabbleItemTypeViewModel a, BabbleItemTypeViewModel b)
         {
             // If both are null, or both are same instance, return true.
             if (System.Object.ReferenceEquals(a, b))
@@ -96,7 +96,7 @@ namespace Bti.Babble.Traffic
             return a.Name == b.Name;
         }
 
-        public static bool operator !=(BabbleEventTypeViewModel a, BabbleEventTypeViewModel b)
+        public static bool operator !=(BabbleItemTypeViewModel a, BabbleItemTypeViewModel b)
         {
             return !(a == b);
         }

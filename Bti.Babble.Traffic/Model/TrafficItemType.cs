@@ -2,7 +2,7 @@
 
 namespace Bti.Babble.Traffic.Model
 {
-    public enum TrafficEventType
+    public enum TrafficItemType
     {
         None,
         Id,

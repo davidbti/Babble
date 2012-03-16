@@ -15,25 +15,25 @@ namespace Bti.Babble.Traffic.Parser
 
         public Tuple<bool, TrafficEvent> Parse(string line)
         {
-            TrafficEvent te = new TrafficEvent();
+            var te = new TrafficEvent();
             te.Time = Time.Parse(line);
             te.Length = Length.Parse(line);
-            te.Barcode = BarCode.Parse(line);
+            te.Item.Barcode = BarCode.Parse(line);
             var programid = ProgramId.Parse(line);
-            te.Isci = ISCI.Parse(line);
-            te.Description = Description.Parse(line);
-            te.Type = Classify(te, programid);
+            te.Item.Isci = ISCI.Parse(line);
+            te.Item.Description = Description.Parse(line);
+            te.Item.Type = Classify(te, programid);
             te = Translate(te);
             return new Tuple<bool,TrafficEvent>(Validate(te), te);
         }
 
-        private TrafficEventType Classify(TrafficEvent te, string programId)
+        private TrafficItemType Classify(TrafficEvent te, string programId)
         {
-            if (IsProgram(programId)) return TrafficEventType.Program;
-            if (IsStationId(te)) return TrafficEventType.Id;
-            if (IsPromo(te)) return TrafficEventType.Promo;
-            if (IsCommercial(te)) return TrafficEventType.Commercial;
-            return TrafficEventType.None;
+            if (IsProgram(programId)) return TrafficItemType.Program;
+            if (IsStationId(te)) return TrafficItemType.Id;
+            if (IsPromo(te)) return TrafficItemType.Promo;
+            if (IsCommercial(te)) return TrafficItemType.Commercial;
+            return TrafficItemType.None;
         }
 
         private bool IsProgram(string programId)
@@ -51,7 +51,7 @@ namespace Bti.Babble.Traffic.Parser
 
         private bool IsStationId(TrafficEvent te)
         {
-            if (string.Compare(te.Description, " id", true) == 0)
+            if (string.Compare(te.Item.Description, " id", true) == 0)
             {
                 return true;
             }
@@ -60,11 +60,11 @@ namespace Bti.Babble.Traffic.Parser
 
         private bool IsPromo(TrafficEvent te)
         {
-            if (te.Description.Contains(" promo", StringComparison.OrdinalIgnoreCase))
+            if (te.Item.Description.Contains(" promo", StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }
-            if (te.Description.Contains("promo ", StringComparison.OrdinalIgnoreCase))
+            if (te.Item.Description.Contains("promo ", StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }
@@ -73,10 +73,10 @@ namespace Bti.Babble.Traffic.Parser
 
         private bool IsCommercial(TrafficEvent te)
         {
-            if (te.Barcode.Length > 0)
+            if (te.Item.Barcode.Length > 0)
             {
                 int barcodeOut;
-                if (int.TryParse(te.Barcode, out barcodeOut))
+                if (int.TryParse(te.Item.Barcode, out barcodeOut))
                 {
                     return true;
                 }
@@ -86,19 +86,24 @@ namespace Bti.Babble.Traffic.Parser
 
         private TrafficEvent Translate(TrafficEvent te)
         {
-            if (te.Type == TrafficEventType.Program)
+            if (te.Item.Type == TrafficItemType.Program)
             {
-                var description = te.Isci;
+                var description = te.Item.Isci;
                 description = description.Right(")");
                 description = description.Left("/");
-                te.Description = description.Trim();
+                te.Item.Description = description.Trim();
             }
             return te;
         }
 
+        private TrafficItem Lookup(TrafficItem ti)
+        {
+            return ti;
+        }
+
         private bool Validate(TrafficEvent te)
         {
-            if (te.Type == TrafficEventType.None) return false;
+            if (te.Item.Type == TrafficItemType.None) return false;
             return true;
         }
     }

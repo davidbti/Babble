@@ -7,13 +7,14 @@ using System.Threading;
 
 namespace Bti.Babble.Traffic.Parser
 {
-    public class WkrnLogParser : ILogParser
+    class WkrnLogParser : ILogParser
     {
+        private ITrafficItemRepository itemRepository;
         private ILineParser lineParser = new WkrnLineParser();
         private DateColumn Date = new DateColumn() { StartPos = 7, Length = 6 };
         private StringColumn Station = new StringColumn() { StartPos = 13, Length = 4 };
 
-        public WkrnLogParser()
+        public WkrnLogParser(ITrafficItemRepository itemRepository)
         {
         }
 
@@ -49,7 +50,15 @@ namespace Bti.Babble.Traffic.Parser
                 var evt = result.Item2;
                 if (valid)
                 {
-                    evt.BabbleEvents = BabbleEventGenerator.Generate(log, evt).ToObservable();
+                    var item = this.itemRepository.GetByDescriptionAndType(evt.Item);
+                    if (item == null)
+                    {
+                        evt.Item.BabbleItems = BabbleEventGenerator.Generate(log, evt.Item).ToObservable();
+                    }
+                    else
+                    {
+                        evt.Item.MergeWithExisting(item);
+                    }
                     log.Events.Add(evt);
                 }
                 double done = (eventLine / linesCount) * 100;
