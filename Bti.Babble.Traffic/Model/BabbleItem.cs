@@ -4,9 +4,31 @@ namespace Bti.Babble.Traffic.Model
 {
     public class BabbleItem : ObservableObject
     {
+        private int id;
+        private int trafficItemId;
         private string body;
         private BabbleItemType type;
         private string link;
+
+        public int Id
+        {
+            get { return this.id; }
+            set
+            {
+                this.id = value;
+                RaisePropertyChanged("Id");
+            }
+        }
+
+        public int TrafficItemId
+        {
+            get { return this.trafficItemId; }
+            set
+            {
+                this.trafficItemId = value;
+                RaisePropertyChanged("TrafficItemId");
+            }
+        }
 
         public string Body
         {

@@ -16,6 +16,11 @@ namespace Bti.Babble.Traffic.Parser
 
         public WkrnLogParser(ITrafficItemRepository itemRepository)
         {
+            if (itemRepository == null)
+            {
+                throw new ArgumentNullException("itemRepository");
+            }
+            this.itemRepository = itemRepository;
         }
 
         public bool CanParse(DateTime date)
@@ -41,6 +46,7 @@ namespace Bti.Babble.Traffic.Parser
             log.ParseDate = DateTime.Now;
             double eventLine = 0;
             int eventStartLine = 1;
+            var currentProgram = new TrafficItem();
             foreach (var line in lines)
             {
                 eventLine += 1;
@@ -50,15 +56,27 @@ namespace Bti.Babble.Traffic.Parser
                 var evt = result.Item2;
                 if (valid)
                 {
-                    var item = this.itemRepository.GetByDescriptionAndType(evt.Item);
+                    if (evt.Item.Type == TrafficItemType.Program)
+                    {
+                        if (evt.Segment == 1)
+                        {
+                            currentProgram = evt.Item;
+                        }
+                        else
+                        {
+                            evt.Item.Description = currentProgram.Description;
+                        }
+                    }
+                    var item = this.itemRepository.GetByItemProperties(evt.Item);
                     if (item == null)
                     {
-                        evt.Item.BabbleItems = BabbleEventGenerator.Generate(log, evt.Item).ToObservable();
+                        evt.Item.BabbleItems = BabbleEventGenerator.Generate(log, evt).ToObservable();
                     }
                     else
                     {
-                        evt.Item.MergeWithExisting(item);
+                        evt.Item = item;
                     }
+                    this.itemRepository.Save(evt.Item);
                     log.Events.Add(evt);
                 }
                 double done = (eventLine / linesCount) * 100;

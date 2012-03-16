@@ -13,6 +13,8 @@ namespace Bti.Babble.Traffic.Model.Entity
             if (this == null) return null;
             return new Model.BabbleItem()
             {
+                Id = this.Id,
+                TrafficItemId = this.TrafficItemId,
                 Body = this.Body,
                 Link = this.Link,
                 Type = (BabbleItemType) this.Type
@@ -24,6 +26,8 @@ namespace Bti.Babble.Traffic.Model.Entity
             if (o == null) return null;
             return new BabbleItem()
             {
+                Id = o.Id,
+                TrafficItemId = o.TrafficItemId,
                 Body = o.Body,
                 Link = o.Link,
                 Type = (int)o.Type

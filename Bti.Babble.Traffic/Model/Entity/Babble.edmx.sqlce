@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server Compact Edition
 -- --------------------------------------------------
--- Date Created: 03/13/2012 17:18:05
--- Generated from EDMX file: C:\Bti\Projects\Babble\Bti.Babble.Traffic\Model\Entity\Babble.edmx
+-- Date Created: 03/16/2012 17:26:17
+-- Generated from EDMX file: C:\BTi\Projects\Babble\Bti.Babble.Traffic\Model\Entity\Babble.edmx
 -- --------------------------------------------------
 
 
@@ -52,7 +52,10 @@ CREATE TABLE [TrafficEvents] (
     [Time] nvarchar(4000)  NOT NULL,
     [Length] nvarchar(4000)  NOT NULL,
     [TrafficLogId] int  NOT NULL,
-    [TrafficItemId] int  NOT NULL
+    [TrafficItemId] int  NOT NULL,
+    [Isci] nvarchar(4000)  NOT NULL,
+    [Barcode] nvarchar(4000)  NOT NULL,
+    [Segment] int  NOT NULL
 );
 GO
 
@@ -70,9 +73,7 @@ GO
 CREATE TABLE [TrafficItems] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Type] int  NOT NULL,
-    [Description] nvarchar(4000)  NOT NULL,
-    [ISCI] nvarchar(4000)  NOT NULL,
-    [Barcode] nvarchar(4000)  NOT NULL
+    [Description] nvarchar(4000)  NOT NULL
 );
 GO
 
@@ -142,7 +143,7 @@ ADD CONSTRAINT [FK_TrafficItemBabbleItem]
     FOREIGN KEY ([TrafficItemId])
     REFERENCES [TrafficItems]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_TrafficItemBabbleItem'
 CREATE INDEX [IX_FK_TrafficItemBabbleItem]

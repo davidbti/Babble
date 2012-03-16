@@ -29,6 +29,8 @@ namespace Bti.Babble.Traffic
 
             IUnityContainer container = new UnityContainer();
 
+            container.RegisterType<Model.Entity.BabbleContainer, Model.Entity.BabbleContainer>(new ContainerControlledLifetimeManager())
+                .Configure<InjectedMembers>().ConfigureInjectionFor<Model.Entity.BabbleContainer>(new InjectionConstructor());
             container.RegisterType<ITrafficLogRepository, Model.Entity.TrafficLogRepository>(new ContainerControlledLifetimeManager());
             container.RegisterType<ITrafficItemRepository, Model.Entity.TrafficItemRepository>(new ContainerControlledLifetimeManager());
 

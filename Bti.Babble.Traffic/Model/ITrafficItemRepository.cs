@@ -4,6 +4,7 @@ namespace Bti.Babble.Traffic.Model
 {
     interface ITrafficItemRepository
     {
-        TrafficItem GetByDescriptionAndType(TrafficItem item);
+        TrafficItem GetByItemProperties(TrafficItem item);
+        void Save(TrafficItem item);
     }
 }

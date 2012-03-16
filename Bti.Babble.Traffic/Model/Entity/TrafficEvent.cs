@@ -15,8 +15,11 @@ namespace Bti.Babble.Traffic.Model.Entity
             return new Model.TrafficEvent()
             {
                 Id = this.Id,
+                Barcode = this.Barcode,
                 Item = this.TrafficItem.ToModelObject(),
+                Isci = this.Isci,
                 Length = ConvertTimeToTimespan(this.Length),
+                Segment = this.Segment,
                 Time = ConvertTimeToTimespan(this.Time),
             };
         }
@@ -33,7 +36,10 @@ namespace Bti.Babble.Traffic.Model.Entity
             return new TrafficEvent()
             {
                 TrafficItem = TrafficItem.ToEntityObject(o.Item),
+                Barcode = o.Barcode,
                 Length = ConvertTimespanToTime(o.Length),
+                Isci = o.Isci,
+                Segment = o.Segment,
                 Time = ConvertTimespanToTime(o.Time),
             };
         }

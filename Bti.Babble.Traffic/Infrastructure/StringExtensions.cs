@@ -18,7 +18,15 @@ namespace Bti.Babble.Traffic
         {
             var pos = s.IndexOf(delimiter);
             if (pos < 1) return s;
-            return s.Substring(pos + 1);
+            return s.Substring(pos + delimiter.Length);
+        }
+
+        public static string RightFor(this string s, string delimiter, int length)
+        {
+            var pos = s.IndexOf(delimiter);
+            if (pos < 1) return s;
+            if (length > (s.Length - (pos + delimiter.Length))) return s.Substring(pos + delimiter.Length);
+            return s.Substring(pos + delimiter.Length, length);
         }
 
         public static bool Contains(this string source, string toCheck, StringComparison comp)

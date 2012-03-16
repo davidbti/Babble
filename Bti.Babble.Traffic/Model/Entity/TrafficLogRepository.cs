@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Linq;
-using System.Configuration;
 
 namespace Bti.Babble.Traffic.Model.Entity
 {
@@ -9,10 +8,13 @@ namespace Bti.Babble.Traffic.Model.Entity
     {
         private readonly BabbleContainer context;
 
-        public TrafficLogRepository()
+        public TrafficLogRepository(BabbleContainer context)
         {
-            string connection = ConfigurationManager.ConnectionStrings["BabbleContainer"].ConnectionString;
-            context = new BabbleContainer(connection);
+            if (context == null)
+            {
+                throw new ArgumentNullException("context");
+            }
+            this.context = context;
         }
 
         public void Delete(Model.TrafficLog log)

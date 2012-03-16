@@ -7,7 +7,7 @@ namespace Bti.Babble.Traffic.Parser
 {
     public interface IBabbleEventGenerator
     {
-        IEnumerable<BabbleItem> Generate(TrafficLog log, TrafficItem evt);
+        IEnumerable<BabbleItem> Generate(TrafficLog log, TrafficEvent evt);
     }
 
     public class CommercialBabbleEventGenerator : IBabbleEventGenerator
@@ -15,7 +15,7 @@ namespace Bti.Babble.Traffic.Parser
         private readonly string apikey;
         public CommercialBabbleEventGenerator(string apikey) { this.apikey = apikey; }
 
-        public IEnumerable<BabbleItem> Generate(TrafficLog log, TrafficItem evt)
+        public IEnumerable<BabbleItem> Generate(TrafficLog log, TrafficEvent evt)
         {
             var events = new List<BabbleItem>();
             SearchRequest searchRequest = new SearchRequest { AppId = apikey, Query = log.Station, Market = "en-US" };
@@ -34,14 +34,14 @@ namespace Bti.Babble.Traffic.Parser
             }
             var b2 = new BabbleItem()
             {
-                Body = "Let " + evt.Description + " know how much you like them. Like them on facebook now.",
+                Body = "Let " + evt.Item.Description + " know how much you like them. Like them on facebook now.",
                 Type = BabbleItemType.Facebook,
                 Link = @"",
             };
             events.Add(b2);
             var b3 = new BabbleItem()
             {
-                Body = "What did you think of this " + evt.Description + " commercial?",
+                Body = "What did you think of this " + evt.Item.Description + " commercial?",
                 Type = BabbleItemType.Rating,
                 Link = "",
             };
@@ -55,7 +55,7 @@ namespace Bti.Babble.Traffic.Parser
         private readonly string apikey;
         public IdBabbleEventGenerator(string apikey) { this.apikey = apikey; }
 
-        public IEnumerable<BabbleItem> Generate(TrafficLog log, TrafficItem evt)
+        public IEnumerable<BabbleItem> Generate(TrafficLog log, TrafficEvent evt)
         {
             var events = new List<BabbleItem>();
             SearchRequest searchRequest = new SearchRequest { AppId = apikey, Query = log.Station, Market = "en-US" };
@@ -78,7 +78,7 @@ namespace Bti.Babble.Traffic.Parser
 
     public class NoneBabbleEventGenerator : IBabbleEventGenerator
     {
-        public IEnumerable<BabbleItem> Generate(TrafficLog log, TrafficItem evt)
+        public IEnumerable<BabbleItem> Generate(TrafficLog log, TrafficEvent evt)
         {
             return new List<BabbleItem>();
         }
@@ -89,7 +89,7 @@ namespace Bti.Babble.Traffic.Parser
         private readonly string apikey;
         public ProgramBabbleEventGenerator(string apikey) { this.apikey = apikey; }
 
-        public IEnumerable<BabbleItem> Generate(TrafficLog log, TrafficItem evt)
+        public IEnumerable<BabbleItem> Generate(TrafficLog log, TrafficEvent evt)
         {
             var events = new List<BabbleItem>();
             var b1 = new BabbleItem()
@@ -115,7 +115,7 @@ namespace Bti.Babble.Traffic.Parser
         private readonly string apikey;
         public PromoBabbleEventGenerator(string apikey) { this.apikey = apikey; }
 
-        public IEnumerable<BabbleItem> Generate(TrafficLog log, TrafficItem evt)
+        public IEnumerable<BabbleItem> Generate(TrafficLog log, TrafficEvent evt)
         {
             var events = new List<BabbleItem>();
             var b1 = new BabbleItem()
@@ -133,19 +133,19 @@ namespace Bti.Babble.Traffic.Parser
     {
         protected const string API_KEY = "9174754FDCD3CBAA852676B50CF0E0ED07436958";
 
-        public static IEnumerable<BabbleItem> Generate(TrafficLog log, TrafficItem evt)
+        public static IEnumerable<BabbleItem> Generate(TrafficLog log, TrafficEvent evt)
         {
-            switch (evt.Type)
+            switch (evt.Item.Type)
             {
                 case TrafficItemType.Commercial :
                     return new CommercialBabbleEventGenerator(API_KEY).Generate(log, evt);
-                case TrafficItemType.Id :
+                case TrafficItemType.Id:
                     return new IdBabbleEventGenerator(API_KEY).Generate(log, evt);
-                case TrafficItemType.None :
+                case TrafficItemType.None:
                     return new NoneBabbleEventGenerator().Generate(log, evt);
-                case TrafficItemType.Program :
+                case TrafficItemType.Program:
                     return new ProgramBabbleEventGenerator(API_KEY).Generate(log, evt);
-                case TrafficItemType.Promo :
+                case TrafficItemType.Promo:
                     return new PromoBabbleEventGenerator(API_KEY).Generate(log, evt);
             }
             throw new ArgumentException("Event type not recognized");

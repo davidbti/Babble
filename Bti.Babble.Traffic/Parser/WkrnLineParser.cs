@@ -18,9 +18,9 @@ namespace Bti.Babble.Traffic.Parser
             var te = new TrafficEvent();
             te.Time = Time.Parse(line);
             te.Length = Length.Parse(line);
-            te.Item.Barcode = BarCode.Parse(line);
+            te.Barcode = BarCode.Parse(line);
             var programid = ProgramId.Parse(line);
-            te.Item.Isci = ISCI.Parse(line);
+            te.Isci = ISCI.Parse(line);
             te.Item.Description = Description.Parse(line);
             te.Item.Type = Classify(te, programid);
             te = Translate(te);
@@ -73,10 +73,10 @@ namespace Bti.Babble.Traffic.Parser
 
         private bool IsCommercial(TrafficEvent te)
         {
-            if (te.Item.Barcode.Length > 0)
+            if (te.Barcode.Length > 0)
             {
                 int barcodeOut;
-                if (int.TryParse(te.Item.Barcode, out barcodeOut))
+                if (int.TryParse(te.Barcode, out barcodeOut))
                 {
                     return true;
                 }
@@ -88,10 +88,22 @@ namespace Bti.Babble.Traffic.Parser
         {
             if (te.Item.Type == TrafficItemType.Program)
             {
-                var description = te.Item.Isci;
-                description = description.Right(")");
-                description = description.Left("/");
-                te.Item.Description = description.Trim();
+                var segment = te.Isci;
+                segment = segment.Right("(Seg");
+                segment = segment.Left(")");
+                int segnum = 0;
+                if (int.TryParse(segment, out segnum))
+                {
+                    te.Segment = segnum;
+                }
+                if (te.Item.Description.Length == 0)
+                {
+                    var description = te.Isci;
+                    description = description.RightFor(")", 23);
+                    description = description.Left("N/R");
+                    description = description.Left("/");
+                    te.Item.Description = description.Trim();
+                }
             }
             return te;
         }
@@ -104,6 +116,13 @@ namespace Bti.Babble.Traffic.Parser
         private bool Validate(TrafficEvent te)
         {
             if (te.Item.Type == TrafficItemType.None) return false;
+            if (te.Item.Description.Length == 0) return false;
+            if (te.Isci.Length == 0) return false;
+            if (te.Barcode.Length == 0) return false;
+            if (te.Item.Type == TrafficItemType.Program)
+            {
+                if (te.Segment == 0) return false;
+            }
             return true;
         }
     }

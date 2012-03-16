@@ -397,7 +397,10 @@ namespace Bti.Babble.Traffic.Model.Entity
         /// <param name="length">Initial value of the Length property.</param>
         /// <param name="trafficLogId">Initial value of the TrafficLogId property.</param>
         /// <param name="trafficItemId">Initial value of the TrafficItemId property.</param>
-        public static TrafficEvent CreateTrafficEvent(global::System.Int32 id, global::System.String time, global::System.String length, global::System.Int32 trafficLogId, global::System.Int32 trafficItemId)
+        /// <param name="isci">Initial value of the Isci property.</param>
+        /// <param name="barcode">Initial value of the Barcode property.</param>
+        /// <param name="segment">Initial value of the Segment property.</param>
+        public static TrafficEvent CreateTrafficEvent(global::System.Int32 id, global::System.String time, global::System.String length, global::System.Int32 trafficLogId, global::System.Int32 trafficItemId, global::System.String isci, global::System.String barcode, global::System.Int32 segment)
         {
             TrafficEvent trafficEvent = new TrafficEvent();
             trafficEvent.Id = id;
@@ -405,6 +408,9 @@ namespace Bti.Babble.Traffic.Model.Entity
             trafficEvent.Length = length;
             trafficEvent.TrafficLogId = trafficLogId;
             trafficEvent.TrafficItemId = trafficItemId;
+            trafficEvent.Isci = isci;
+            trafficEvent.Barcode = barcode;
+            trafficEvent.Segment = segment;
             return trafficEvent;
         }
 
@@ -533,6 +539,78 @@ namespace Bti.Babble.Traffic.Model.Entity
         private global::System.Int32 _TrafficItemId;
         partial void OnTrafficItemIdChanging(global::System.Int32 value);
         partial void OnTrafficItemIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Isci
+        {
+            get
+            {
+                return _Isci;
+            }
+            set
+            {
+                OnIsciChanging(value);
+                ReportPropertyChanging("Isci");
+                _Isci = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Isci");
+                OnIsciChanged();
+            }
+        }
+        private global::System.String _Isci;
+        partial void OnIsciChanging(global::System.String value);
+        partial void OnIsciChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Barcode
+        {
+            get
+            {
+                return _Barcode;
+            }
+            set
+            {
+                OnBarcodeChanging(value);
+                ReportPropertyChanging("Barcode");
+                _Barcode = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Barcode");
+                OnBarcodeChanged();
+            }
+        }
+        private global::System.String _Barcode;
+        partial void OnBarcodeChanging(global::System.String value);
+        partial void OnBarcodeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Segment
+        {
+            get
+            {
+                return _Segment;
+            }
+            set
+            {
+                OnSegmentChanging(value);
+                ReportPropertyChanging("Segment");
+                _Segment = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Segment");
+                OnSegmentChanged();
+            }
+        }
+        private global::System.Int32 _Segment;
+        partial void OnSegmentChanging(global::System.Int32 value);
+        partial void OnSegmentChanged();
 
         #endregion
     
@@ -633,16 +711,12 @@ namespace Bti.Babble.Traffic.Model.Entity
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="type">Initial value of the Type property.</param>
         /// <param name="description">Initial value of the Description property.</param>
-        /// <param name="iSCI">Initial value of the ISCI property.</param>
-        /// <param name="barcode">Initial value of the Barcode property.</param>
-        public static TrafficItem CreateTrafficItem(global::System.Int32 id, global::System.Int32 type, global::System.String description, global::System.String iSCI, global::System.String barcode)
+        public static TrafficItem CreateTrafficItem(global::System.Int32 id, global::System.Int32 type, global::System.String description)
         {
             TrafficItem trafficItem = new TrafficItem();
             trafficItem.Id = id;
             trafficItem.Type = type;
             trafficItem.Description = description;
-            trafficItem.ISCI = iSCI;
-            trafficItem.Barcode = barcode;
             return trafficItem;
         }
 
@@ -723,54 +797,6 @@ namespace Bti.Babble.Traffic.Model.Entity
         private global::System.String _Description;
         partial void OnDescriptionChanging(global::System.String value);
         partial void OnDescriptionChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String ISCI
-        {
-            get
-            {
-                return _ISCI;
-            }
-            set
-            {
-                OnISCIChanging(value);
-                ReportPropertyChanging("ISCI");
-                _ISCI = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("ISCI");
-                OnISCIChanged();
-            }
-        }
-        private global::System.String _ISCI;
-        partial void OnISCIChanging(global::System.String value);
-        partial void OnISCIChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Barcode
-        {
-            get
-            {
-                return _Barcode;
-            }
-            set
-            {
-                OnBarcodeChanging(value);
-                ReportPropertyChanging("Barcode");
-                _Barcode = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Barcode");
-                OnBarcodeChanged();
-            }
-        }
-        private global::System.String _Barcode;
-        partial void OnBarcodeChanging(global::System.String value);
-        partial void OnBarcodeChanged();
 
         #endregion
     

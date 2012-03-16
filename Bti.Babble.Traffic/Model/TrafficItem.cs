@@ -10,8 +10,6 @@ namespace Bti.Babble.Traffic.Model
         private int id;
         private string description;
         private TrafficItemType type;
-        private string barcode;
-        private string isci;
         private ObservableCollection<BabbleItem> babbleItems;
 
         public int Id
@@ -44,26 +42,6 @@ namespace Bti.Babble.Traffic.Model
             }
         }
 
-        public string Barcode
-        {
-            get { return this.barcode; }
-            set
-            {
-                this.barcode = value;
-                RaisePropertyChanged("Barcode");
-            }
-        }
-
-        public string Isci
-        {
-            get { return this.isci; }
-            set
-            {
-                this.isci = value;
-                RaisePropertyChanged("Isci");
-            }
-        }
-
         public ObservableCollection<BabbleItem> BabbleItems
         {
             get { return this.babbleItems; }
@@ -77,17 +55,9 @@ namespace Bti.Babble.Traffic.Model
         public TrafficItem()
         {
             this.Id = 0;
-            this.Barcode = "";
             this.Description = "";
-            this.Isci = "";
             this.Type = TrafficItemType.None;
             this.BabbleItems = new ObservableCollection<BabbleItem>();
-        }
-
-        public void MergeWithExisting(TrafficItem item)
-        {
-            this.id = item.Id;
-            this.BabbleItems = item.BabbleItems;
         }
     }
 }

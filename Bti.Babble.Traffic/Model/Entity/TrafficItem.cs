@@ -16,9 +16,7 @@ namespace Bti.Babble.Traffic.Model.Entity
             {
                 Id = this.Id,
                 BabbleItems = (from o in this.BabbleItems select o.ToModelObject()).ToObservable(),
-                Barcode = this.Barcode,
                 Description = this.Description,
-                Isci = this.ISCI,
                 Type = (TrafficItemType)this.Type,
             };
         }
@@ -28,10 +26,9 @@ namespace Bti.Babble.Traffic.Model.Entity
             if (o == null) return null;
             return new TrafficItem()
             {
+                Id = o.Id,
                 BabbleItems = ToEntityCollection(o.BabbleItems),
-                Barcode = o.Barcode,
                 Description = o.Description,
-                ISCI = o.Isci,
                 Type = (int)o.Type
             };
         }
