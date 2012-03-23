@@ -15,7 +15,7 @@ namespace Bti.Babble.Traffic.Model.Entity
             {
                 Id = this.Id,
                 TrafficItemId = this.TrafficItemId,
-                Body = this.Body,
+                Message = this.Message,
                 Link = this.Link,
                 Type = (BabbleItemType) this.Type
             };
@@ -28,10 +28,17 @@ namespace Bti.Babble.Traffic.Model.Entity
             {
                 Id = o.Id,
                 TrafficItemId = o.TrafficItemId,
-                Body = o.Body,
+                Message = o.Message,
                 Link = o.Link,
                 Type = (int)o.Type
             };
+        }
+
+        internal static void UpdateEntityObject(Model.BabbleItem o, BabbleItem e)
+        {
+            e.Message = o.Message;
+            e.Link = o.Link;
+            e.Type = (int)o.Type;
         }
     }
 }

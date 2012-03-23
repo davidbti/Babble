@@ -91,6 +91,16 @@ namespace Bti.Babble.Traffic
             get { return this.selectedEvent; }
             set
             {
+                if (this.selectedEvent != null)
+                {
+                    var items = new ObservableCollection<BabbleItem>();
+                    foreach (var item in this.babbleItems)
+                    {
+                        items.Add(item.ToBabbleItem());
+                    }
+                    this.selectedEvent.Item.BabbleItems = items;
+                    this.itemRepository.Save(this.selectedEvent.Item);
+                }
                 this.selectedEvent = value;
                 RaisePropertyChanged("SelectedEvent");
                 EventSelected(value);
@@ -189,7 +199,7 @@ namespace Bti.Babble.Traffic
 
         private void ImportCompleteCallBack(TrafficLog log)
         {
-            this.logRepository.Delete(this.log);
+            if (this.log.Id > 0) { this.logRepository.Delete(this.log); }
             this.logRepository.Save(log);
             LoadTrafficLog();
             this.IsImporting = false;
@@ -228,7 +238,13 @@ namespace Bti.Babble.Traffic
         private void LoadTrafficLog()
         {
             var log = this.logRepository.GetByDate(ActiveDate);
-            if (log == null) { log = new TrafficLog(); }
+            if (log == null) 
+            {
+                log = new TrafficLog()
+                {
+                    Date = ActiveDate
+                };
+            }
             this.log = log;
             this.TrafficEvents = this.log.Events;
         }

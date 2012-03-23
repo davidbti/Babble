@@ -9,13 +9,14 @@ namespace Bti.Babble.Traffic.Model.Entity
 {
     partial class TrafficLog
     {
-        internal Model.TrafficLog ToModelObject()
+        internal Model.TrafficLog ToModelObject(TrafficItemRepository repository)
         {
             if (this == null) return null;
             return new Model.TrafficLog()
             {
+                Id = this.Id,
                 Date = this.Date,
-                Events = (from o in this.TrafficEvents select o.ToModelObject()).ToObservable(),
+                Events = (from o in this.TrafficEvents select o.ToModelObject(repository)).ToObservable(),
                 ParseDate = this.ParseDate,
                 Station = this.StationName
             };
@@ -26,6 +27,7 @@ namespace Bti.Babble.Traffic.Model.Entity
             if (o == null) return null;
             return new TrafficLog()
             {
+                Id = o.Id,
                 Date = o.Date,
                 TrafficEvents = ToEntityCollection(o.Events),
                 ParseDate = o.ParseDate,

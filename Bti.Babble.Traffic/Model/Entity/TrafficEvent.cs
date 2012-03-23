@@ -9,17 +9,20 @@ namespace Bti.Babble.Traffic.Model.Entity
 {
     partial class TrafficEvent
     {
-        internal Model.TrafficEvent ToModelObject()
+        internal Model.TrafficEvent ToModelObject(TrafficItemRepository repository)
         {
             if (this == null) return null;
             return new Model.TrafficEvent()
             {
                 Id = this.Id,
+                TrafficLogId = this.TrafficLogId,
+                Advertiser = this.Advertiser,
                 Barcode = this.Barcode,
-                Item = this.TrafficItem.ToModelObject(),
+                Item  = repository.GetFromCache(this.TrafficItem),
                 Isci = this.Isci,
                 Length = ConvertTimeToTimespan(this.Length),
-                Segment = this.Segment,
+                ProgramNumber = this.ProgramNumber,
+                SegmentNumber = this.SegmentNumber,
                 Time = ConvertTimeToTimespan(this.Time),
             };
         }
@@ -35,11 +38,15 @@ namespace Bti.Babble.Traffic.Model.Entity
             if (o == null) return null;
             return new TrafficEvent()
             {
-                TrafficItem = TrafficItem.ToEntityObject(o.Item),
+                Id = o.Id,
+                TrafficLogId = o.TrafficLogId,
+                Advertiser = o.Advertiser,
                 Barcode = o.Barcode,
-                Length = ConvertTimespanToTime(o.Length),
+                TrafficItemId = o.Item.Id,
                 Isci = o.Isci,
-                Segment = o.Segment,
+                Length = ConvertTimespanToTime(o.Length),
+                ProgramNumber = o.ProgramNumber,
+                SegmentNumber = o.SegmentNumber,
                 Time = ConvertTimespanToTime(o.Time),
             };
         }

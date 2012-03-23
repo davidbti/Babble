@@ -556,13 +556,13 @@
                 </Button.Template>
             </Button>
 
-            <WrapPanel Visibility="{Binding IsImporting, Converter={StaticResource BoolToVisibleReverse}}" Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <WrapPanel Visibility="{Binding IsImporting, Converter={StaticResource BoolToVisibleReverse}}" Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock HorizontalAlignment="Center" Text="WKRN" FontSize="24" Foreground="{StaticResource DefaultLabelForegroundBrush}" />
                 <TextBlock HorizontalAlignment="Center" Text=" Traffic Log for " FontSize="24" Foreground="{StaticResource DefaultLabelForegroundBrush}" />
                 <TextBlock Grid.Row ="1" HorizontalAlignment="Center" Text="{Binding ActiveDate, StringFormat=D}" FontSize="24" Foreground="{StaticResource DefaultLabelForegroundBrush}" />
             </WrapPanel>
 
-            <WrapPanel Visibility="{Binding IsImporting, Converter={StaticResource BoolToVisible}}" Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <WrapPanel Visibility="{Binding IsImporting, Converter={StaticResource BoolToVisible}}" Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock HorizontalAlignment="Center" Text="Importing Traffic Log   " FontSize="24" Foreground="{StaticResource DefaultLabelForegroundBrush}" />
                 <ProgressBar HorizontalAlignment="Center" Value="{Binding ImportProgress}" Width="300" Height="20" />
             </WrapPanel>
@@ -576,8 +576,8 @@
                 <DataGridTextColumn Header="Time" Width="1*" Binding="{Binding Time}" IsReadOnly="True" SortMemberPath="Id" />
                 <DataGridTextColumn Header="Length" Width="1*" Binding="{Binding Length}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Description" Width="4*" Binding="{Binding Item.Description}" IsReadOnly="true"/>
+                <DataGridTextColumn Header="Description 2" Width="2*" Binding="{Binding Item.Description2}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Type" Width="1*" Binding="{Binding Item.Type}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Barcode" Width="1*" Binding="{Binding Item.Barcode}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -634,15 +634,15 @@
                         </Style>
                     </DataGridComboBoxColumn.EditingElementStyle>
                 </DataGridComboBoxColumn>
-                <DataGridTemplateColumn Header="Body" Width="2*">
+                <DataGridTemplateColumn Header="Message" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock TextWrapping="Wrap" Text="{Binding Body, Mode=TwoWay}" />
+                            <TextBlock TextWrapping="Wrap" Text="{Binding Message, Mode=TwoWay}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <TextBox IsReadOnly="False" TextWrapping="Wrap" Text="{Binding Body, Mode=TwoWay}">
+                            <TextBox IsReadOnly="False" TextWrapping="Wrap" Text="{Binding Message, Mode=TwoWay}">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Loaded">
                                         <local:TakeFocusAndSelectTextOnVisibleBehavior />

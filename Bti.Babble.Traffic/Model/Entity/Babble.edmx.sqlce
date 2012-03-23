@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server Compact Edition
 -- --------------------------------------------------
--- Date Created: 03/16/2012 17:26:17
+-- Date Created: 03/23/2012 16:04:10
 -- Generated from EDMX file: C:\BTi\Projects\Babble\Bti.Babble.Traffic\Model\Entity\Babble.edmx
 -- --------------------------------------------------
 
@@ -55,14 +55,16 @@ CREATE TABLE [TrafficEvents] (
     [TrafficItemId] int  NOT NULL,
     [Isci] nvarchar(4000)  NOT NULL,
     [Barcode] nvarchar(4000)  NOT NULL,
-    [Segment] int  NOT NULL
+    [SegmentNumber] int  NOT NULL,
+    [ProgramNumber] int  NOT NULL,
+    [Advertiser] nvarchar(4000)  NOT NULL
 );
 GO
 
 -- Creating table 'BabbleItems'
 CREATE TABLE [BabbleItems] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Body] nvarchar(4000)  NOT NULL,
+    [Message] nvarchar(4000)  NOT NULL,
     [Type] int  NOT NULL,
     [Link] nvarchar(4000)  NOT NULL,
     [TrafficItemId] int  NOT NULL
@@ -73,7 +75,8 @@ GO
 CREATE TABLE [TrafficItems] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Type] int  NOT NULL,
-    [Description] nvarchar(4000)  NOT NULL
+    [Description] nvarchar(4000)  NOT NULL,
+    [Description2] nvarchar(4000)  NOT NULL
 );
 GO
 
@@ -115,7 +118,7 @@ ADD CONSTRAINT [FK_TrafficLogTrafficEvent]
     FOREIGN KEY ([TrafficLogId])
     REFERENCES [TrafficLogs]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_TrafficLogTrafficEvent'
 CREATE INDEX [IX_FK_TrafficLogTrafficEvent]

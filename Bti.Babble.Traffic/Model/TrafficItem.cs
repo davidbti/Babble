@@ -9,6 +9,7 @@ namespace Bti.Babble.Traffic.Model
     {
         private int id;
         private string description;
+        private string description2;
         private TrafficItemType type;
         private ObservableCollection<BabbleItem> babbleItems;
 
@@ -29,6 +30,16 @@ namespace Bti.Babble.Traffic.Model
             {
                 this.description = value;
                 RaisePropertyChanged("Description");
+            }
+        }
+
+        public string Description2
+        {
+            get { return this.description2; }
+            set
+            {
+                this.description2 = value;
+                RaisePropertyChanged("Description2");
             }
         }
 
@@ -56,6 +67,7 @@ namespace Bti.Babble.Traffic.Model
         {
             this.Id = 0;
             this.Description = "";
+            this.Description2 = "";
             this.Type = TrafficItemType.None;
             this.BabbleItems = new ObservableCollection<BabbleItem>();
         }

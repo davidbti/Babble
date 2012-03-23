@@ -17,6 +17,7 @@ namespace Bti.Babble.Traffic.Model.Entity
                 Id = this.Id,
                 BabbleItems = (from o in this.BabbleItems select o.ToModelObject()).ToObservable(),
                 Description = this.Description,
+                Description2 = this.Description2,
                 Type = (TrafficItemType)this.Type,
             };
         }
@@ -29,8 +30,43 @@ namespace Bti.Babble.Traffic.Model.Entity
                 Id = o.Id,
                 BabbleItems = ToEntityCollection(o.BabbleItems),
                 Description = o.Description,
+                Description2 = o.Description2,
                 Type = (int)o.Type
             };
+        }
+
+        internal static void UpdateEntityObject(BabbleContainer context, TrafficItem e, Model.TrafficItem o)
+        {
+            var todelete = new List<BabbleItem>();
+            foreach (var entity in e.BabbleItems)
+            {
+                var model = (from p in o.BabbleItems
+                               where p.Id == entity.Id
+                               select p).FirstOrDefault();
+                if (model == null)
+                {
+                    todelete.Add(entity);
+                }
+                else
+                {
+                    BabbleItem.UpdateEntityObject(model, entity);
+                }
+            }
+            foreach (var entity in todelete)
+            {
+                context.DeleteObject(entity);
+            }
+            foreach (var model in o.BabbleItems)
+            {
+                var entity = (from p in e.BabbleItems
+                             where p.Id == model.Id
+                             select p).FirstOrDefault();
+                if (entity == null)
+                {
+                    model.TrafficItemId = e.Id;
+                    context.BabbleItems.AddObject(BabbleItem.ToEntityObject(model));
+                }
+            }
         }
 
         internal static string ConvertTimespanToTime(TimeSpan timespan)

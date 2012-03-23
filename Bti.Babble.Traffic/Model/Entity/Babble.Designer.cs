@@ -193,15 +193,15 @@ namespace Bti.Babble.Traffic.Model.Entity
         /// Create a new BabbleItem object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="body">Initial value of the Body property.</param>
+        /// <param name="message">Initial value of the Message property.</param>
         /// <param name="type">Initial value of the Type property.</param>
         /// <param name="link">Initial value of the Link property.</param>
         /// <param name="trafficItemId">Initial value of the TrafficItemId property.</param>
-        public static BabbleItem CreateBabbleItem(global::System.Int32 id, global::System.String body, global::System.Int32 type, global::System.String link, global::System.Int32 trafficItemId)
+        public static BabbleItem CreateBabbleItem(global::System.Int32 id, global::System.String message, global::System.Int32 type, global::System.String link, global::System.Int32 trafficItemId)
         {
             BabbleItem babbleItem = new BabbleItem();
             babbleItem.Id = id;
-            babbleItem.Body = body;
+            babbleItem.Message = message;
             babbleItem.Type = type;
             babbleItem.Link = link;
             babbleItem.TrafficItemId = trafficItemId;
@@ -243,24 +243,24 @@ namespace Bti.Babble.Traffic.Model.Entity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String Body
+        public global::System.String Message
         {
             get
             {
-                return _Body;
+                return _Message;
             }
             set
             {
-                OnBodyChanging(value);
-                ReportPropertyChanging("Body");
-                _Body = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Body");
-                OnBodyChanged();
+                OnMessageChanging(value);
+                ReportPropertyChanging("Message");
+                _Message = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Message");
+                OnMessageChanged();
             }
         }
-        private global::System.String _Body;
-        partial void OnBodyChanging(global::System.String value);
-        partial void OnBodyChanged();
+        private global::System.String _Message;
+        partial void OnMessageChanging(global::System.String value);
+        partial void OnMessageChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -399,8 +399,10 @@ namespace Bti.Babble.Traffic.Model.Entity
         /// <param name="trafficItemId">Initial value of the TrafficItemId property.</param>
         /// <param name="isci">Initial value of the Isci property.</param>
         /// <param name="barcode">Initial value of the Barcode property.</param>
-        /// <param name="segment">Initial value of the Segment property.</param>
-        public static TrafficEvent CreateTrafficEvent(global::System.Int32 id, global::System.String time, global::System.String length, global::System.Int32 trafficLogId, global::System.Int32 trafficItemId, global::System.String isci, global::System.String barcode, global::System.Int32 segment)
+        /// <param name="segmentNumber">Initial value of the SegmentNumber property.</param>
+        /// <param name="programNumber">Initial value of the ProgramNumber property.</param>
+        /// <param name="advertiser">Initial value of the Advertiser property.</param>
+        public static TrafficEvent CreateTrafficEvent(global::System.Int32 id, global::System.String time, global::System.String length, global::System.Int32 trafficLogId, global::System.Int32 trafficItemId, global::System.String isci, global::System.String barcode, global::System.Int32 segmentNumber, global::System.Int32 programNumber, global::System.String advertiser)
         {
             TrafficEvent trafficEvent = new TrafficEvent();
             trafficEvent.Id = id;
@@ -410,7 +412,9 @@ namespace Bti.Babble.Traffic.Model.Entity
             trafficEvent.TrafficItemId = trafficItemId;
             trafficEvent.Isci = isci;
             trafficEvent.Barcode = barcode;
-            trafficEvent.Segment = segment;
+            trafficEvent.SegmentNumber = segmentNumber;
+            trafficEvent.ProgramNumber = programNumber;
+            trafficEvent.Advertiser = advertiser;
             return trafficEvent;
         }
 
@@ -593,24 +597,72 @@ namespace Bti.Babble.Traffic.Model.Entity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 Segment
+        public global::System.Int32 SegmentNumber
         {
             get
             {
-                return _Segment;
+                return _SegmentNumber;
             }
             set
             {
-                OnSegmentChanging(value);
-                ReportPropertyChanging("Segment");
-                _Segment = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Segment");
-                OnSegmentChanged();
+                OnSegmentNumberChanging(value);
+                ReportPropertyChanging("SegmentNumber");
+                _SegmentNumber = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SegmentNumber");
+                OnSegmentNumberChanged();
             }
         }
-        private global::System.Int32 _Segment;
-        partial void OnSegmentChanging(global::System.Int32 value);
-        partial void OnSegmentChanged();
+        private global::System.Int32 _SegmentNumber;
+        partial void OnSegmentNumberChanging(global::System.Int32 value);
+        partial void OnSegmentNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ProgramNumber
+        {
+            get
+            {
+                return _ProgramNumber;
+            }
+            set
+            {
+                OnProgramNumberChanging(value);
+                ReportPropertyChanging("ProgramNumber");
+                _ProgramNumber = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProgramNumber");
+                OnProgramNumberChanged();
+            }
+        }
+        private global::System.Int32 _ProgramNumber;
+        partial void OnProgramNumberChanging(global::System.Int32 value);
+        partial void OnProgramNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Advertiser
+        {
+            get
+            {
+                return _Advertiser;
+            }
+            set
+            {
+                OnAdvertiserChanging(value);
+                ReportPropertyChanging("Advertiser");
+                _Advertiser = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Advertiser");
+                OnAdvertiserChanged();
+            }
+        }
+        private global::System.String _Advertiser;
+        partial void OnAdvertiserChanging(global::System.String value);
+        partial void OnAdvertiserChanged();
 
         #endregion
     
@@ -711,12 +763,14 @@ namespace Bti.Babble.Traffic.Model.Entity
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="type">Initial value of the Type property.</param>
         /// <param name="description">Initial value of the Description property.</param>
-        public static TrafficItem CreateTrafficItem(global::System.Int32 id, global::System.Int32 type, global::System.String description)
+        /// <param name="description2">Initial value of the Description2 property.</param>
+        public static TrafficItem CreateTrafficItem(global::System.Int32 id, global::System.Int32 type, global::System.String description, global::System.String description2)
         {
             TrafficItem trafficItem = new TrafficItem();
             trafficItem.Id = id;
             trafficItem.Type = type;
             trafficItem.Description = description;
+            trafficItem.Description2 = description2;
             return trafficItem;
         }
 
@@ -797,6 +851,30 @@ namespace Bti.Babble.Traffic.Model.Entity
         private global::System.String _Description;
         partial void OnDescriptionChanging(global::System.String value);
         partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Description2
+        {
+            get
+            {
+                return _Description2;
+            }
+            set
+            {
+                OnDescription2Changing(value);
+                ReportPropertyChanging("Description2");
+                _Description2 = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Description2");
+                OnDescription2Changed();
+            }
+        }
+        private global::System.String _Description2;
+        partial void OnDescription2Changing(global::System.String value);
+        partial void OnDescription2Changed();
 
         #endregion
     

@@ -31,8 +31,8 @@ namespace Bti.Babble.Traffic
 
             container.RegisterType<Model.Entity.BabbleContainer, Model.Entity.BabbleContainer>(new ContainerControlledLifetimeManager())
                 .Configure<InjectedMembers>().ConfigureInjectionFor<Model.Entity.BabbleContainer>(new InjectionConstructor());
-            container.RegisterType<ITrafficLogRepository, Model.Entity.TrafficLogRepository>(new ContainerControlledLifetimeManager());
             container.RegisterType<ITrafficItemRepository, Model.Entity.TrafficItemRepository>(new ContainerControlledLifetimeManager());
+            container.RegisterType<ITrafficLogRepository, Model.Entity.TrafficLogRepository>(new ContainerControlledLifetimeManager());
 
             MainWindow window = container.Resolve<MainWindow>();
             window.DataContext = container.Resolve<TrafficLogViewModel>();

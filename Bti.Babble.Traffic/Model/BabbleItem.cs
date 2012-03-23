@@ -6,7 +6,7 @@ namespace Bti.Babble.Traffic.Model
     {
         private int id;
         private int trafficItemId;
-        private string body;
+        private string message;
         private BabbleItemType type;
         private string link;
 
@@ -30,13 +30,13 @@ namespace Bti.Babble.Traffic.Model
             }
         }
 
-        public string Body
+        public string Message
         {
-            get { return this.body; }
+            get { return this.message; }
             set
             {
-                this.body = value;
-                RaisePropertyChanged("Body");
+                this.message = value;
+                RaisePropertyChanged("Message");
             }
         }
 
@@ -62,7 +62,7 @@ namespace Bti.Babble.Traffic.Model
 
         public BabbleItem()
         {
-            this.Body = "";
+            this.Message = "";
             this.Link = "";
             this.Type = BabbleItemType.None;
         }

@@ -43,14 +43,16 @@
     <Property Name="TrafficItemId" Type="int" Nullable="false" />
     <Property Name="Isci" Type="nvarchar" Nullable="false" />
     <Property Name="Barcode" Type="nvarchar" Nullable="false" />
-    <Property Name="Segment" Type="int" Nullable="false" />
+    <Property Name="SegmentNumber" Type="int" Nullable="false" />
+    <Property Name="ProgramNumber" Type="int" Nullable="false" />
+    <Property Name="Advertiser" Type="nvarchar" Nullable="false" />
   </EntityType>
   <EntityType Name="BabbleItems">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Body" Type="nvarchar" Nullable="false" />
+    <Property Name="Message" Type="nvarchar" Nullable="false" />
     <Property Name="Type" Type="int" Nullable="false" />
     <Property Name="Link" Type="nvarchar" Nullable="false" />
     <Property Name="TrafficItemId" Type="int" Nullable="false" />
@@ -62,9 +64,12 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Type" Type="int" Nullable="false" />
     <Property Name="Description" Type="nvarchar" Nullable="false" />
+    <Property Name="Description2" Type="nvarchar" Nullable="false" />
   </EntityType>
   <Association Name="TrafficLogTrafficEvent">
-    <End Role="TrafficLog" Type="Babble.Store.TrafficLogs" Multiplicity="1" />
+    <End Role="TrafficLog" Type="Babble.Store.TrafficLogs" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="TrafficEvent" Type="Babble.Store.TrafficEvents" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="TrafficLog">
@@ -146,14 +151,16 @@
           <Property Type="Int32" Name="TrafficItemId" Nullable="false" />
           <Property Type="String" Name="Isci" Nullable="false" />
           <Property Type="String" Name="Barcode" Nullable="false" />
-          <Property Type="Int32" Name="Segment" Nullable="false" />
+          <Property Type="Int32" Name="SegmentNumber" Nullable="false" />
+          <Property Type="Int32" Name="ProgramNumber" Nullable="false" />
+          <Property Type="String" Name="Advertiser" Nullable="false" />
         </EntityType>
         <EntityType Name="BabbleItem">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Body" Nullable="false" />
+          <Property Type="String" Name="Message" Nullable="false" />
           <Property Type="Int32" Name="Type" Nullable="false" />
           <Property Type="String" Name="Link" Nullable="false" />
           <NavigationProperty Name="TrafficItem" Relationship="Babble.TrafficItemBabbleItem" FromRole="BabbleItem" ToRole="TrafficItem" />
@@ -168,9 +175,12 @@
           <Property Type="String" Name="Description" Nullable="false" />
           <NavigationProperty Name="TrafficEvents" Relationship="Babble.TrafficItemTrafficEvent" FromRole="TrafficItem" ToRole="TrafficEvent" />
           <NavigationProperty Name="BabbleItems" Relationship="Babble.TrafficItemBabbleItem" FromRole="TrafficItem" ToRole="BabbleItem" />
+          <Property Type="String" Name="Description2" Nullable="false" />
         </EntityType>
         <Association Name="TrafficLogTrafficEvent">
-          <End Type="Babble.TrafficLog" Role="TrafficLog" Multiplicity="1" />
+          <End Type="Babble.TrafficLog" Role="TrafficLog" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Babble.TrafficEvent" Role="TrafficEvent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TrafficLog">
@@ -233,7 +243,9 @@
           <ScalarProperty Name="TrafficItemId" ColumnName="TrafficItemId" />
           <ScalarProperty Name="Isci" ColumnName="Isci" />
           <ScalarProperty Name="Barcode" ColumnName="Barcode" />
-          <ScalarProperty Name="Segment" ColumnName="Segment" />
+          <ScalarProperty Name="SegmentNumber" ColumnName="SegmentNumber" />
+          <ScalarProperty Name="ProgramNumber" ColumnName="ProgramNumber" />
+          <ScalarProperty Name="Advertiser" ColumnName="Advertiser" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -241,7 +253,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(Babble.BabbleItem)">
         <MappingFragment StoreEntitySet="BabbleItems">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Link" ColumnName="Link" />
           <ScalarProperty Name="TrafficItemId" ColumnName="TrafficItemId" />
@@ -254,6 +266,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Description2" ColumnName="Description2" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -278,20 +291,20 @@
     <edmx:Diagrams>
       <Diagram Name="Babble" >
         <EntityTypeShape EntityType="Babble.TrafficLog" Width="1.5" PointX="0.5" PointY="0.5" Height="1.9802864583333339" />
-        <EntityTypeShape EntityType="Babble.TrafficEvent" Width="1.5" PointX="2.75" PointY="0.5" Height="2.9417936197916665" />
+        <EntityTypeShape EntityType="Babble.TrafficEvent" Width="1.5" PointX="2.75" PointY="0.5" Height="3.3263964843749996" />
         <EntityTypeShape EntityType="Babble.BabbleItem" Width="1.5" PointX="5.125" PointY="3.75" Height="1.7879850260416665" />
-        <EntityTypeShape EntityType="Babble.TrafficItem" Width="1.5" PointX="2.75" PointY="3.625" Height="1.9802864583333326" />
+        <EntityTypeShape EntityType="Babble.TrafficItem" Width="1.5" PointX="2.875" PointY="4.5" Height="2.1725878906249996" />
         <AssociationConnector Association="Babble.TrafficLogTrafficEvent">
           <ConnectorPoint PointX="2" PointY="1.4901432291666668" />
           <ConnectorPoint PointX="2.75" PointY="1.4901432291666668" />
         </AssociationConnector>
         <AssociationConnector Association="Babble.TrafficItemTrafficEvent">
-          <ConnectorPoint PointX="3.5" PointY="3.625" />
-          <ConnectorPoint PointX="3.5" PointY="3.4417936197916665" />
+          <ConnectorPoint PointX="3.5625" PointY="4.5" />
+          <ConnectorPoint PointX="3.5625" PointY="3.8263964843749996" />
         </AssociationConnector>
         <AssociationConnector Association="Babble.TrafficItemBabbleItem">
-          <ConnectorPoint PointX="4.25" PointY="4.6776432291666659" />
-          <ConnectorPoint PointX="5.125" PointY="4.6776432291666659" />
+          <ConnectorPoint PointX="4.375" PointY="5.2112939453125" />
+          <ConnectorPoint PointX="5.125" PointY="5.2112939453125" />
         </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>

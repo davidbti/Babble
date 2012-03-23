@@ -10,10 +10,21 @@ namespace Bti.Babble.Traffic.Model
 {
     public class TrafficLog : ObservableObject
     {
+        private int id;
         private DateTime date;
         public DateTime parseDate;
         public string station;
         public ObservableCollection<TrafficEvent> events;
+
+        public int Id
+        {
+            get { return this.id; }
+            set
+            {
+                this.id = value;
+                RaisePropertyChanged("Id");
+            }
+        }
 
         public DateTime Date
         {
@@ -57,6 +68,7 @@ namespace Bti.Babble.Traffic.Model
 
         public TrafficLog()
         {
+            Id = 0;
             Date = new DateTime(2000, 1, 1);
             ParseDate = new DateTime(2000, 1, 1);
             Station = "";

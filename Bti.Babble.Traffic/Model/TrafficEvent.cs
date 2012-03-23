@@ -8,13 +8,16 @@ namespace Bti.Babble.Traffic.Model
     public class TrafficEvent : ObservableObject
     {
         private int id;
-        private TimeSpan time;
-        private TimeSpan length;
-        private TrafficItem item;
+        private int trafficLogId;
+        private string advertiser;
         private string barcode;
+        private TrafficItem item;
         private string isci;
-        private int segment;
-
+        private TimeSpan length;
+        private int programNumber;
+        private int segmentNumber;
+        private TimeSpan time;
+                
         public int Id
         {
             get { return this.id; }
@@ -25,23 +28,23 @@ namespace Bti.Babble.Traffic.Model
             }
         }
 
-        public TimeSpan Time
+        public int TrafficLogId
         {
-            get { return this.time; }
+            get { return this.trafficLogId; }
             set
             {
-                this.time = value;
-                RaisePropertyChanged("Time");
+                this.trafficLogId = value;
+                RaisePropertyChanged("TrafficLogId");
             }
         }
 
-        public TimeSpan Length
+        public string Advertiser
         {
-            get { return this.length; }
+            get { return this.advertiser; }
             set
             {
-                this.length = value;
-                RaisePropertyChanged("Length");
+                this.advertiser = value;
+                RaisePropertyChanged("Advertiser");
             }
         }
 
@@ -55,26 +58,6 @@ namespace Bti.Babble.Traffic.Model
             }
         }
 
-        public string Isci
-        {
-            get { return this.isci; }
-            set
-            {
-                this.isci = value;
-                RaisePropertyChanged("Isci");
-            }
-        }
-
-        public int Segment
-        {
-            get { return this.segment; }
-            set
-            {
-                this.segment = value;
-                RaisePropertyChanged("Segment");
-            }
-        }
-
         public TrafficItem Item
         {
             get { return this.item; }
@@ -85,15 +68,68 @@ namespace Bti.Babble.Traffic.Model
             }
         }
 
+        public string Isci
+        {
+            get { return this.isci; }
+            set
+            {
+                this.isci = value;
+                RaisePropertyChanged("Isci");
+            }
+        }
+
+        public TimeSpan Length
+        {
+            get { return this.length; }
+            set
+            {
+                this.length = value;
+                RaisePropertyChanged("Length");
+            }
+        }
+
+        public int ProgramNumber
+        {
+            get { return this.programNumber; }
+            set
+            {
+                this.programNumber = value;
+                RaisePropertyChanged("ProgramNumber");
+            }
+        }
+        
+        public int SegmentNumber
+        {
+            get { return this.segmentNumber; }
+            set
+            {
+                this.segmentNumber = value;
+                RaisePropertyChanged("SegmentNumber");
+            }
+        }
+
+        public TimeSpan Time
+        {
+            get { return this.time; }
+            set
+            {
+                this.time = value;
+                RaisePropertyChanged("Time");
+            }
+        }
+        
         public TrafficEvent()
         {
             this.Id = 0;
+            this.TrafficLogId = 0;
+            this.Advertiser = "";
             this.Barcode = "";
             this.Isci = "";
+            this.ProgramNumber = 0;
             this.Item = new TrafficItem();
             this.Length = new TimeSpan(0, 0, 0);
+            this.SegmentNumber = 0;
             this.Time = new TimeSpan(0, 0, 0);
-            this.Segment = 0;
         }
     }
 }

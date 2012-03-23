@@ -13,10 +13,10 @@ namespace Bti.Babble.Traffic
         
         public string Body
         {
-            get { return this.babbleItem.Body; }
+            get { return this.babbleItem.Message; }
             set
             {
-                this.babbleItem.Body = value;
+                this.babbleItem.Message = value;
                 RaisePropertyChanged("Body");
             }
         }
@@ -40,6 +40,8 @@ namespace Bti.Babble.Traffic
             set
             {
                 this.babbleType = value;
+                this.babbleItem.Type = (BabbleItemType)Enum.Parse(typeof(BabbleItemType), this.babbleType.Name);
+                RaisePropertyChanged("Type");
             }
         }
 
@@ -52,6 +54,11 @@ namespace Bti.Babble.Traffic
         {
             this.babbleItem = babbleEvent;
             this.babbleType = babbleType;
+        }
+
+        public BabbleItem ToBabbleItem()
+        {
+            return this.babbleItem;
         }
     }
 }

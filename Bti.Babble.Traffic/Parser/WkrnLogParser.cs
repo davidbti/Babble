@@ -54,29 +54,27 @@ namespace Bti.Babble.Traffic.Parser
                 var result = lineParser.Parse(line);
                 var valid = result.Item1;
                 var evt = result.Item2;
+                var item = result.Item3;
                 if (valid)
                 {
-                    if (evt.Item.Type == TrafficItemType.Program)
+                    if (item.Type == TrafficItemType.Program)
                     {
-                        if (evt.Segment == 1)
+                        if (evt.SegmentNumber == 1)
                         {
-                            currentProgram = evt.Item;
+                            currentProgram = item;
                         }
                         else
                         {
-                            evt.Item.Description = currentProgram.Description;
+                            item.Description = currentProgram.Description;
                         }
                     }
-                    var item = this.itemRepository.GetByItemProperties(evt.Item);
-                    if (item == null)
+                    evt.Item = this.itemRepository.GetByItemProperties(item);
+                    if (evt.Item == null)
                     {
-                        evt.Item.BabbleItems = BabbleEventGenerator.Generate(log, evt).ToObservable();
+                        //item.BabbleItems = BabbleEventGenerator.Generate(log, evt, item).ToObservable();
+                        this.itemRepository.Save(item);
+                        evt.Item = this.itemRepository.GetByItemProperties(item);
                     }
-                    else
-                    {
-                        evt.Item = item;
-                    }
-                    this.itemRepository.Save(evt.Item);
                     log.Events.Add(evt);
                 }
                 double done = (eventLine / linesCount) * 100;
