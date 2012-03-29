@@ -71,7 +71,7 @@ namespace Bti.Babble.Traffic.Parser
                     evt.Item = this.itemRepository.GetByItemProperties(item);
                     if (evt.Item == null)
                     {
-                        //item.BabbleItems = BabbleEventGenerator.Generate(log, evt, item).ToObservable();
+                        item.BabbleItems = BabbleEventGenerator.Generate(log, evt, item).ToObservable();
                         this.itemRepository.Save(item);
                         evt.Item = this.itemRepository.GetByItemProperties(item);
                     }

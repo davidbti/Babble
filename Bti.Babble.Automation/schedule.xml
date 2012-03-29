@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<schedule>
+  <event>
+    <header>
+      <type>comment</type>
+      <user>TPBGirl2011</user>
+      <message>@drhoagie @wkrn Scary part is, the people who search you at the airport may be meth addicts or have the chemicals on them. Not good. #TSA</message>
+      <image>http://prod.bti.tv/F5F4DC42-1E5A-4FE3-B866-5EAEFCB4CC5B/TPBGirl2011TPB_normal.jpg</image>
+    </header>
+    <body/>
+  </event>
+  <event>
+    <header>
+      <type>story</type>
+      <user>Local News Alert</user>
+      <message>Man arrested after threatening to blow up school bus</message>
+      <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/wkrn.jpg</image>
+    </header>
+    <body>
+      <title>Man arrested after threatening to blow up school bus</title>
+      <description>Authorities in Henry County arrested Steven Decker, 27, Wednesday morning after he threatened to blow up a school bus with students onboard.</description>
+      <link>http://www.wkrn.com/story/17274405/adult-threatened-to-blow-up-school-bus-in-paris</link>
+      <image>http://wkrn.images.worldnow.com/images/17231590_SS.jpg</image>
+    </body>
+  </event>
+  <event>
+    <header>
+      <type>coupon</type>
+      <user>Diapers.com</user>
+      <message>Earn 20% cash back on your first order on Diapers.com with purchase of diapers</message>
+      <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/diapers_com.jpg</image>
+    </header>
+    <body>
+      <store>Diapers.com</store>
+      <coupon>Earn 20% cash back on your first order on Diapers.com with purchase of diapers</coupon>
+      <code>TRYUS2</code>
+      <link>http://www.diapers.com/?src=lp_aff_060911</link>
+    </body>
+  </event>
+  <event>
+    <header>
+      <user>Let Us Know What You Think</user>
+      <type>poll</type>
+      <message>Should TSA agents be required to have a college degree in law enforcement?</message>
+      <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/poll.jpg</image>
+    </header>
+    <body>
+      <question text="Should TSA agents be required to have a college degree in law enforcement?" votes="100" />
+      <response text="Yes" votes="25" />
+      <response text="No" votes="75" />
+    </body>
+  </event>
+</schedule>

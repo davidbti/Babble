@@ -27,7 +27,7 @@ namespace Bti.Babble.Traffic.Parser
                 var b1 = new BabbleItem()
                 {
                     Message = result.Description,
-                    Type = BabbleItemType.Tease,
+                    Type = BabbleItemType.Info,
                     Link = result.Url
                 };
                 events.Add(b1);
@@ -81,7 +81,7 @@ namespace Bti.Babble.Traffic.Parser
             var b1 = new BabbleItem()
             {
                 Message = evt.Isci,
-                Type = BabbleItemType.Tease,
+                Type = BabbleItemType.Info,
                 Link = "",
             };
             events.Add(b1);

@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Babble.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="BabbleStoreContainer">
+    <EntitySet Name="BabbleEvents" EntityType="Babble.Store.BabbleEvents" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PollResponses" EntityType="Babble.Store.PollResponses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BabbleEvents_PollEvent" EntityType="Babble.Store.BabbleEvents_PollEvent" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BabbleEvents_CommentEvent" EntityType="Babble.Store.BabbleEvents_CommentEvent" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BabbleEvents_CouponEvent" EntityType="Babble.Store.BabbleEvents_CouponEvent" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BabbleEvents_StoryEvent" EntityType="Babble.Store.BabbleEvents_StoryEvent" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="PollEventPollResponse" Association="Babble.Store.PollEventPollResponse">
+      <End Role="PollEvent" EntitySet="BabbleEvents_PollEvent" />
+      <End Role="PollResponse" EntitySet="PollResponses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PollEvent_inherits_BabbleEvent" Association="Babble.Store.FK_PollEvent_inherits_BabbleEvent">
+      <End Role="BabbleEvent" EntitySet="BabbleEvents" />
+      <End Role="PollEvent" EntitySet="BabbleEvents_PollEvent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CommentEvent_inherits_BabbleEvent" Association="Babble.Store.FK_CommentEvent_inherits_BabbleEvent">
+      <End Role="BabbleEvent" EntitySet="BabbleEvents" />
+      <End Role="CommentEvent" EntitySet="BabbleEvents_CommentEvent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CouponEvent_inherits_BabbleEvent" Association="Babble.Store.FK_CouponEvent_inherits_BabbleEvent">
+      <End Role="BabbleEvent" EntitySet="BabbleEvents" />
+      <End Role="CouponEvent" EntitySet="BabbleEvents_CouponEvent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryEvent_inherits_BabbleEvent" Association="Babble.Store.FK_StoryEvent_inherits_BabbleEvent">
+      <End Role="BabbleEvent" EntitySet="BabbleEvents" />
+      <End Role="StoryEvent" EntitySet="BabbleEvents_StoryEvent" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BabbleEvents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PubData" Type="datetime" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Image" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PollResponses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Votes" Type="int" Nullable="false" />
+    <Property Name="PollEventId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BabbleEvents_PollEvent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Question" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Votes" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BabbleEvents_CommentEvent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BabbleEvents_CouponEvent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Store" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Coupon" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Link" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BabbleEvents_StoryEvent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Link" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StoryImage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="PollEventPollResponse">
+    <End Role="PollEvent" Type="Babble.Store.BabbleEvents_PollEvent" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PollResponse" Type="Babble.Store.PollResponses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PollEvent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PollResponse">
+        <PropertyRef Name="PollEventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PollEvent_inherits_BabbleEvent">
+    <End Role="BabbleEvent" Type="Babble.Store.BabbleEvents" Multiplicity="1" />
+    <End Role="PollEvent" Type="Babble.Store.BabbleEvents_PollEvent" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BabbleEvent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PollEvent">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CommentEvent_inherits_BabbleEvent">
+    <End Role="BabbleEvent" Type="Babble.Store.BabbleEvents" Multiplicity="1" />
+    <End Role="CommentEvent" Type="Babble.Store.BabbleEvents_CommentEvent" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BabbleEvent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CommentEvent">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CouponEvent_inherits_BabbleEvent">
+    <End Role="BabbleEvent" Type="Babble.Store.BabbleEvents" Multiplicity="1" />
+    <End Role="CouponEvent" Type="Babble.Store.BabbleEvents_CouponEvent" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BabbleEvent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CouponEvent">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoryEvent_inherits_BabbleEvent">
+    <End Role="BabbleEvent" Type="Babble.Store.BabbleEvents" Multiplicity="1" />
+    <End Role="StoryEvent" Type="Babble.Store.BabbleEvents_StoryEvent" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BabbleEvent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoryEvent">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Babble" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="BabbleContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BabbleEvents" EntityType="Babble.BabbleEvent" />
+          <EntitySet Name="PollResponses" EntityType="Babble.PollResponse" />
+          <AssociationSet Name="PollEventPollResponse" Association="Babble.PollEventPollResponse">
+            <End Role="PollEvent" EntitySet="BabbleEvents" />
+            <End Role="PollResponse" EntitySet="PollResponses" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BabbleEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="PubData" Nullable="false" />
+          <Property Type="String" Name="Type" Nullable="false" />
+          <Property Type="String" Name="User" Nullable="false" />
+          <Property Type="String" Name="Message" Nullable="false" />
+          <Property Type="String" Name="Image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CommentEvent" BaseType="Babble.BabbleEvent" />
+        <EntityType Name="CouponEvent" BaseType="Babble.BabbleEvent" >
+          <Property Type="String" Name="Store" Nullable="false" />
+          <Property Type="String" Name="Coupon" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="false" />
+          <Property Type="String" Name="Link" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PollEvent" BaseType="Babble.BabbleEvent" >
+          <Property Type="String" Name="Question" Nullable="false" />
+          <Property Type="Int32" Name="Votes" Nullable="false" />
+          <NavigationProperty Name="PollResponses" Relationship="Babble.PollEventPollResponse" FromRole="PollEvent" ToRole="PollResponse" />
+        </EntityType>
+        <EntityType Name="PollResponse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Text" Nullable="false" />
+          <Property Type="Int32" Name="Votes" Nullable="false" />
+          <NavigationProperty Name="PollEvent" Relationship="Babble.PollEventPollResponse" FromRole="PollResponse" ToRole="PollEvent" />
+          <Property Type="Int32" Name="PollEventId" Nullable="false" />
+        </EntityType>
+        <Association Name="PollEventPollResponse">
+          <End Type="Babble.PollEvent" Role="PollEvent" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Babble.PollResponse" Role="PollResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PollEvent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PollResponse">
+              <PropertyRef Name="PollEventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StoryEvent" BaseType="Babble.BabbleEvent" >
+          <Property Type="String" Name="Title" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" />
+          <Property Type="String" Name="Link" Nullable="false" />
+          <Property Type="String" Name="StoryImage" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BabbleStoreContainer" CdmEntityContainer="BabbleContainer">
+    <EntitySetMapping Name="BabbleEvents">
+      <EntityTypeMapping TypeName="IsTypeOf(Babble.BabbleEvent)">
+        <MappingFragment StoreEntitySet="BabbleEvents">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PubData" ColumnName="PubData" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Babble.PollEvent)">
+        <MappingFragment StoreEntitySet="BabbleEvents_PollEvent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="Votes" ColumnName="Votes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Babble.CommentEvent)">
+        <MappingFragment StoreEntitySet="BabbleEvents_CommentEvent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Babble.CouponEvent)">
+        <MappingFragment StoreEntitySet="BabbleEvents_CouponEvent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Store" ColumnName="Store" />
+          <ScalarProperty Name="Coupon" ColumnName="Coupon" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Babble.StoryEvent)">
+        <MappingFragment StoreEntitySet="BabbleEvents_StoryEvent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="StoryImage" ColumnName="StoryImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PollResponses">
+      <EntityTypeMapping TypeName="IsTypeOf(Babble.PollResponse)">
+        <MappingFragment StoreEntitySet="PollResponses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Votes" ColumnName="Votes" />
+          <ScalarProperty Name="PollEventId" ColumnName="PollEventId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="Babble" >
+        <EntityTypeShape EntityType="Babble.BabbleEvent" Width="1.5" PointX="6.875" PointY="1.875" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="Babble.CommentEvent" Width="1.5" PointX="6.875" PointY="4.875" Height="1.018779296875" />
+        <InheritanceConnector EntityType="Babble.CommentEvent" >
+          <ConnectorPoint PointX="7.625" PointY="4.047587890625" />
+          <ConnectorPoint PointX="7.625" PointY="4.875" />
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="Babble.CouponEvent" Width="1.5" PointX="9.75" PointY="3.5" Height="1.7879850260416665" />
+        <InheritanceConnector EntityType="Babble.CouponEvent" >
+          <ConnectorPoint PointX="8.375" PointY="3.7737939453125" />
+          <ConnectorPoint PointX="9.75" PointY="3.7737939453125" />
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="Babble.PollEvent" Width="1.5" PointX="4.375" PointY="1.375" Height="1.5956835937499996" />
+        <InheritanceConnector EntityType="Babble.PollEvent" >
+          <ConnectorPoint PointX="6.875" PointY="2.422841796875" />
+          <ConnectorPoint PointX="5.875" PointY="2.422841796875" />
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="Babble.PollResponse" Width="1.5" PointX="4.375" PointY="3.875" Height="1.9802864583333335" />
+        <AssociationConnector Association="Babble.PollEventPollResponse">
+          <ConnectorPoint PointX="5.125" PointY="2.9706835937499996" />
+          <ConnectorPoint PointX="5.125" PointY="3.875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Babble.StoryEvent" Width="1.5" PointX="9.75" PointY="1.125" Height="1.787985026041667" />
+        <InheritanceConnector EntityType="Babble.StoryEvent" >
+          <ConnectorPoint PointX="8.375" PointY="2.3939925130208337" />
+          <ConnectorPoint PointX="9.75" PointY="2.3939925130208337" />
+        </InheritanceConnector>
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

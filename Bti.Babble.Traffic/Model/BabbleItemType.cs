@@ -5,12 +5,9 @@ namespace Bti.Babble.Traffic.Model
     public enum BabbleItemType
     {
         None,
-        Comment,
-        Facebook,
+        Info,
         Poll,
-        Rating,
         Rss,
-        Tease,
         Twitter,
     }
 }
