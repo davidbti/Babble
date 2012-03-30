@@ -1,0 +1,472 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:wn="http://www.worldnow.com" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<atom:link href="http://www.wkrn.com/category/126083/news?clienttype=rss" rel="self" type="application/rss+xml" />
+<title><![CDATA[WKRN - News]]></title>
+<link>http://www.wkrn.com/category/126083/news</link>
+<description></description>
+<language>en-us</language>
+<copyright>Copyright 2000 -  2012 WorldNow and WKRN</copyright>
+<wn:adClassification>News</wn:adClassification>
+<ttl>15</ttl>
+<wn:wnreadableurl>news</wn:wnreadableurl>
+<item>
+<title><![CDATA[Sparta man charged with bulldozing neighbor's home]]></title>
+<link>http://www.wkrn.com/story/17295542/sparta-man-charged-with-bulldozing-neighbors-home</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17295542/sparta-man-charged-with-bulldozing-neighbors-home?t=2012-03-30T12:12:07Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17295542_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Fri, 30 Mar 2012 12:12:00 EDT</pubDate>
+<description>John Lewis, 63, is charged with felony vandalism, reckless endangerment and aggravated assault for ramming the home with a Bobcat tractor.</description>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Odds of winning record Mega Millions jackpot 1 in 176 million]]></title>
+<link>http://www.wkrn.com/story/17293727/mega-millions-world-record-jackpot</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17293727/mega-millions-world-record-jackpot?t=2012-03-30T11:40:56Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17293727_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Fri, 30 Mar 2012 11:40:00 EDT</pubDate>
+<description>A world-record $540 million Mega Millions jackpot has lottery players lining up for tickets early Friday in hopes of becoming an overnight multimillionaire.</description>
+<category domain="http://www.wkrn.com">Mega Millions</category>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Tenn. basketball player wins slam dunk contest]]></title>
+<link>http://www.wkrn.com/story/17293550/tenn-basketball-player-wins-slam-dunk-contest</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17293550/tenn-basketball-player-wins-slam-dunk-contest?t=2012-03-30T10:36:26Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17293550_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Fri, 30 Mar 2012 10:36:00 EDT</pubDate>
+<description>James Justice of Martin Methodist College is the top collegiate "dunker" in the country.</description>
+<wn:adClassification>Sport</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Downtown food trucks face new parking regulations]]></title>
+<link>http://www.wkrn.com/story/17293239/downtown-food-trucks-to-see-new-regulations</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17293239/downtown-food-trucks-to-see-new-regulations?t=2012-03-30T10:51:24Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17293239_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Fri, 30 Mar 2012 10:51:00 EDT</pubDate>
+<description>Nashville is implementing a pilot program to regulate where food trucks can and cannot park downtown.</description>
+<category domain="http://www.wkrn.com">food trucks</category>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Infant undergoes surgery, receives new heart]]></title>
+<link>http://www.wkrn.com/story/17291346/infant-in-need-of-heart-to-undergo-transplant</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17291346/infant-in-need-of-heart-to-undergo-transplant?t=2012-03-30T09:20:43Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17291346_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Fri, 30 Mar 2012 09:20:00 EDT</pubDate>
+<description>Seven-week-old Andrew Hagewood is out of surgery and has a new heart Friday morning, according to his mother&amp;#39;s Facebook page.</description>
+<category domain="http://www.wkrn.com">Andrew Hagewood</category>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Lightning stops 2 cars cold, doesn't hurt drivers]]></title>
+<link>http://www.wkrn.com/story/17294522/lightning-stops-2-cars-cold-doesnt-hurt-drivers</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17294522/lightning-stops-2-cars-cold-doesnt-hurt-drivers?t=2012-03-30T10:19:28Z</guid>
+<source url="http://www.wkrn.com">APTN</source>
+<pubDate>Fri, 30 Mar 2012 10:19:00 EDT</pubDate>
+<description>A lightning strike took out two cars on a Maryville street, but didn&amp;#39;t hurt either driver.</description>
+<wn:adClassification>News - AP-State</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Free baby shower to provide child health tips]]></title>
+<link>http://www.wkrn.com/story/17292911/free-baby-shower-to-provide-child-health-tips</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17292911/free-baby-shower-to-provide-child-health-tips?t=2012-03-30T11:02:18Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17292911_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Fri, 30 Mar 2012 11:02:00 EDT</pubDate>
+<description>This year&amp;#39;s Incredible Baby Shower will be held Saturday from 11 a.m. to 2 p.m. at Goodwill Career Solutions on Herman Street in Nashville.</description>
+<category domain="http://www.wkrn.com">Incredible Baby Shower</category>
+<category domain="http://www.wkrn.com">goodwill</category>
+<wn:adClassification>Health</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[State geography bee finals are Friday in Nashville]]></title>
+<link>http://www.wkrn.com/story/17292978/state-geography-bee-finals-are-friday-in-nashville</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17292978/state-geography-bee-finals-are-friday-in-nashville?t=2012-03-30T10:53:40Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<pubDate>Fri, 30 Mar 2012 10:53:00 EDT</pubDate>
+<description>One hundred students from across Tennessee will compete Friday in Nashville in the state-level competition of the 24th annual National Geographic Bee.</description>
+<wn:adClassification>Education</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Downed power pole shuts down Franklin roadway]]></title>
+<link>http://www.wkrn.com/story/17293334/downed-power-pole-shuts-down-franklin-roadway</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17293334/downed-power-pole-shuts-down-franklin-roadway?t=2012-03-30T10:10:40Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17293334_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Fri, 30 Mar 2012 10:10:00 EDT</pubDate>
+<description>Franklin police closed Columbia Avenue from Henpeck Lane to Mack C. Hatcher Memorial Parkway after a power pole fell around 9:30 p.m. Thursday.</description>
+<category domain="http://www.wkrn.com">Road Closure</category>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Police chief saves granddaughter from violent dog attack]]></title>
+<link>http://www.wkrn.com/story/17290287/police-chief-saves-grandddaughter-from-violent-dog-attack</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17290287/police-chief-saves-grandddaughter-from-violent-dog-attack?t=2012-03-29T21:46:30Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17290287_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 21:46:00 EDT</pubDate>
+<description>A Tennessee police chief and grandfather was released from the hospital on Thursday following a brutal pit bull attack over the weekend&amp;nbsp;in Benton County, about 100 miles west of Nashville.</description>
+<category domain="http://www.wkrn.com">Chief Ronnie Stewart</category>
+<dc:creator>Andy Cordan</dc:creator>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Local family feels called to adopt special needs children]]></title>
+<link>http://www.wkrn.com/story/17291190/local-family-feels-called-to-adopt-children-with-special-needs</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17291190/local-family-feels-called-to-adopt-children-with-special-needs?t=2012-03-30T09:32:06Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17291190_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Fri, 30 Mar 2012 09:32:00 EDT</pubDate>
+<description>Charlie and Leslie Irwin are the parents of six children, four of which are special needs kids adopted from China.</description>
+<dc:creator>John Dwyer</dc:creator>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Man arrested after taking nude pictures of 4-year-old girl]]></title>
+<link>http://www.wkrn.com/story/17290806/man-arrested-after-taking-nude-pictures-of-4-year-old-girl</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17290806/man-arrested-after-taking-nude-pictures-of-4-year-old-girl?t=2012-03-29T20:49:40Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17290806_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 20:49:00 EDT</pubDate>
+<description>Robert Hunt Jr. was taken into custody on Monday after taking nude photographs of a four-year-old child. &lt;br /&gt;</description>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Nashville police arrest man found in kids' closet]]></title>
+<link>http://www.wkrn.com/story/17289092/nashville-police-arrest-man-found-in-kids-closet</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17289092/nashville-police-arrest-man-found-in-kids-closet?t=2012-03-29T23:52:01Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17289092_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 23:32:00 EDT</pubDate>
+<description>Police say a mother discovered James Towry hiding in her children&amp;#39;s closet on Bradford Hills Drive in south Nashville earlier this month.</description>
+<dc:creator>Tiani Jones</dc:creator>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[What are Nashville's top lotto ticket winning stores?]]></title>
+<link>http://www.wkrn.com/story/17291189/what-are-the-top-winning-lotto-ticket-stores-in-nashville-area</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17291189/what-are-the-top-winning-lotto-ticket-stores-in-nashville-area?t=2012-03-30T11:40:56Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17291189_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Fri, 30 Mar 2012 11:40:00 EDT</pubDate>
+<description>With a jackpot more than a half a billion dollars lottery ticket sales are skyrocketing across the country.</description>
+<dc:creator>Roxanna Haynes</dc:creator>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Brad Paisley endows scholarship at Belmont University]]></title>
+<link>http://www.wkrn.com/story/17290901/brad-paisley-endows-scholarship-at-belmont-university</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17290901/brad-paisley-endows-scholarship-at-belmont-university?t=2012-03-29T21:18:36Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17290901_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 21:18:00 EDT</pubDate>
+<description>Brad Paisley has endowed a scholarship at the Nashville, Tenn., school&amp;#39;s Curb College of Entertainment and Music Business, where he graduated in 1995 with a bachelor&amp;#39;s degree.</description>
+<category domain="http://www.wkrn.com">Brad Paisley</category>
+<category domain="http://www.wkrn.com">Belmont University</category>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Country artist Lee Brice to play at 'Music is Medicine' benefit]]></title>
+<link>http://www.wkrn.com/story/17290879/country-artist-lee-brice-to-play-at-music-is-medicine-benefit</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17290879/country-artist-lee-brice-to-play-at-music-is-medicine-benefit?t=2012-03-29T21:12:04Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17290879_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 21:12:00 EDT</pubDate>
+<description>Country star and songwriter Lee Brice is scheduled to perform at the "Music is Medicine" benefit concert on April 12.</description>
+<category domain="http://www.wkrn.com">Lee Brice</category>
+<category domain="http://www.wkrn.com">Music is Medicine</category>
+<wn:adClassification>Entertainment</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Rutherford County expects big tourism dollars over weekend]]></title>
+<link>http://www.wkrn.com/story/17289918/rutherford-co-expecting-big-tourism-dollars-this-weekend</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17289918/rutherford-co-expecting-big-tourism-dollars-this-weekend?t=2012-03-29T20:15:04Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17289918_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 20:05:00 EDT</pubDate>
+<description>Rutherford County&amp;nbsp;prepares to host a variety of&amp;nbsp;sports tournaments this weekend.</description>
+<dc:creator>Lori Mitchell</dc:creator>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Spring typically brings increase in motorcycle accidents]]></title>
+<link>http://www.wkrn.com/story/17289444/spring-typically-brings-increase-in-motorcycle-accidents</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17289444/spring-typically-brings-increase-in-motorcycle-accidents?t=2012-03-29T18:50:08Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17289444_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 18:42:00 EDT</pubDate>
+<description>According to national statistics, 75% of motorcycle accidents and fatalities involve a second vehicle, usually a car or truck.</description>
+<dc:creator>Jamey Tucker</dc:creator>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Ft. Campbell Army captain charged with rape of teen]]></title>
+<link>http://www.wkrn.com/story/17285782/ft-campbell-army-captain-charged-with-rape-of-teen</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17285782/ft-campbell-army-captain-charged-with-rape-of-teen?t=2012-03-29T19:33:07Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17285782_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 19:33:00 EDT</pubDate>
+<description>Nathaniel Claycomb, 24, was charged with Wednesday with raping a 15-year-old Franklin girl he met on the Web site Fling.com.</description>
+<category domain="http://www.wkrn.com">Nathaniel Claycomb</category>
+<category domain="http://www.wkrn.com">Army captain rape</category>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Country legend George Jones hospitalized]]></title>
+<link>http://www.wkrn.com/story/17289493/country-legend-george-jones-hospitalized</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17289493/country-legend-george-jones-hospitalized?t=2012-03-29T18:04:28Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17289493_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 18:04:00 EDT</pubDate>
+<description>Country music artist George Jones has been hospitalized at a Nashville hospital.&lt;br /&gt;</description>
+<category domain="http://www.wkrn.com">George Jones</category>
+<wn:adClassification>Entertainment</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Nashville Fire Chief Steve Halford announces retirement]]></title>
+<link>http://www.wkrn.com/story/17290706/nashville-fire-chief-steve-halford-announces-retirement</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17290706/nashville-fire-chief-steve-halford-announces-retirement?t=2012-03-29T20:25:19Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17290706_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 20:25:00 EDT</pubDate>
+<description>Nashville Fire Chief Steve Halford announced on Thursday he plans to retire on May 1.</description>
+<category domain="http://www.wkrn.com">Nashville Fire Chief Steve Halford</category>
+<category domain="http://www.wkrn.com">Steve Halford</category>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Motorcyclist, 22, dies following Clarksville crash]]></title>
+<link>http://www.wkrn.com/story/17287540/motorcyclist-22-dies-following-clarksville-crash</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17287540/motorcyclist-22-dies-following-clarksville-crash?t=2012-03-29T14:45:12Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17287540_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 14:45:00 EDT</pubDate>
+<description>A 22-year-old man has died from injuries sustained in a motorcycle crash Thursday morning in Clarksville.</description>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Opry Mills Mall reopens nearly 2 years after flood]]></title>
+<link>http://www.wkrn.com/story/17279361/opry-mills-mall-reopens-thursday</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17279361/opry-mills-mall-reopens-thursday?t=2012-03-29T18:00:11Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17279361_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 17:50:00 EDT</pubDate>
+<description>The 1.2 million square foot revitalized Opry Mills Mall reopened Thursday nearly two years after the flood of May 2010.&lt;br /&gt;&lt;strong&gt;&lt;span style="color: #EB553D;"&gt;SLIDESHOW:&lt;/span&gt;&lt;/strong&gt; Photos from inside the mall</description>
+<category domain="http://www.wkrn.com">opry mills mall</category>
+<category domain="http://www.wkrn.com">flooded mall reopens</category>
+<category domain="http://www.wkrn.com">Opry Mills reopens</category>
+<dc:creator>Lori Mitchell</dc:creator>
+<dc:creator>Heather Jensen</dc:creator>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Man wanted for raping minor girl in Clarksville]]></title>
+<link>http://www.wkrn.com/story/17287817/man-wanted-for-raping-minor-girl-in-clarksville</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17287817/man-wanted-for-raping-minor-girl-in-clarksville?t=2012-03-29T15:09:37Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17287817_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 15:09:00 EDT</pubDate>
+<description>Freddrick Bates is alleged to have sexually assaulted a female under the age of 18 multiple times between 2008 and 2011.</description>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Portland police apprehend Nashville fugitive]]></title>
+<link>http://www.wkrn.com/story/17288728/portland-police-apprehend-nashville-fugitive</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17288728/portland-police-apprehend-nashville-fugitive?t=2012-03-29T16:34:58Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17288728_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 16:34:00 EDT</pubDate>
+<description>Brandon Flye, one of Nashville&amp;#39;s most wanted, is off the streets thanks to authorities in Sumner County.</description>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Nashville Shores to hire 500 seasonal employees]]></title>
+<link>http://www.wkrn.com/story/17288336/nashville-shores-to-hire-500-seasonal-employees</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17288336/nashville-shores-to-hire-500-seasonal-employees?t=2012-03-29T16:11:10Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17288336_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 16:11:00 EDT</pubDate>
+<description>Nashville Shores is scheduled to host a job fair on Saturday in an effort to hire 500 seasonal employees for the upcoming season.</description>
+<category domain="http://www.wkrn.com">Nashville Shores</category>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Kroger opens new fuel center at Murfreesboro location]]></title>
+<link>http://www.wkrn.com/story/17288524/kroger-opens-new-fuel-center-at-murfreesboro-location</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17288524/kroger-opens-new-fuel-center-at-murfreesboro-location?t=2012-03-29T16:27:58Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<pubDate>Thu, 29 Mar 2012 16:27:00 EDT</pubDate>
+<description>Kroger opened its 48th fuel center at the location on Old Fort Parkway in Murfreesboro on Thursday morning.</description>
+<category domain="http://www.wkrn.com">Kroger Fuel Station</category>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Nashville mom sentenced to 6 years for infant's death]]></title>
+<link>http://www.wkrn.com/story/17285860/nashville-mom-sentenced-to-6-years-for-infants-death</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17285860/nashville-mom-sentenced-to-6-years-for-infants-death?t=2012-03-29T15:23:32Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17285860_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 15:23:00 EDT</pubDate>
+<description>Arnes&amp;#39;a Hart&amp;#39;s four-month-old son died after being left alone in a Donelson-area hotel room in February of 2011.</description>
+<category domain="http://www.wkrn.com">Arnes'a Hart</category>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Banjo artist Earl Scruggs funeral set for Sunday]]></title>
+<link>http://www.wkrn.com/story/17287074/funeral-for-banjo-innovator-sunday-at-ryman</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17287074/funeral-for-banjo-innovator-sunday-at-ryman?t=2012-03-29T14:27:24Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17287074_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 14:27:00 EDT</pubDate>
+<description>The funeral for legendary bluegrass banjo artist Earl Scruggs will be Sunday in Nashville.</description>
+<category domain="http://www.wkrn.com">Earl Scruggs funeral</category>
+<category domain="http://www.wkrn.com">Earl Scruggs</category>
+<wn:adClassification>Entertainment</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Abortion doctors' bill passes House]]></title>
+<link>http://www.wkrn.com/story/17287073/abortion-doctors-bill-passes-house</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17287073/abortion-doctors-bill-passes-house?t=2012-03-29T14:49:30Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<pubDate>Thu, 29 Mar 2012 14:49:00 EDT</pubDate>
+<description>A proposal that would require all doctors who perform abortions to have admitting privileges in a licensed hospital has passed the House.</description>
+<wn:adClassification>Health</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Senate Oks bill to close teacher evaluation data]]></title>
+<link>http://www.wkrn.com/story/17287075/senate-oks-bill-to-close-teacher-evaluation-data</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17287075/senate-oks-bill-to-close-teacher-evaluation-data?t=2012-03-29T14:58:53Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17287075_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 14:58:00 EDT</pubDate>
+<description>A proposal to close public access to teacher evaluation data has passed the Senate.</description>
+<wn:adClassification>News - AP-State</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Motorcyclist critically injured in Gallatin crash]]></title>
+<link>http://www.wkrn.com/story/17283814/accident-slows-traffic-on-douglas-bend-road</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17283814/accident-slows-traffic-on-douglas-bend-road?t=2012-03-29T16:25:39Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17283814_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 16:25:00 EDT</pubDate>
+<description>A man driving a motorcycle was critically injured Thursday morning after striking a utility pole on Douglas Bend Road in Gallatin.</description>
+<category domain="http://www.wkrn.com">Douglas Bend Road</category>
+<category domain="http://www.wkrn.com">Cages Bend Road</category>
+<category domain="http://www.wkrn.com">Car crash</category>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Police officer's Facebook post troubling to some]]></title>
+<link>http://www.wkrn.com/story/17281112/police-officer-facebook-post-troubling-to-some</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17281112/police-officer-facebook-post-troubling-to-some?t=2012-03-29T12:55:28Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17281112_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 12:55:00 EDT</pubDate>
+<description>Controversy continues to surround a Mid-State police officer after he posted a photograph of a Florida man accused of shooting and killing a 17-year-old boy.</description>
+<category domain="http://www.wkrn.com">Trayvon Martin</category>
+<category domain="http://www.wkrn.com">George Zimmerman</category>
+<dc:creator>Tiani Jones</dc:creator>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Tenn. man now in jail where he wanted to be]]></title>
+<link>http://www.wkrn.com/story/17285155/man-now-in-jail-where-he-wanted-to-be</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17285155/man-now-in-jail-where-he-wanted-to-be?t=2012-03-29T12:08:41Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<pubDate>Thu, 29 Mar 2012 12:08:00 EDT</pubDate>
+<description>A man who west Tennessee authorities had no reason to jail has given them two.</description>
+<wn:adClassification>News - AP-State</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Car collides with 3 motorcycles in Clarksville]]></title>
+<link>http://www.wkrn.com/story/17283016/car-collides-with-3-motorcycles-in-clarksville</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17283016/car-collides-with-3-motorcycles-in-clarksville?t=2012-03-29T10:18:36Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17283016_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 10:18:00 EDT</pubDate>
+<description>Charges are pending after a car making a left turn in Clarksville crashed into three motorcycles Wednesday night.</description>
+<category domain="http://www.wkrn.com">Clarksville motorcycle crash</category>
+<category domain="http://www.wkrn.com">Martha Gilreath</category>
+<category domain="http://www.wkrn.com">Lafayette Road</category>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Teen burglar ejected from vehicle after evading police]]></title>
+<link>http://www.wkrn.com/story/17282809/teen-burglar-ejected-from-vehicle-after-evading-police</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17282809/teen-burglar-ejected-from-vehicle-after-evading-police?t=2012-03-29T09:44:32Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17282809_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 09:44:00 EDT</pubDate>
+<description>A teen burglary suspect was ejected from a vehicle while trying to evade police Thursday morning on Nolensville Pike at Patterson Street.&lt;br /&gt;</description>
+<category domain="http://www.wkrn.com">teenage burglar</category>
+<category domain="http://www.wkrn.com">ejected</category>
+<category domain="http://www.wkrn.com">Car crash</category>
+<category domain="http://www.wkrn.com">police chase</category>
+<category domain="http://www.wkrn.com">nolensville pike</category>
+<category domain="http://www.wkrn.com">patterson street</category>
+<category domain="http://www.wkrn.com">Evading Police</category>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Man killed in Marshall County motorcycle wreck]]></title>
+<link>http://www.wkrn.com/story/17282600/man-killed-in-marshall-county-motorcycle-wreck</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/17282600/man-killed-in-marshall-county-motorcycle-wreck?t=2012-03-29T09:16:25Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<enclosure url="http://WKRN.images.worldnow.com/images/17282600_SS.jpg" type="image/jpeg" length="1" />
+<pubDate>Thu, 29 Mar 2012 09:16:00 EDT</pubDate>
+<description>A Chapel Hill resident was killed after his motorcycle was struck by another vehicle in Marshall County Wednesday night.</description>
+<category domain="http://www.wkrn.com">motorcycle wreck</category>
+<category domain="http://www.wkrn.com">george pruitt</category>
+<category domain="http://www.wkrn.com">marshall county</category>
+<category domain="http://www.wkrn.com">chapel hill</category>
+<category domain="http://www.wkrn.com">highway 99</category>
+<category domain="http://www.wkrn.com">hearthstone drive</category>
+<category domain="http://www.wkrn.com">killed</category>
+<category domain="http://www.wkrn.com">motorcyclist</category>
+<wn:adClassification>News</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Contact WKRN]]></title>
+<link>http://www.wkrn.com/story/7969642/contact-wkrn</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/7969642/contact-wkrn?t=2012-03-29T13:20:19Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<pubDate>Thu, 29 Mar 2012 13:20:00 EDT</pubDate>
+<description>Nashville&amp;#39;s News 2&lt;br /&gt;441 Murfreesboro Road&lt;br /&gt;Nashville, TN 37210&lt;br /&gt;&lt;strong&gt;Main Number:&lt;/strong&gt; 615-369-7222&lt;br /&gt;</description>
+<wn:adClassification>Station 1</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[History]]></title>
+<link>http://www.wkrn.com/story/7970023/history</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/7970023/history?t=2010-09-23T02:59:23Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<pubDate>Wed, 19 Mar 2008 15:46:00 EDT</pubDate>
+<description>WKRN-TV began operation&amp;nbsp;in November 1953 as only the second television station in Nashville.</description>
+<wn:adClassification>Station 1</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[Advertise]]></title>
+<link>http://www.wkrn.com/story/7972570/advertise</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/7972570/advertise?t=2011-06-08T09:14:17Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<pubDate>Wed, 8 Jun 2011 09:14:00 EDT</pubDate>
+<description>The advertising staff at Nashville&amp;#39;s News 2 are in the results business. With years of marketing and advertising experience and hundreds of local success stories, we create and execute advertising plans to help your business grow.</description>
+<wn:adClassification>Station 1</wn:adClassification>
+</item>
+<item>
+<title><![CDATA[WKRN RSS Feeds]]></title>
+<link>http://www.wkrn.com/story/8047683/wkrn-rss-feeds</link>
+<guid isPermaLink="false">http://www.wkrn.com/story/8047683/wkrn-rss-feeds?t=2012-03-29T12:31:45Z</guid>
+<source url="http://www.wkrn.com">WKRN</source>
+<pubDate>Thu, 29 Mar 2012 12:31:00 EDT</pubDate>
+<description>Get the latest headlines, video and weather forecasts as soon as they are published with WKRN.com RSS feeds.</description>
+<wn:adClassification>News</wn:adClassification>
+</item>
+</channel>
+</rss>
+<!-- *IWjSaI^I[J`~ITRGRBMBbM]DaM^EK7@3=3C0~611?~B9G8D ]QM/OYZLQXZMRBMBbM]TSV`MKGRCUIpDO@@BbM]TSV`MK@@PNKV~IWVRcIc~IRRMRBZI`6B}}RRMRBML\GRLlEUD_BB0;5?1=4?1?5M/YSTAYcRDQVO}}WVRcIc~I3dY`XVMVRWOK --><!-- "AObKYAVASBX6ALJ?J:E:ZEU}YEV=C/8+5+;(6.))76;)?.=sUIE'GQRDIPREJ:E:ZEULKNXECINETNb44~^AQPOJTIG44LJ?J:EKJN_=W:EFFIN6NE\)}88FFIN6AHX;FHh9I@[66,7)3|9(3|:/A+UGH=UWF@MJC88KJN_=W:E'XU\LJIRFKKG -->

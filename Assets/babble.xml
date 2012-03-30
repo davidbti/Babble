@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<babble>
+  <event>
+    <header>
+      <id>1</id>
+      <pubDate>Mon, 26 Mar 2012 11:48:00 EDT</pubDate>
+      <type>comment</type>
+      <user>TPBGirl2011</user>
+      <message>@drhoagie @wkrn Scary part is, the people who search you at the airport may be meth addicts or have the chemicals on them. Not good. #TSA</message>
+      <image>http://prod.bti.tv/F5F4DC42-1E5A-4FE3-B866-5EAEFCB4CC5B/TPBGirl2011TPB_normal.jpg</image>
+    </header>
+    <body/>
+  </event>
+  <event>
+    <header>
+      <id>2</id>
+      <pubDate>Mon, 26 Mar 2012 11:48:01 EDT</pubDate>
+      <type>story</type>
+      <user>Local News Alert</user>
+      <message>Mystery surrounds man's disappearance in Smokies</message>
+      <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/wkrn.jpg</image>
+    </header>
+    <body>
+      <title>Mystery surrounds man's disappearance in Smokies</title>
+      <description>A handwritten note asking that no one search for him was left in the car of Blount County man who disappeared in the Smokies, but officials have not yet determined whether Derek Lueking wrote it.</description>
+      <link>http://www.wkrn.com/story/17231722/mystery-surrounds-mans-disappearance-in-smokies</link>
+      <image>http://wkrn.images.worldnow.com/images/17231590_SS.jpg</image>
+    </body>
+  </event>
+  <event>
+    <header>
+      <id>3</id>
+      <pubDate>Mon, 26 Mar 2012 11:48:02 EDT</pubDate>
+      <user>Let Us Know What You Think</user>
+      <type>poll</type>
+      <message>Should TSA agents be required to have a college degree in law enforcement?</message>
+      <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/poll.jpg</image>
+    </header>
+    <body>
+      <question text="Should TSA agents be required to have a college degree in law enforcement?" votes="100" />
+      <response name="Yes" votes="25" percent="25" />
+      <response name="No" votes="75" percent="75" />
+    </body>
+  </event>
+  <event>
+    <header>
+      <id>4</id>
+      <pubDate>Mon, 26 Mar 2012 11:48:12 EDT</pubDate>
+      <type>coupon</type>
+      <user>Deal Alert</user>
+      <message>Get 2$ off you next chicken finder basket from otters</message>
+      <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/otters.jpg</image>
+    </header>
+    <body/>
+  </event>
+  <event>
+    <header>
+      <id>1</id>
+      <pubDate>Mon, 26 Mar 2012 11:48:19 EDT</pubDate>
+      <type>comment</type>
+      <user>TonyKemp6</user>
+      <message>Wonder what the author of this @WKRN piece was thinking:  http://t.co/ivB7drgj | Who is State Rep. Gary Sodom...? #TNLeg"</message>
+      <image>http://prod.bti.tv/F5F4DC42-1E5A-4FE3-B866-5EAEFCB4CC5B/TPBGirl2011TPB_normal.jpg</image>
+    </header>
+    <body/>
+  </event>
+</babble>
