@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using System.ComponentModel;
+using Bti.Babble.Model;
 
 namespace Bti.Babble.Automation
 {
@@ -12,8 +13,13 @@ namespace Bti.Babble.Automation
         private AutoServer server;
 
         public MainWindowViewModel()
+            :this(new Model.Mock.BabbleEventRepository())
         {
-            this.server = new AutoServer();
+        }
+
+        public MainWindowViewModel(IBabbleEventRepository repository)
+        {
+            this.server = new AutoServer(repository);
             this.server.PropertyChanged += new PropertyChangedEventHandler(Server_PropertyChanged);
         }
 
@@ -27,14 +33,40 @@ namespace Bti.Babble.Automation
             get { return this.server.ElapsedTime.DisplayAsString(); }
         }
 
+        public BabbleEvent NextEvent
+        {
+            get { return this.server.NextEvent; }
+        }
+
+        public bool IsRepeat
+        {
+            get { return this.server.IsRepeat; }
+            set { this.server.IsRepeat = value; }
+        }
+
+        public int RepeatSeconds
+        {
+            get { return this.server.RepeatSeconds; }
+            set { this.server.RepeatSeconds = value; }
+        }
+
         void Server_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
+                case "IsRepeat":
+                    this.OnPropertyChanged(e);
+                    break;
                 case "IsRunning":
                     this.OnPropertyChanged(e);
                     break;
                 case "ElapsedTime":
+                    this.OnPropertyChanged(e);
+                    break;
+                case "NextEvent":
+                    this.OnPropertyChanged(e);
+                    break;
+                case "RepeatSeconds":
                     this.OnPropertyChanged(e);
                     break;
             }

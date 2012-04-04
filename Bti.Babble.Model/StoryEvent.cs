@@ -14,6 +14,19 @@ namespace Bti.Babble.Model
 
         public StoryEvent(BabbleEvent evt) : base(evt) { }
 
+        public override void ReadXml(System.Xml.XmlReader reader)
+        {
+            reader.ReadToDescendant("title");
+            Title = reader.ReadElementContentAsString();
+            reader.MoveToContent();
+            Description = reader.ReadElementContentAsString();
+            reader.MoveToContent();
+            StoryImage = reader.ReadElementContentAsString();
+            reader.MoveToContent();
+            Link = reader.ReadElementContentAsString();
+            reader.ReadEndElement();
+        }
+
         public override void WriteXml(System.Xml.XmlWriter writer)
         {
             writer.WriteStartElement("event");

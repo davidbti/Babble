@@ -17,7 +17,8 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="10" />
             <RowDefinition Height="2*" />
-            <RowDefinition Height="20" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="1" Grid.ColumnSpan="3" TextAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="50" Text="{Binding ElapsedTime}" />
@@ -27,9 +28,16 @@
         <Button Grid.Row="2" Grid.Column="3" Background="Red" Command="{Binding Path=StopCommand}">
             <TextBlock Foreground="White" FontSize="36" FontWeight="Bold">Stop</TextBlock>
         </Button>
-        <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3">
+        <WrapPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3">
+            <CheckBox Margin="3" IsChecked="{Binding IsRepeat, Mode=TwoWay}">
+                <TextBlock Foreground="Black" >Repeat after</TextBlock>
+            </CheckBox>
+            <TextBox Margin="3" Width="30" Text="{Binding RepeatSeconds, Mode=TwoWay}" />
+            <TextBlock Foreground="Black" Margin="3" >Seconds</TextBlock>
+        </WrapPanel>
+        <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
             <TextBlock TextAlignment="Center" Foreground="Blue" FontWeight="Bold">Next event</TextBlock>
-            <TextBlock TextAlignment="Center" Foreground="#A31515" TextWrapping="Wrap">Mystery surrounds man's disappearance in Smokies</TextBlock>
+            <TextBlock TextAlignment="Center" Foreground="#A31515" TextWrapping="Wrap" Text="{Binding NextEvent.Message}" />
         </StackPanel>
     </Grid>
 </Window>

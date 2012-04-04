@@ -51,6 +51,16 @@
     <Compile Include="BabbleEvent.cs" />
     <Compile Include="CommentEvent.cs" />
     <Compile Include="CouponEvent.cs" />
+    <Compile Include="Entity\BabbleEvent.cs" />
+    <Compile Include="Entity\BabbleEventRepository.cs" />
+    <Compile Include="Entity\CommentEvent.cs" />
+    <Compile Include="Entity\CouponEvent.cs" />
+    <Compile Include="Entity\InfoEvent.cs" />
+    <Compile Include="Entity\PollEvent.cs" />
+    <Compile Include="Entity\StoryEvent.cs" />
+    <Compile Include="IBabbleEventRepository.cs" />
+    <Compile Include="InfoEvent.cs" />
+    <Compile Include="Mock\BabbleEventRepository.cs" />
     <Compile Include="PollEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoryEvent.cs" />
@@ -63,9 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Entity\Babble.edmx.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

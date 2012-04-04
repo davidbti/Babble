@@ -16,15 +16,15 @@ namespace Bti.Babble.Model
 
         public override void ReadXml(System.Xml.XmlReader reader)
         {
-            reader.ReadToDescendant("body");
             reader.ReadToDescendant("store");
             Store = reader.ReadElementContentAsString();
-            reader.ReadToDescendant("coupon");
+            reader.MoveToContent();
             Coupon = reader.ReadElementContentAsString();
-            reader.ReadToDescendant("code");
+            reader.MoveToContent();
             Code = reader.ReadElementContentAsString();
-            reader.ReadToDescendant("link");
+            reader.MoveToContent();
             Link = reader.ReadElementContentAsString();
+            reader.ReadEndElement();
         }
 
         public override void WriteXml(System.Xml.XmlWriter writer)

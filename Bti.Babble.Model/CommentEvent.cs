@@ -11,7 +11,7 @@ namespace Bti.Babble.Model
 
         public override void ReadXml(System.Xml.XmlReader reader)
         {
-            reader.ReadToDescendant("body");
+            reader.ReadStartElement();
         }
 
         public override void WriteXml(System.Xml.XmlWriter writer)

@@ -7,6 +7,7 @@ namespace Bti.Babble.Model
     public class BabbleEvent : IXmlSerializable
     {
         public int Id { get; set; }
+        public TimeSpan Time { get; set; }
         public DateTime PubDate { get; set; }
         public string Type { get; set; }
         public string User { get; set; }
@@ -18,6 +19,7 @@ namespace Bti.Babble.Model
         public BabbleEvent(BabbleEvent evt) 
         {
             Id = evt.Id;
+            Time = evt.Time;
             PubDate = evt.PubDate;
             Type = evt.Type;
             User = evt.User;
@@ -35,18 +37,22 @@ namespace Bti.Babble.Model
                     var comment = new CommentEvent(evt);
                     comment.ReadXml(reader);
                     return comment;
-                case "story":
-                    var story = new StoryEvent(evt);
-                    story.ReadXml(reader);
-                    return story;
                 case "coupon":
                     var coupon = new CouponEvent(evt);
                     coupon.ReadXml(reader);
                     return coupon;
+                case "info":
+                    var info = new InfoEvent(evt);
+                    info.ReadXml(reader);
+                    return info;
                 case "poll":
                     var poll = new PollEvent(evt);
                     poll.ReadXml(reader);
                     return poll;
+                case "story":
+                    var story = new StoryEvent(evt);
+                    story.ReadXml(reader);
+                    return story;
             }
             return evt;
         }
@@ -59,7 +65,9 @@ namespace Bti.Babble.Model
         public virtual void ReadXml(System.Xml.XmlReader reader)
         {
             reader.ReadToDescendant("header");
-            reader.ReadToDescendant("type");
+            reader.ReadToDescendant("time");
+            Time = ConvertTimeToTimespan(reader.ReadElementContentAsString());
+            reader.MoveToContent();
             Type = reader.ReadElementContentAsString();
             reader.MoveToContent();
             User = reader.ReadElementContentAsString();
@@ -67,6 +75,13 @@ namespace Bti.Babble.Model
             Message = reader.ReadElementContentAsString();
             reader.MoveToContent();
             Image = reader.ReadElementContentAsString();
+            reader.ReadEndElement();
+        }
+
+        internal TimeSpan ConvertTimeToTimespan(string time)
+        {
+            var timesplit = time.Split(':');
+            return new TimeSpan(int.Parse(timesplit[0]), int.Parse(timesplit[1]), int.Parse(timesplit[2]));
         }
 
         protected void WriteHeader(System.Xml.XmlWriter writer)

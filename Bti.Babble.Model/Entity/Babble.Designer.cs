@@ -139,6 +139,7 @@ namespace Bti.Babble.Model.Entity
     [KnownTypeAttribute(typeof(CommentEvent))]
     [KnownTypeAttribute(typeof(CouponEvent))]
     [KnownTypeAttribute(typeof(StoryEvent))]
+    [KnownTypeAttribute(typeof(InfoEvent))]
     public partial class BabbleEvent : EntityObject
     {
         #region Factory Method
@@ -147,16 +148,16 @@ namespace Bti.Babble.Model.Entity
         /// Create a new BabbleEvent object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="pubData">Initial value of the PubData property.</param>
+        /// <param name="pubDate">Initial value of the PubDate property.</param>
         /// <param name="type">Initial value of the Type property.</param>
         /// <param name="user">Initial value of the User property.</param>
         /// <param name="message">Initial value of the Message property.</param>
         /// <param name="image">Initial value of the Image property.</param>
-        public static BabbleEvent CreateBabbleEvent(global::System.Int32 id, global::System.DateTime pubData, global::System.String type, global::System.String user, global::System.String message, global::System.String image)
+        public static BabbleEvent CreateBabbleEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image)
         {
             BabbleEvent babbleEvent = new BabbleEvent();
             babbleEvent.Id = id;
-            babbleEvent.PubData = pubData;
+            babbleEvent.PubDate = pubDate;
             babbleEvent.Type = type;
             babbleEvent.User = user;
             babbleEvent.Message = message;
@@ -199,24 +200,24 @@ namespace Bti.Babble.Model.Entity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.DateTime PubData
+        public global::System.DateTime PubDate
         {
             get
             {
-                return _PubData;
+                return _PubDate;
             }
             set
             {
-                OnPubDataChanging(value);
-                ReportPropertyChanging("PubData");
-                _PubData = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("PubData");
-                OnPubDataChanged();
+                OnPubDateChanging(value);
+                ReportPropertyChanging("PubDate");
+                _PubDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PubDate");
+                OnPubDateChanged();
             }
         }
-        private global::System.DateTime _PubData;
-        partial void OnPubDataChanging(global::System.DateTime value);
-        partial void OnPubDataChanged();
+        private global::System.DateTime _PubDate;
+        partial void OnPubDateChanging(global::System.DateTime value);
+        partial void OnPubDateChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -332,16 +333,16 @@ namespace Bti.Babble.Model.Entity
         /// Create a new CommentEvent object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="pubData">Initial value of the PubData property.</param>
+        /// <param name="pubDate">Initial value of the PubDate property.</param>
         /// <param name="type">Initial value of the Type property.</param>
         /// <param name="user">Initial value of the User property.</param>
         /// <param name="message">Initial value of the Message property.</param>
         /// <param name="image">Initial value of the Image property.</param>
-        public static CommentEvent CreateCommentEvent(global::System.Int32 id, global::System.DateTime pubData, global::System.String type, global::System.String user, global::System.String message, global::System.String image)
+        public static CommentEvent CreateCommentEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image)
         {
             CommentEvent commentEvent = new CommentEvent();
             commentEvent.Id = id;
-            commentEvent.PubData = pubData;
+            commentEvent.PubDate = pubDate;
             commentEvent.Type = type;
             commentEvent.User = user;
             commentEvent.Message = message;
@@ -367,7 +368,7 @@ namespace Bti.Babble.Model.Entity
         /// Create a new CouponEvent object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="pubData">Initial value of the PubData property.</param>
+        /// <param name="pubDate">Initial value of the PubDate property.</param>
         /// <param name="type">Initial value of the Type property.</param>
         /// <param name="user">Initial value of the User property.</param>
         /// <param name="message">Initial value of the Message property.</param>
@@ -376,11 +377,11 @@ namespace Bti.Babble.Model.Entity
         /// <param name="coupon">Initial value of the Coupon property.</param>
         /// <param name="code">Initial value of the Code property.</param>
         /// <param name="link">Initial value of the Link property.</param>
-        public static CouponEvent CreateCouponEvent(global::System.Int32 id, global::System.DateTime pubData, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String store, global::System.String coupon, global::System.String code, global::System.String link)
+        public static CouponEvent CreateCouponEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String store, global::System.String coupon, global::System.String code, global::System.String link)
         {
             CouponEvent couponEvent = new CouponEvent();
             couponEvent.Id = id;
-            couponEvent.PubData = pubData;
+            couponEvent.PubDate = pubDate;
             couponEvent.Type = type;
             couponEvent.User = user;
             couponEvent.Message = message;
@@ -498,6 +499,70 @@ namespace Bti.Babble.Model.Entity
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Babble", Name="InfoEvent")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class InfoEvent : BabbleEvent
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new InfoEvent object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="pubDate">Initial value of the PubDate property.</param>
+        /// <param name="type">Initial value of the Type property.</param>
+        /// <param name="user">Initial value of the User property.</param>
+        /// <param name="message">Initial value of the Message property.</param>
+        /// <param name="image">Initial value of the Image property.</param>
+        /// <param name="link">Initial value of the Link property.</param>
+        public static InfoEvent CreateInfoEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String link)
+        {
+            InfoEvent infoEvent = new InfoEvent();
+            infoEvent.Id = id;
+            infoEvent.PubDate = pubDate;
+            infoEvent.Type = type;
+            infoEvent.User = user;
+            infoEvent.Message = message;
+            infoEvent.Image = image;
+            infoEvent.Link = link;
+            return infoEvent;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Link
+        {
+            get
+            {
+                return _Link;
+            }
+            set
+            {
+                OnLinkChanging(value);
+                ReportPropertyChanging("Link");
+                _Link = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Link");
+                OnLinkChanged();
+            }
+        }
+        private global::System.String _Link;
+        partial void OnLinkChanging(global::System.String value);
+        partial void OnLinkChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="Babble", Name="PollEvent")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -509,18 +574,18 @@ namespace Bti.Babble.Model.Entity
         /// Create a new PollEvent object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="pubData">Initial value of the PubData property.</param>
+        /// <param name="pubDate">Initial value of the PubDate property.</param>
         /// <param name="type">Initial value of the Type property.</param>
         /// <param name="user">Initial value of the User property.</param>
         /// <param name="message">Initial value of the Message property.</param>
         /// <param name="image">Initial value of the Image property.</param>
         /// <param name="question">Initial value of the Question property.</param>
         /// <param name="votes">Initial value of the Votes property.</param>
-        public static PollEvent CreatePollEvent(global::System.Int32 id, global::System.DateTime pubData, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String question, global::System.Int32 votes)
+        public static PollEvent CreatePollEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String question, global::System.Int32 votes)
         {
             PollEvent pollEvent = new PollEvent();
             pollEvent.Id = id;
-            pollEvent.PubData = pubData;
+            pollEvent.PubDate = pubDate;
             pollEvent.Type = type;
             pollEvent.User = user;
             pollEvent.Message = message;
@@ -798,7 +863,7 @@ namespace Bti.Babble.Model.Entity
         /// Create a new StoryEvent object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="pubData">Initial value of the PubData property.</param>
+        /// <param name="pubDate">Initial value of the PubDate property.</param>
         /// <param name="type">Initial value of the Type property.</param>
         /// <param name="user">Initial value of the User property.</param>
         /// <param name="message">Initial value of the Message property.</param>
@@ -807,11 +872,11 @@ namespace Bti.Babble.Model.Entity
         /// <param name="description">Initial value of the Description property.</param>
         /// <param name="link">Initial value of the Link property.</param>
         /// <param name="storyImage">Initial value of the StoryImage property.</param>
-        public static StoryEvent CreateStoryEvent(global::System.Int32 id, global::System.DateTime pubData, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String title, global::System.String description, global::System.String link, global::System.String storyImage)
+        public static StoryEvent CreateStoryEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String title, global::System.String description, global::System.String link, global::System.String storyImage)
         {
             StoryEvent storyEvent = new StoryEvent();
             storyEvent.Id = id;
-            storyEvent.PubData = pubData;
+            storyEvent.PubDate = pubDate;
             storyEvent.Type = type;
             storyEvent.User = user;
             storyEvent.Message = message;

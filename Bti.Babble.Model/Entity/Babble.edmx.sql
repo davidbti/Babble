@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 03/29/2012 09:18:27
+-- Date Created: 04/03/2012 11:37:56
 -- Generated from EDMX file: C:\BTi\Projects\Babble\Bti.Babble.Model\Entity\Babble.edmx
 -- --------------------------------------------------
 
@@ -63,7 +63,7 @@ GO
 -- Creating table 'BabbleEvents'
 CREATE TABLE [dbo].[BabbleEvents] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [PubData] datetime  NOT NULL,
+    [PubDate] datetime  NOT NULL,
     [Type] nvarchar(max)  NOT NULL,
     [User] nvarchar(max)  NOT NULL,
     [Message] nvarchar(max)  NOT NULL,
@@ -114,6 +114,13 @@ CREATE TABLE [dbo].[BabbleEvents_StoryEvent] (
 );
 GO
 
+-- Creating table 'BabbleEvents_InfoEvent'
+CREATE TABLE [dbo].[BabbleEvents_InfoEvent] (
+    [Link] nvarchar(max)  NOT NULL,
+    [Id] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -151,6 +158,12 @@ GO
 -- Creating primary key on [Id] in table 'BabbleEvents_StoryEvent'
 ALTER TABLE [dbo].[BabbleEvents_StoryEvent]
 ADD CONSTRAINT [PK_BabbleEvents_StoryEvent]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'BabbleEvents_InfoEvent'
+ALTER TABLE [dbo].[BabbleEvents_InfoEvent]
+ADD CONSTRAINT [PK_BabbleEvents_InfoEvent]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -202,6 +215,15 @@ GO
 -- Creating foreign key on [Id] in table 'BabbleEvents_StoryEvent'
 ALTER TABLE [dbo].[BabbleEvents_StoryEvent]
 ADD CONSTRAINT [FK_StoryEvent_inherits_BabbleEvent]
+    FOREIGN KEY ([Id])
+    REFERENCES [dbo].[BabbleEvents]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Id] in table 'BabbleEvents_InfoEvent'
+ALTER TABLE [dbo].[BabbleEvents_InfoEvent]
+ADD CONSTRAINT [FK_InfoEvent_inherits_BabbleEvent]
     FOREIGN KEY ([Id])
     REFERENCES [dbo].[BabbleEvents]
         ([Id])

@@ -10,19 +10,24 @@ namespace Bti.Babble.Model
         public int Votes { get; set; }
         public List<PollResponse> Responses { get; set; }
 
-        public PollEvent() { }
+        public PollEvent()
+        {
+            Responses = new List<PollResponse>();
+        }
 
-        public PollEvent(BabbleEvent evt) : base(evt) { }
+        public PollEvent(BabbleEvent evt) : base(evt) 
+        {
+            Responses = new List<PollResponse>();
+        }
 
         public override void ReadXml(System.Xml.XmlReader reader)
         {
-            reader.ReadToDescendant("body");
             reader.ReadToDescendant("question");
             reader.MoveToAttribute("text");
             Question = reader.Value;
             reader.MoveToAttribute("votes");
             Votes = int.Parse(reader.Value);
-            while (reader.ReadToDescendant("response"))
+            while (reader.ReadToNextSibling("response"))
             {
                 var response = new PollResponse();
                 reader.MoveToAttribute("text");
@@ -31,6 +36,7 @@ namespace Bti.Babble.Model
                 response.Votes = int.Parse(reader.Value);
                 Responses.Add(response);
             }
+            reader.ReadEndElement();
         }
 
         public override void WriteXml(System.Xml.XmlWriter writer)
@@ -56,7 +62,17 @@ namespace Bti.Babble.Model
 
     public class PollResponse
     {
+        public int Id { get; set; }
+        public int PollEventId { get; set; }
         public string Text { get; set; }
         public int Votes { get; set; }
+
+        public PollResponse()
+        {
+            this.Id = 0;
+            this.PollEventId = 0;
+            this.Text = "";
+            this.Votes = 0;
+        }
     }
 }

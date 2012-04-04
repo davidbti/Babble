@@ -12,6 +12,7 @@
     <EntitySet Name="BabbleEvents_CommentEvent" EntityType="Babble.Store.BabbleEvents_CommentEvent" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BabbleEvents_CouponEvent" EntityType="Babble.Store.BabbleEvents_CouponEvent" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BabbleEvents_StoryEvent" EntityType="Babble.Store.BabbleEvents_StoryEvent" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BabbleEvents_InfoEvent" EntityType="Babble.Store.BabbleEvents_InfoEvent" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="PollEventPollResponse" Association="Babble.Store.PollEventPollResponse">
       <End Role="PollEvent" EntitySet="BabbleEvents_PollEvent" />
       <End Role="PollResponse" EntitySet="PollResponses" />
@@ -32,13 +33,17 @@
       <End Role="BabbleEvent" EntitySet="BabbleEvents" />
       <End Role="StoryEvent" EntitySet="BabbleEvents_StoryEvent" />
     </AssociationSet>
+    <AssociationSet Name="FK_InfoEvent_inherits_BabbleEvent" Association="Babble.Store.FK_InfoEvent_inherits_BabbleEvent">
+      <End Role="BabbleEvent" EntitySet="BabbleEvents" />
+      <End Role="InfoEvent" EntitySet="BabbleEvents_InfoEvent" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="BabbleEvents">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PubData" Type="datetime" Nullable="false" />
+    <Property Name="PubDate" Type="datetime" Nullable="false" />
     <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
     <Property Name="User" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
@@ -85,6 +90,13 @@
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Link" Type="nvarchar(max)" Nullable="false" />
     <Property Name="StoryImage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BabbleEvents_InfoEvent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Link" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="PollEventPollResponse">
@@ -149,6 +161,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_InfoEvent_inherits_BabbleEvent">
+    <End Role="BabbleEvent" Type="Babble.Store.BabbleEvents" Multiplicity="1" />
+    <End Role="InfoEvent" Type="Babble.Store.BabbleEvents_InfoEvent" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BabbleEvent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InfoEvent">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -166,7 +190,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="PubData" Nullable="false" />
+          <Property Type="DateTime" Name="PubDate" Nullable="false" />
           <Property Type="String" Name="Type" Nullable="false" />
           <Property Type="String" Name="User" Nullable="false" />
           <Property Type="String" Name="Message" Nullable="false" />
@@ -214,6 +238,9 @@
           <Property Type="String" Name="Link" Nullable="false" />
           <Property Type="String" Name="StoryImage" Nullable="false" />
         </EntityType>
+        <EntityType Name="InfoEvent" BaseType="Babble.BabbleEvent" >
+          <Property Type="String" Name="Link" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -224,7 +251,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(Babble.BabbleEvent)">
         <MappingFragment StoreEntitySet="BabbleEvents">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="PubData" ColumnName="PubData" />
+          <ScalarProperty Name="PubDate" ColumnName="PubDate" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="User" ColumnName="User" />
           <ScalarProperty Name="Message" ColumnName="Message" />
@@ -261,6 +288,12 @@
           <ScalarProperty Name="StoryImage" ColumnName="StoryImage" />
         </MappingFragment>
       </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Babble.InfoEvent)">
+        <MappingFragment StoreEntitySet="BabbleEvents_InfoEvent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+        </MappingFragment>
+      </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PollResponses">
       <EntityTypeMapping TypeName="IsTypeOf(Babble.PollResponse)">
@@ -292,10 +325,12 @@
     <edmx:Diagrams>
       <Diagram Name="Babble" >
         <EntityTypeShape EntityType="Babble.BabbleEvent" Width="1.5" PointX="6.875" PointY="1.875" Height="2.1725878906249996" />
-        <EntityTypeShape EntityType="Babble.CommentEvent" Width="1.5" PointX="6.875" PointY="4.875" Height="1.018779296875" />
-        <InheritanceConnector EntityType="Babble.CommentEvent" >
+        <EntityTypeShape EntityType="Babble.CommentEvent" Width="1.5" PointX="4.5" PointY="6.25" Height="1.018779296875" />
+        <InheritanceConnector EntityType="Babble.CommentEvent" ManuallyRouted="false" >
           <ConnectorPoint PointX="7.625" PointY="4.047587890625" />
-          <ConnectorPoint PointX="7.625" PointY="4.875" />
+          <ConnectorPoint PointX="7.625" PointY="6.058" />
+          <ConnectorPoint PointX="5.25" PointY="6.058" />
+          <ConnectorPoint PointX="5.25" PointY="6.25" />
         </InheritanceConnector>
         <EntityTypeShape EntityType="Babble.CouponEvent" Width="1.5" PointX="9.75" PointY="3.5" Height="1.7879850260416665" />
         <InheritanceConnector EntityType="Babble.CouponEvent" >
@@ -316,6 +351,13 @@
         <InheritanceConnector EntityType="Babble.StoryEvent" >
           <ConnectorPoint PointX="8.375" PointY="2.3939925130208337" />
           <ConnectorPoint PointX="9.75" PointY="2.3939925130208337" />
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="Babble.InfoEvent" Width="1.5" PointX="9.75" PointY="5.625" Height="1.2110807291666665" />
+        <InheritanceConnector EntityType="Babble.InfoEvent" >
+          <ConnectorPoint PointX="7.625" PointY="4.047587890625" />
+          <ConnectorPoint PointX="7.625" PointY="5.433" />
+          <ConnectorPoint PointX="10.5" PointY="5.433" />
+          <ConnectorPoint PointX="10.5" PointY="5.625" />
         </InheritanceConnector>
       </Diagram>
     </edmx:Diagrams>

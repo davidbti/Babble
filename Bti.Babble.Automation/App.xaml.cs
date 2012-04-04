@@ -7,6 +7,7 @@ using System.Windows;
 using Microsoft.Practices.Unity;
 using System.Windows.Markup;
 using System.Globalization;
+using Bti.Babble.Model;
 
 namespace Bti.Babble.Automation
 {
@@ -26,6 +27,10 @@ namespace Bti.Babble.Automation
                   XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
 
             IUnityContainer container = new UnityContainer();
+
+            container.RegisterType<Model.Entity.BabbleContainer, Model.Entity.BabbleContainer>(new ContainerControlledLifetimeManager())
+                .Configure<InjectedMembers>().ConfigureInjectionFor<Model.Entity.BabbleContainer>(new InjectionConstructor());
+            container.RegisterType<IBabbleEventRepository, Model.Entity.BabbleEventRepository>(new ContainerControlledLifetimeManager());
 
             MainWindow window = container.Resolve<MainWindow>();
             window.DataContext = container.Resolve<MainWindowViewModel>();

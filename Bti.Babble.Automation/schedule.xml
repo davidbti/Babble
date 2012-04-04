@@ -6,19 +6,19 @@
       <type>info</type>
       <user>Justin's Stormtracker Forecast</user>
       <message>Today is another "warmer than normal" day with highs near 80 degrees...</message>
-      <image>http://prod.bti.tv/justin_stormtracker.jpg</image>
+      <image>http://dev.bti.tv/media/users/Justin_Stormtracker.jpg</image>
     </header>
     <body>
-      <link>http://prod.bti.tv/forecast.jpg</link>
+      <link>http://dev.bti.tv/media/forecast.png</link>
     </body>
   </event>
   <event>
     <header>
       <time>00:00:09</time>
       <type>comment</type>
-      <user>TPBGirl2011</user>
+      <user>ChristineDiez</user>
       <message>80 degrees in march. Not looking forward to July! #TOOHOT</message>
-      <image>http://prod.bti.tv/TPBGirl2011.jpg</image>
+      <image>http://dev.bti.tv/media/users/christine_diez.jpg</image>
     </header>
     <body/>
   </event>
@@ -26,9 +26,9 @@
     <header>
       <time>00:00:14</time>
       <type>comment</type>
-      <user>TonyKemp6</user>
-      <message>I'll worry about July when it comes @TPBGirl2011. Lovin' this March weather! #JUSTRIGHT</message>
-      <image>http://prod.bti.tv/TonyKemp6.jpg</image>
+      <user>MrLovaLova</user>
+      <message>I'll worry about July when it comes @ChristineDiez. Lovin' this March weather! #JUSTRIGHT</message>
+      <image>http://dev.bti.tv/media/users/mr_lova_lova.jpg</image>
     </header>
     <body/>
   </event>
@@ -38,7 +38,7 @@
       <type>info</type>
       <user>Coming Up</user>
       <message>Google trying to be like Amazon. We'll tell you how in the next 30 minutes.</message>
-      <image>http://prod.bti.tv/wkrn.jpg</image>
+      <image>http://dev.bti.tv/media/users/wkrn.jpg</image>
     </header>
     <body/>
   </event>
@@ -48,7 +48,7 @@
       <type>info</type>
       <user>Coming Up</user>
       <message>Local family adopts four children from China who needed something a little extra special. That story is up next.</message>
-      <image>http://prod.bti.tv/wkrn.jpg</image>
+      <image>http://dev.bti.tv/media/users/wkrn.jpg</image>
     </header>
     <body/>
   </event>
@@ -58,7 +58,7 @@
       <type>info</type>
       <user>Pool &amp; Spa Depot</user>
       <message>Largest Selection in Tennessee. Nashville, Cookville, Bowling Green Locations. Call us @ 351-8000</message>
-      <image>http://prod.bti.tv/pool_spa_depot.jpg</image>
+      <image>http://dev.bti.tv/media/users/pool_spa_depot.jpg</image>
     </header>
     <body>
       <link>http://poolandspadepot.com</link>
@@ -70,7 +70,7 @@
       <type>info</type>
       <user>Nashville Nissan</user>
       <message>It's our annual Nashville Nissan Now Sales Event!</message>
-      <image>http://prod.bti.tv/nashville_nissan.jpg</image>
+      <image>http://dev.bti.tv/media/users/nashville_nissan.jpg</image>
     </header>
     <body>
       <link>http://nashvillenissan.com</link>
@@ -82,7 +82,7 @@
       <type>info</type>
       <user>Nashville Nissan</user>
       <message>Lock in internet pricing now!</message>
-      <image>http://prod.bti.tv/nashville_nissan.jpg</image>
+      <image>http://dev.bti.tv/media/users/nashville_nissan.jpg</image>
     </header>
     <body>
       <link>http://www.candsleads.com/1stc/DowntownNashvilleNissan/index.html</link>
@@ -94,7 +94,7 @@
       <type>info</type>
       <user>Sprintz</user>
       <message>One of the biggest Sprintz Warehouse Clearance Sales ever!</message>
-      <image>http://prod.bti.tv/sprintz.jpg</image>
+      <image>http://dev.bti.tv/media/users/sprintz.jpg</image>
     </header>
     <body>
       <link>http://www.candsleads.com/1stc/DowntownNashvilleNissan/index.html</link>
@@ -106,7 +106,7 @@
       <type>coupon</type>
       <user>Sprintz</user>
       <message>Use this coupon to save an additonal 10% on any Sealy mattress</message>
-      <image>http://prod.bti.tv/sprintz.jpg</image>
+      <image>http://dev.bti.tv/media/users/sprintz.jpg</image>
     </header>
     <body>
       <store>Sprintz</store>
@@ -121,7 +121,7 @@
       <type>info</type>
       <user>Nissan</user>
       <message>People everywhere are dropping everything to get to the Nissan Now Sales Event!</message>
-      <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/nissan.jpg</image>
+      <image>http://dev.bti.tv/media/users/nissan.jpg</image>
     </header>
     <body>
       <link>http://choosenissan.com</link>
@@ -133,7 +133,7 @@
       <type>info</type>
       <user>Nissan</user>
       <message>Go to ChooseNissan.com now!</message>
-      <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/nissan.jpg</image>
+      <image>http://dev.bti.tv/media/users/nissan.jpg</image>
     </header>
     <body>
       <link>http://choosenissan.com</link>
@@ -145,7 +145,7 @@
       <type>info</type>
       <user>SafeLink.com</user>
       <message>If you have an emergency outside the home how do you call for help?</message>
-      <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/safelink.jpg</image>
+      <image>http://dev.bti.tv/media/users/safelink.jpg</image>
     </header>
     <body>
       <link>http://safelink.com</link>
@@ -157,7 +157,7 @@
       <type>coupon</type>
       <user>SafeLink.com</user>
       <message>Use this coupon for an additional free phone for a family member</message>
-      <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/safelink.jpg</image>
+      <image>http://dev.bti.tv/media/users/safelink.jpg</image>
     </header>
     <body>
       <store>SafeLink.com</store>
@@ -172,10 +172,10 @@
       <type>info</type>
       <user>Beaman Buick GMC</user>
       <message>Hail Damage Mega Sale! Choose from over 400 units. But when they're gone, they're gone!</message>
-      <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/beaman.jpg</image>
+      <image>http://dev.bti.tv/media/users/beaman.jpg</image>
     </header>
     <body>
-      <link>http://beamanbuickgmc.com</link>
+      <link>http://www.beamanbuickgmc.com/</link>
     </body>
   </event>
   <event>
@@ -184,7 +184,7 @@
       <type>info</type>
       <user>Pool &amp; Spa Depot</user>
       <message>Largest Selection in Tennessee. Nashville, Cookville, Bowling Green Locations. Call us @ 351-8000</message>
-      <image>http://prod.bti.tv/pool_spa_depot.jpg</image>
+      <image>http://dev.bti.tv/media/users/pool_spa_depot.jpg</image>
     </header>
     <body>
       <link>http://poolandspadepot.com</link>
@@ -196,7 +196,7 @@
       <type>info</type>
       <user>WKRN</user>
       <message>Visit the waiting child website and see how you can help a child.</message>
-      <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/wkrn.jpg</image>
+      <image>http://dev.bti.tv/media/users/wkrn.jpg</image>
     </header>
     <body>
       <link>http://www.afamilyforeverychild.org/kids/All_Kids.php</link>
@@ -205,10 +205,10 @@
   <event>
     <header>
       <time>00:03:53</time>
-      <user>Let Us Know What You Think</user>
       <type>poll</type>
+      <user>Let Us Know What You Think</user>
       <message>Would you adopt a child with a heart condition?</message>
-      <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/poll.jpg</image>
+      <image>http://dev.bti.tv/media/users/poll.png</image>
     </header>
     <body>
       <question text="Would you adopt a child with a heart condition?" votes="100" />
@@ -222,7 +222,7 @@
       <type>comment</type>
       <user>TPBGirl2011</user>
       <message>Amazing people and an amazing family! #UNCONDITIONALLOVE</message>
-      <image>http://prod.bti.tv/TPBGirl2011.jpg</image>
+      <image>http://dev.bti.tv/media/users/TPBGirl2011.jpg</image>
     </header>
     <body/>
   </event>
@@ -232,7 +232,7 @@
       <type>comment</type>
       <user>TonyKemp6</user>
       <message>Do you think you could do what they do @TPBGirl2011? #NASHVILLECARES</message>
-      <image>http://prod.bti.tv/TonyKemp.jpg</image>
+      <image>http://dev.bti.tv/media/users/TonyKemp.jpg</image>
     </header>
     <body/>
   </event>
@@ -241,7 +241,7 @@
     <type>info</type>
     <user>WKRN</user>
     <message>Visit the waiting child website and see how you can help a child.</message>
-    <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/wkrn.jpg</image>
+    <image>http://dev.bti.tv/media/users/wkrn.jpg</image>
   </header>
   <body>
     <link>http://www.afamilyforeverychild.org/kids/All_Kids.php</link>
@@ -252,7 +252,7 @@
       <type>comment</type>
       <user>AGopal16</user>
       <message>And I thought my day was a challenge. Stories like this really put everything in perspective.</message>
-      <image>http://prod.bti.tv/AGopal16.jpg</image>
+      <image>http://dev.bti.tv/media/users/agopal16.jpg</image>
     </header>
     <body/>
   </event>
@@ -262,7 +262,7 @@
       <type>comment</type>
       <user>SophieTucker</user>
       <message>You guys should also check out adoptuskids if you want to change somebodys life.</message>
-      <image>http://prod.bti.tv/SophieTucker.jpg</image>
+      <image>http://dev.bti.tv/media/users/sophietucker.jpg</image>
     </header>
     <body/>
   </event>
@@ -272,7 +272,7 @@
       <type>info</type>
       <user>WKRN</user>
       <message>Register for the American Heart Association heart walk this fall.</message>
-      <image>http://prod.bti.tv/wkrn.jpg</image>
+      <image>http://dev.bti.tv/media/users/wkrn.jpg</image>
     </header>
     <body>
       <link>http://www.heartwalk.org/site/c.rjJ0J6MHIoE/b.5777283/k.2284/Heart_Walk__National_Web_Site.htm</link>
@@ -284,10 +284,10 @@
       <type>info</type>
       <user>WKRN</user>
       <message>Happy 100th Birthday Lynwood Leach!</message>
-      <image>http://prod.bti.tv/wkrn.jpg</image>
+      <image>http://dev.bti.tv/media/users/wkrn.jpg</image>
     </header>
     <body>
-      <link>http://prod.bti.tv/lynwood_leach.jpg</link>
+      <link>http://dev.bti.tv/media/content/100yearold.png</link>
     </body>
   </event>
   <event>
@@ -296,7 +296,7 @@
       <type>comment</type>
       <user>ScruffyZack</user>
       <message>Hope i still look that good @ 100!</message>
-      <image>http://prod.bti.tv/ScruffyZack.jpg</image>
+      <image>http://dev.bti.tv/media/users/scruffyzack.jpg</image>
     </header>
     <body/>
   </event>
@@ -306,7 +306,7 @@
       <type>promo</type>
       <user>Coming Up</user>
       <message>Predators clinch a playoff spot. We'll tell you how you can show your support.</message>
-      <image>http://prod.bti.tv/wkrn.jpg</image>
+      <image>http://dev.bti.tv/media/users/wkrn.jpg</image>
     </header>
     <body/>
   </event>
@@ -316,10 +316,10 @@
       <type>info</type>
       <user>Honda</user>
       <message>Honda Civic is the best selling small car in america.</message>
-      <image>http://prod.bti.tv/honda.jpg</image>
+      <image>http://dev.bti.tv/media/users/honda.jpg</image>
     </header>
     <body>
-      <link>http://honda.com</link>
+      <link>http://www.honda.com/</link>
     </body>
   </event>
   <event>
@@ -328,10 +328,10 @@
       <type>info</type>
       <user>Honda</user>
       <message>0.9 % APR on select vehicles. Visit your local Honda dealer for the Really Big Sales Event.</message>
-      <image>http://prod.bti.tv/honda.jpg</image>
+      <image>http://dev.bti.tv/media/users/honda.jpg</image>
     </header>
     <body>
-      <link>http://honda.com</link>
+      <link>http://www.honda.com/</link>
     </body>
   </event>
   <event>
@@ -340,10 +340,10 @@
       <type>info</type>
       <user>Vanderbilt Childrens Hospital</user>
       <message>Whatever your child needs to get well, you'll find it here.</message>
-      <image>http://prod.bti.tv/vanderbilt.jpg</image>
+      <image>http://dev.bti.tv/media/users/vanderbilt.jpg</image>
     </header>
     <body>
-      <link>http://vanderbilt.com</link>
+      <link>http://www.childrenshospital.vanderbilt.org/</link>
     </body>
   </event>
   <event>
@@ -352,10 +352,10 @@
       <type>info</type>
       <user>Vanderbilt Childrens Hospital</user>
       <message>Your Childs very own hospital.</message>
-      <image>http://prod.bti.tv/vanderbilt.jpg</image>
+      <image>http://dev.bti.tv/media/users/vanderbilt.jpg</image>
     </header>
     <body>
-      <link>http://vanderbilt.com</link>
+      <link>http://www.childrenshospital.vanderbilt.org/</link>
     </body>
   </event>
   <event>
@@ -364,7 +364,7 @@
       <type>info</type>
       <user>Darrell Waltrip Subara</user>
       <message>Come celebrate the Subara Love Spring Sales Event.</message>
-      <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/subaru.jpg</image>
+      <image>http://dev.bti.tv/media/users/subaru.jpg</image>
     </header>
     <body>
       <link>http://www.darrellwaltripsubaru.com</link>
@@ -376,7 +376,7 @@
       <type>coupon</type>
       <user>Darrell Waltrip Subaru</user>
       <message>First 5 customers that mention this ad save $1000 instantly</message>
-      <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/safelink.jpg</image>
+      <image>http://dev.bti.tv/media/users/waltrip.jpg</image>
     </header>
     <body>
       <store>Darrell Waltrip Subaru</store>
@@ -391,12 +391,12 @@
       <type>story</type>
       <user>WKRN</user>
       <message>MegaMillions Record Jackpot. Read the story</message>
-      <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/wkrn.jpg</image>
+      <image>http://dev.bti.tv/media/users/wkrn.jpg</image>
     </header>
     <body>
       <title>Odds of winning record Mega Millions jackpot 1 in 176 million</title>
       <description>A world-record $540 million Mega Millions jackpot has lottery players lining up for tickets early Friday in hopes of becoming an overnight multimillionaire.</description>
-      <image>http://prod.bti.tv/95758C95-5085-4421-B356-D2BB4435301B/megamillions.jpg</image>
+      <image>http://dev.bti.tv/media/users/lottery.jpg</image>
       <link>http://www.wkrn.com/story/17293727/mega-millions-world-record-jackpot</link>
     </body>
   </event>
@@ -406,7 +406,7 @@
       <type>comment</type>
       <user>Shelbot</user>
       <message>Does anybody else think the lottery is a tax against people who can't do math? #LOTTERYBITES</message>
-      <image>http://prod.bti.tv/Shelbot.png</image>
+      <image>http://dev.bti.tv/media/users/Shelbot.png</image>
     </header>
     <body/>
   </event>
@@ -416,7 +416,7 @@
       <type>info</type>
       <user>WKRN</user>
       <message>Do It! Take a picture and post it on our Facebook page! We'll tell you more in a moment.</message>
-      <image>http://prod.bti.tv/wkrn.jpg</image>
+      <image>http://dev.bti.tv/media/users/wkrn.jpg</image>
     </header>
     <body/>
   </event>
@@ -426,10 +426,10 @@
       <type>forecast</type>
       <user>Justin's Stormtracker Forecast</user>
       <message>Today is another "warmer than normal" day with highs near 80 degrees...</message>
-      <image>http://prod.bti.tv/justin_stormtracker.jpg</image>
+      <image>http://dev.bti.tv/media/users/justin_stormtracker.jpg</image>
     </header>
     <body>
-      <link>http://prod.bti.tv/forecast.jpg</link>
+      <link>http://dev.bti.tv/media/content/forecast.jpg</link>
     </body>
   </event>
 </schedule>
