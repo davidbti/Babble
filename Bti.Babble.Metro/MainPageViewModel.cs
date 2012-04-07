@@ -20,6 +20,7 @@ namespace Bti.Babble.Metro
     class MainPageViewModel : BindableBase 
     {
         private ObservableCollection<BabbleEvent> events;
+        private BabbleEvent selectedEvent;
         
         public ObservableCollection<BabbleEvent> BabbleEvents
         {
@@ -28,6 +29,16 @@ namespace Bti.Babble.Metro
             {
                 this.events = value;
                 OnPropertyChanged("BabbleEvents");
+            }
+        }
+
+        public BabbleEvent SelectedEvent
+        {
+            get { return this.selectedEvent; }
+            set
+            {
+                this.selectedEvent = value;
+                OnPropertyChanged("SelectedEvent");
             }
         }
 
@@ -52,7 +63,7 @@ namespace Bti.Babble.Metro
                             if (reader.NodeType == XmlNodeType.Element && reader.LocalName == "event")
                             {
                                 var evt = BabbleEvent.CreateFromXmlReader(reader);
-                                LoadBabbleEventImageSimple(evt);
+                                LoadBabbleEventImage(evt);
                                 BabbleEvents.Add(evt);
                             }
                         }
@@ -78,9 +89,12 @@ namespace Bti.Babble.Metro
                             if (reader.NodeType == XmlNodeType.Element && reader.LocalName == "event")
                             {
                                 var evt = BabbleEvent.CreateFromXmlReader(reader);
-                                LoadBabbleEventImageSimple(evt);
+                                var story = evt as StoryEvent;
+                                if (story != null) { LoadStoryEventImage(story); } 
+                                LoadBabbleEventImage(evt);
                                 BabbleEvents.Insert(0, evt);
                                 BabbleEvents.RemoveAt(BabbleEvents.Count - 1);
+                                SelectedEvent = evt;
                             }
                         }
                     }
@@ -89,27 +103,16 @@ namespace Bti.Babble.Metro
             }
         }
 
-        private void LoadBabbleEventImageSimple(BabbleEvent evt)
+        private void LoadBabbleEventImage(BabbleEvent evt)
         {
             var uri = new Uri(evt.Image);
             evt.ImageSource = new BitmapImage(uri);
         }
 
-        private async void LoadBabbleEventImage(BabbleEvent evt)
+        private void LoadStoryEventImage(StoryEvent evt)
         {
-            var client = new HttpClient();
-            var response = await client.GetAsync(evt.Image);
-            if (response.IsSuccessStatusCode)
-            {
-                var ras = new InMemoryRandomAccessStream();
-                using (var stream = response.Content.ReadAsStreamAsync().Result)
-                {
-                    await stream.CopyToAsync(ras.AsStreamForWrite());
-                }
-                var bmp = new BitmapImage();
-                bmp.SetSource(ras);
-                evt.ImageSource = bmp;
-            }
+            var uri = new Uri(evt.StoryImage);
+            evt.StoryImageSource = new BitmapImage(uri);
         }
     }
 }

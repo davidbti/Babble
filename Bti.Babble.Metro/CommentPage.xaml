@@ -8,13 +8,17 @@
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ApplicationPageBackgroundBrush}">
-        <StackPanel Margin="100,100,100,100">
-            <TextBlock FontSize="24" Text="Join the Conversation" />
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                <Image Source="{Binding ImageSource}" Width="48" Height="48"  />
+                <TextBlock Text="{Binding User}" Margin="5,0,0,0" FontSize="24" />
+            </StackPanel>
+            <TextBlock Text="{Binding Message}" FontSize="18" Margin="10,0,0,0" TextWrapping="Wrap"/>
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                <TextBlock FontSize="24" Text="Comment" HorizontalAlignment="Center" />
+                <TextBlock FontSize="24" Text="Respond" HorizontalAlignment="Center" />
                 <TextBox FontSize="18" Width="400" Height="200" Margin="20,0,0,0" TextWrapping="Wrap"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="122,20,0,0">
+            <StackPanel Orientation="Horizontal" Margin="110,10,0,0">
                 <Button>
                     <TextBlock Text="Submit"/>
                 </Button>

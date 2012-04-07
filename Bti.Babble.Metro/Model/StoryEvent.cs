@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
+using Windows.UI.Xaml.Media;
 
 namespace Bti.Babble.Metro.Model
 {
@@ -9,6 +10,7 @@ namespace Bti.Babble.Metro.Model
         public string Description { get; set; }
         public string Link { get; set; }
         public string StoryImage { get; set; }
+        public ImageSource StoryImageSource { get; set; }
 
         public StoryEvent() { }
 

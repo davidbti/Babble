@@ -40,12 +40,6 @@ namespace Bti.Babble.Metro
         {
             if (e.AddedItems.Count > 0)
             {
-                var info = e.AddedItems[0] as InfoEvent;
-                if (info != null)
-                {
-                    BodyFrame.DataContext = info;
-                    BodyFrame.Navigate(typeof(InfoPage));
-                }
                 var coupon = e.AddedItems[0] as CouponEvent;
                 if (coupon != null)
                 {
@@ -58,11 +52,23 @@ namespace Bti.Babble.Metro
                     BodyFrame.DataContext = comment;
                     BodyFrame.Navigate(typeof(CommentPage));
                 }
+                var info = e.AddedItems[0] as InfoEvent;
+                if (info != null)
+                {
+                    BodyFrame.DataContext = info;
+                    BodyFrame.Navigate(typeof(InfoPage));
+                }
                 var poll = e.AddedItems[0] as PollEvent;
                 if (poll != null)
                 {
                     BodyFrame.DataContext = poll;
                     BodyFrame.Navigate(typeof(PollPage));
+                }
+                var story = e.AddedItems[0] as StoryEvent;
+                if (story != null)
+                {
+                    BodyFrame.DataContext = story;
+                    BodyFrame.Navigate(typeof(StoryPage));
                 }
             }
         }

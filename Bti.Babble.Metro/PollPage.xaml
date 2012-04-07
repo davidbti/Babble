@@ -9,7 +9,7 @@
 
     <Grid Background="{StaticResource ApplicationPageBackgroundBrush}">
         <StackPanel Margin="100,100,100,100">
-            <TextBlock FontSize="24" Text="{Binding Question}" />
+            <TextBlock FontSize="24" Text="{Binding Question}" TextWrapping="Wrap" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20,0,0,0">
             <Button>
                 <TextBlock Text="Yes"/>
