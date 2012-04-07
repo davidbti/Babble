@@ -10,7 +10,7 @@
     <Grid Background="{StaticResource ApplicationPageBackgroundBrush}">
         <StackPanel Margin="100,100,100,100">
             <TextBlock FontSize="42" Text="{Binding Title}" TextWrapping="Wrap" />
-            <Image Source="{Binding StoryImage}" Margin="0,10,0,0" />
+            <Image Source="{Binding StoryImage}" Margin="0,10,0,0" Stretch="UniformToFill" Width="950" Height="534"/>
             <TextBlock FontSize="24" Text="{Binding Description}" Margin="0,10,0,0" TextWrapping="Wrap" />
         </StackPanel>
     </Grid>
