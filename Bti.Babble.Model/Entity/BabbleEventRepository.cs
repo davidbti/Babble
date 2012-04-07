@@ -34,7 +34,7 @@ namespace Bti.Babble.Model.Entity
         public List<Model.BabbleEvent> GetEvents(int count)
         {
             var events = (from o in context.BabbleEvents
-                          orderby o.PubDate
+                          orderby o.Id descending
                           select o).AsEnumerable().Select(o => o.ToModelObject()).Take(count);
             return events.ToList();
         }
