@@ -114,6 +114,12 @@ namespace Bti.Babble.Automation
                 }
                 Thread.Sleep(100);
             }
+            while (ElapsedTime < this.nextEvent.Time)
+            {
+                Thread.Sleep(100);
+                ElapsedTime = DateTime.Now.Subtract(this.startTime);
+            }
+            repository.Save(NextEvent);
         }
 
         private void DeleteOldEvents()
