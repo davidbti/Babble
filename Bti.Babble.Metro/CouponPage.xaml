@@ -8,7 +8,14 @@
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ApplicationPageBackgroundBrush}">
-        <Border BorderBrush="White" BorderThickness="4" Margin="4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Coupon" Style="{StaticResource PageHeaderTextStyle}" Margin="40" />
+
+        <Border Grid.Row="1" BorderBrush="White" BorderThickness="4" Margin="4">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                     <TextBlock FontSize="24" Text="Store" Width="120" />

@@ -8,7 +8,14 @@
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ApplicationPageBackgroundBrush}">
-        <StackPanel Margin="100,100,100,100">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Poll" Style="{StaticResource PageHeaderTextStyle}" Margin="40" />
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock FontSize="24" Text="{Binding Question}" TextWrapping="Wrap" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20,0,0,0">
             <Button>

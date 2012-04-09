@@ -275,17 +275,17 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,56,0">
-                    <TextBlock Text="Matthew Doig" VerticalAlignment="Center" FontSize="32" Margin="10,0,0,0"/>
+                    <TextBlock Text="Matthew Doig" Style="{StaticResource SubheaderTextStyle}" VerticalAlignment="Center" Margin="10,-11,0,0"/>
                     <Image Source="/Assets/matthew_doig.jpg" Height="48" Width="48" Margin="10,0,0,0"/>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="56,0,56,0">
-                    <TextBlock Text="6" FontSize="20" Margin="10,6,0,0" />
+                    <TextBlock Text="6" Style="{StaticResource ItemTextStyle}" Margin="10,2,0,0" />
                     <Image Source="/Assets/video.png" Height="32" Width="32" Margin="-4,0,0,0"/>
-                    <TextBlock Text="7" FontSize="20" Margin="10,6,0,0" />
+                    <TextBlock Text="7" Style="{StaticResource ItemTextStyle}" Margin="10,2,0,0" />
                     <Image Source="/Assets/heart.png" Height="32" Width="32" Margin="-4,0,0,0"/>
-                    <TextBlock Text="31" FontSize="20" Margin="10,6,0,0" />
+                    <TextBlock Text="31" Style="{StaticResource ItemTextStyle}" Margin="10,2,0,0" />
                     <Image Source="/Assets/favs.png" Height="32" Width="32" Margin="-4,0,0,0"/>
-                    <TextBlock Text="7" FontSize="20" Margin="10,6,0,0" />
+                    <TextBlock Text="7" Style="{StaticResource ItemTextStyle}" Margin="10,2,0,0" />
                     <Image Source="/Assets/share.png" Height="32" Width="32" Margin="-4,0,0,0"/>
                 </StackPanel>
             </Grid>
@@ -308,11 +308,10 @@
                         <StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
                                 <Image Source="{Binding ImageSource}" Width="48" Height="48"  />
-                                <TextBlock Text="{Binding User}" Margin="5,0,0,0" FontSize="24" />
+                                <TextBlock Text="{Binding User}" Margin="5,5,0,0" Style="{StaticResource SubheaderTextStyle}" />
                             </StackPanel>
-                            <TextBlock Text="{Binding Message}" FontSize="18" Margin="15,0,0,0" TextWrapping="Wrap"/>
-                            <TextBlock FontSize="8" />
-                            <TextBlock Text="{Binding PubDate}" FontSize="8" Margin="15,2,0,0"/>
+                            <TextBlock Text="{Binding Message}" Style="{StaticResource ItemTextStyle}" Margin="15,0,0,0" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding PubDate}" Style="{StaticResource ItemTextStyle}" FontSize="8" Margin="15,0,0,10"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

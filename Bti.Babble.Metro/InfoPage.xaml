@@ -8,7 +8,14 @@
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ApplicationPageBackgroundBrush}">
-        <Grid Background="{StaticResource ApplicationPageBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Info" Style="{StaticResource PageHeaderTextStyle}" Margin="40" />
+
+        <Grid Grid.Row="1" Background="{StaticResource ApplicationPageBackgroundBrush}">
             <WebView x:Name="ContentView" />
         </Grid>
     </Grid>

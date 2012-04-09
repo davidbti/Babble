@@ -12,16 +12,16 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
+// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace Bti.Babble.Metro
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class StoryPage : Page
+    public sealed partial class BasicPage1 : Bti.Babble.Metro.Common.LayoutAwarePage
     {
-        public StoryPage()
+        public BasicPage1()
         {
             this.InitializeComponent();
         }
@@ -33,16 +33,6 @@ namespace Bti.Babble.Metro
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-        }
-
-        private void ReadMore_Click(object sender, RoutedEventArgs e)
-        {
-            var button = (HyperlinkButton) e.OriginalSource;
-            var link = button.Tag.ToString();
-            if (link.Length > 0)
-            {
-                Windows.System.Launcher.LaunchUriAsync(new Uri(link));
-            }
         }
     }
 }

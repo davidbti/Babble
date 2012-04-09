@@ -8,7 +8,14 @@
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ApplicationPageBackgroundBrush}">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Comment" Style="{StaticResource PageHeaderTextStyle}" Margin="40" />
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
                 <Image Source="{Binding ImageSource}" Width="48" Height="48"  />
                 <TextBlock Text="{Binding User}" Margin="5,0,0,0" FontSize="24" />
