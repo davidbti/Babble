@@ -14,7 +14,7 @@ namespace Bti.Babble.Automation
         private bool isRepeat;
         private bool isRunning;
         private BabbleEvent nextEvent;
-        private int repeatSeconds;
+        private int repeatMilliseconds;
         private IBabbleEventRepository repository;
         private DateTime repeatTime;
         private DateTime startTime;
@@ -60,13 +60,13 @@ namespace Bti.Babble.Automation
             }
         }
 
-        public int RepeatSeconds
+        public int RepeatMilliseconds
         {
-            get { return this.repeatSeconds; }
+            get { return this.repeatMilliseconds; }
             set
             {
-                this.repeatSeconds = value;
-                RaisePropertyChanged("RepeatSeconds");
+                this.repeatMilliseconds = value;
+                RaisePropertyChanged("RepeatMilliseconds");
             }
         }
 
@@ -167,7 +167,7 @@ namespace Bti.Babble.Automation
             while (true)
             {
                 var repeatElapsed = DateTime.Now.Subtract(this.repeatTime);
-                var repeatSpan = new TimeSpan(0, 0, this.RepeatSeconds);
+                var repeatSpan = TimeSpan.FromMilliseconds(this.repeatMilliseconds);
                 if (repeatElapsed >= repeatSpan)
                 {
                     return;

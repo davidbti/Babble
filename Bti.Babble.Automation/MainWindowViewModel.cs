@@ -44,10 +44,10 @@ namespace Bti.Babble.Automation
             set { this.server.IsRepeat = value; }
         }
 
-        public int RepeatSeconds
+        public int RepeatMilliseconds
         {
-            get { return this.server.RepeatSeconds; }
-            set { this.server.RepeatSeconds = value; }
+            get { return this.server.RepeatMilliseconds; }
+            set { this.server.RepeatMilliseconds = value; }
         }
 
         void Server_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -66,7 +66,7 @@ namespace Bti.Babble.Automation
                 case "NextEvent":
                     this.OnPropertyChanged(e);
                     break;
-                case "RepeatSeconds":
+                case "RepeatMilliseconds":
                     this.OnPropertyChanged(e);
                     break;
             }

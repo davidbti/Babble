@@ -14,10 +14,13 @@ namespace Bti.Babble.Model.Entity
             return new Model.InfoEvent()
             {
                 Id = this.Id,
+                Description = this.Description,
                 Image = this.Image,
                 Link = this.Link,
                 Message = this.Message,
                 PubDate = this.PubDate,
+                InfoImage = this.InfoImage,
+                Title = this.Title,
                 Type = this.Type,
                 User = this.User
             };
@@ -29,10 +32,13 @@ namespace Bti.Babble.Model.Entity
             return new InfoEvent()
             {
                 Id = o.Id,
+                Description = o.Description,
                 Image = o.Image,
                 Link = o.Link,
                 Message = o.Message,
                 PubDate = o.PubDate,
+                InfoImage = o.InfoImage,
+                Title = o.Title,
                 Type = o.Type,
                 User = o.User
             };

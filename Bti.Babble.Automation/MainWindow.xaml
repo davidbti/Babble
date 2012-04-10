@@ -32,8 +32,8 @@
             <CheckBox Margin="3" IsChecked="{Binding IsRepeat, Mode=TwoWay}">
                 <TextBlock Foreground="Black" >Repeat after</TextBlock>
             </CheckBox>
-            <TextBox Margin="3" Width="30" Text="{Binding RepeatSeconds, Mode=TwoWay}" />
-            <TextBlock Foreground="Black" Margin="3" >Seconds</TextBlock>
+            <TextBox Margin="3" Width="46" Text="{Binding RepeatMilliseconds, Mode=TwoWay}" />
+            <TextBlock Foreground="Black" Margin="3" >Milliseconds</TextBlock>
         </WrapPanel>
         <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
             <TextBlock TextAlignment="Center" Foreground="Blue" FontWeight="Bold">Next event</TextBlock>

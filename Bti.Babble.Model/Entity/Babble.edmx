@@ -90,13 +90,17 @@
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Link" Type="nvarchar(max)" Nullable="false" />
     <Property Name="StoryImage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StoryText" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="BabbleEvents_InfoEvent">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Link" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="InfoImage" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="PollEventPollResponse">
@@ -237,9 +241,13 @@
           <Property Type="String" Name="Description" Nullable="false" />
           <Property Type="String" Name="Link" Nullable="false" />
           <Property Type="String" Name="StoryImage" Nullable="false" />
+          <Property Type="String" Name="StoryText" Nullable="false" />
         </EntityType>
         <EntityType Name="InfoEvent" BaseType="Babble.BabbleEvent" >
+          <Property Type="String" Name="Title" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" />
           <Property Type="String" Name="Link" Nullable="false" />
+          <Property Type="String" Name="InfoImage" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -286,12 +294,16 @@
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Link" ColumnName="Link" />
           <ScalarProperty Name="StoryImage" ColumnName="StoryImage" />
+          <ScalarProperty Name="StoryText" ColumnName="StoryText" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Babble.InfoEvent)">
         <MappingFragment StoreEntitySet="BabbleEvents_InfoEvent">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="InfoImage" ColumnName="InfoImage" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -347,13 +359,13 @@
           <ConnectorPoint PointX="5.125" PointY="2.9706835937499996" />
           <ConnectorPoint PointX="5.125" PointY="3.875" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="Babble.StoryEvent" Width="1.5" PointX="9.75" PointY="1.125" Height="1.787985026041667" />
-        <InheritanceConnector EntityType="Babble.StoryEvent" >
-          <ConnectorPoint PointX="8.375" PointY="2.3939925130208337" />
-          <ConnectorPoint PointX="9.75" PointY="2.3939925130208337" />
+        <EntityTypeShape EntityType="Babble.StoryEvent" Width="1.5" PointX="9.75" PointY="1.125" Height="1.9802864583333331" />
+        <InheritanceConnector EntityType="Babble.StoryEvent" ManuallyRouted="false" >
+          <ConnectorPoint PointX="8.375" PointY="2.4901432291666667" />
+          <ConnectorPoint PointX="9.75" PointY="2.4901432291666667" />
         </InheritanceConnector>
-        <EntityTypeShape EntityType="Babble.InfoEvent" Width="1.5" PointX="9.75" PointY="5.625" Height="1.2110807291666665" />
-        <InheritanceConnector EntityType="Babble.InfoEvent" >
+        <EntityTypeShape EntityType="Babble.InfoEvent" Width="1.5" PointX="9.75" PointY="5.625" Height="1.0187792968749996" />
+        <InheritanceConnector EntityType="Babble.InfoEvent" ManuallyRouted="false" >
           <ConnectorPoint PointX="7.625" PointY="4.047587890625" />
           <ConnectorPoint PointX="7.625" PointY="5.433" />
           <ConnectorPoint PointX="10.5" PointY="5.433" />
