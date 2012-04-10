@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 04/03/2012 11:37:56
+-- Date Created: 04/09/2012 09:29:11
 -- Generated from EDMX file: C:\BTi\Projects\Babble\Bti.Babble.Model\Entity\Babble.edmx
 -- --------------------------------------------------
 
@@ -32,6 +32,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_StoryEvent_inherits_BabbleEvent]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[BabbleEvents_StoryEvent] DROP CONSTRAINT [FK_StoryEvent_inherits_BabbleEvent];
 GO
+IF OBJECT_ID(N'[dbo].[FK_InfoEvent_inherits_BabbleEvent]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[BabbleEvents_InfoEvent] DROP CONSTRAINT [FK_InfoEvent_inherits_BabbleEvent];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -54,6 +57,9 @@ IF OBJECT_ID(N'[dbo].[BabbleEvents_CouponEvent]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[BabbleEvents_StoryEvent]', 'U') IS NOT NULL
     DROP TABLE [dbo].[BabbleEvents_StoryEvent];
+GO
+IF OBJECT_ID(N'[dbo].[BabbleEvents_InfoEvent]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[BabbleEvents_InfoEvent];
 GO
 
 -- --------------------------------------------------
@@ -110,13 +116,17 @@ CREATE TABLE [dbo].[BabbleEvents_StoryEvent] (
     [Description] nvarchar(max)  NOT NULL,
     [Link] nvarchar(max)  NOT NULL,
     [StoryImage] nvarchar(max)  NOT NULL,
+    [StoryText] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'BabbleEvents_InfoEvent'
 CREATE TABLE [dbo].[BabbleEvents_InfoEvent] (
+    [Title] nvarchar(max)  NOT NULL,
+    [Description] nvarchar(max)  NOT NULL,
     [Link] nvarchar(max)  NOT NULL,
+    [InfoImage] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
 );
 GO

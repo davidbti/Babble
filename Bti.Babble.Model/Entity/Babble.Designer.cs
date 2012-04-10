@@ -515,8 +515,11 @@ namespace Bti.Babble.Model.Entity
         /// <param name="user">Initial value of the User property.</param>
         /// <param name="message">Initial value of the Message property.</param>
         /// <param name="image">Initial value of the Image property.</param>
+        /// <param name="title">Initial value of the Title property.</param>
+        /// <param name="description">Initial value of the Description property.</param>
         /// <param name="link">Initial value of the Link property.</param>
-        public static InfoEvent CreateInfoEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String link)
+        /// <param name="infoImage">Initial value of the InfoImage property.</param>
+        public static InfoEvent CreateInfoEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String title, global::System.String description, global::System.String link, global::System.String infoImage)
         {
             InfoEvent infoEvent = new InfoEvent();
             infoEvent.Id = id;
@@ -525,12 +528,63 @@ namespace Bti.Babble.Model.Entity
             infoEvent.User = user;
             infoEvent.Message = message;
             infoEvent.Image = image;
+            infoEvent.Title = title;
+            infoEvent.Description = description;
             infoEvent.Link = link;
+            infoEvent.InfoImage = infoImage;
             return infoEvent;
         }
 
         #endregion
         #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -555,6 +609,30 @@ namespace Bti.Babble.Model.Entity
         private global::System.String _Link;
         partial void OnLinkChanging(global::System.String value);
         partial void OnLinkChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String InfoImage
+        {
+            get
+            {
+                return _InfoImage;
+            }
+            set
+            {
+                OnInfoImageChanging(value);
+                ReportPropertyChanging("InfoImage");
+                _InfoImage = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("InfoImage");
+                OnInfoImageChanged();
+            }
+        }
+        private global::System.String _InfoImage;
+        partial void OnInfoImageChanging(global::System.String value);
+        partial void OnInfoImageChanged();
 
         #endregion
     
@@ -872,7 +950,8 @@ namespace Bti.Babble.Model.Entity
         /// <param name="description">Initial value of the Description property.</param>
         /// <param name="link">Initial value of the Link property.</param>
         /// <param name="storyImage">Initial value of the StoryImage property.</param>
-        public static StoryEvent CreateStoryEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String title, global::System.String description, global::System.String link, global::System.String storyImage)
+        /// <param name="storyText">Initial value of the StoryText property.</param>
+        public static StoryEvent CreateStoryEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String title, global::System.String description, global::System.String link, global::System.String storyImage, global::System.String storyText)
         {
             StoryEvent storyEvent = new StoryEvent();
             storyEvent.Id = id;
@@ -885,6 +964,7 @@ namespace Bti.Babble.Model.Entity
             storyEvent.Description = description;
             storyEvent.Link = link;
             storyEvent.StoryImage = storyImage;
+            storyEvent.StoryText = storyText;
             return storyEvent;
         }
 
@@ -986,6 +1066,30 @@ namespace Bti.Babble.Model.Entity
         private global::System.String _StoryImage;
         partial void OnStoryImageChanging(global::System.String value);
         partial void OnStoryImageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String StoryText
+        {
+            get
+            {
+                return _StoryText;
+            }
+            set
+            {
+                OnStoryTextChanging(value);
+                ReportPropertyChanging("StoryText");
+                _StoryText = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("StoryText");
+                OnStoryTextChanged();
+            }
+        }
+        private global::System.String _StoryText;
+        partial void OnStoryTextChanging(global::System.String value);
+        partial void OnStoryTextChanged();
 
         #endregion
     

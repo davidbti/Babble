@@ -9,6 +9,7 @@ namespace Bti.Babble.Model
         public string Description { get; set; }
         public string Link { get; set; }
         public string StoryImage { get; set; }
+        public string StoryText { get; set; }
 
         public StoryEvent() { }
 
@@ -24,6 +25,8 @@ namespace Bti.Babble.Model
             StoryImage = reader.ReadElementContentAsString();
             reader.MoveToContent();
             Link = reader.ReadElementContentAsString();
+            reader.MoveToContent();
+            StoryText = reader.ReadElementContentAsString();
             reader.ReadEndElement();
         }
 
@@ -36,6 +39,9 @@ namespace Bti.Babble.Model
             writer.WriteElementString("description", Description);
             writer.WriteElementString("image", StoryImage);
             writer.WriteElementString("link", Link);
+            writer.WriteStartElement("text");
+            writer.WriteCData(StoryText);
+            writer.WriteEndElement();
             writer.WriteEndElement();
             writer.WriteEndElement();
         }

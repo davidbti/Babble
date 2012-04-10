@@ -20,6 +20,7 @@ namespace Bti.Babble.Model.Entity
                 Message = this.Message,
                 PubDate = this.PubDate,
                 StoryImage = this.StoryImage,
+                StoryText = this.StoryText,
                 Title = this.Title,
                 Type = this.Type,
                 User = this.User
@@ -38,6 +39,7 @@ namespace Bti.Babble.Model.Entity
                 Message = o.Message,
                 PubDate = o.PubDate,
                 StoryImage = o.StoryImage,
+                StoryText = o.StoryText,
                 Title = o.Title,
                 Type = o.Type,
                 User = o.User
