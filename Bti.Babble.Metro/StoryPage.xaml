@@ -9,18 +9,33 @@
 
     <Grid Background="{StaticResource ApplicationPageBackgroundBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="140" />
+            <RowDefinition Height="80" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Story" Style="{StaticResource PageHeaderTextStyle}" Margin="40" />
+        <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Story" Style="{StaticResource HeaderTextStyle}" Margin="40,20" />
 
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0, 10">
-            <TextBlock HorizontalAlignment="Center" Style="{StaticResource SubheaderTextStyle}" Text="{Binding Title}" TextWrapping="Wrap" />
-            <HyperlinkButton x:Name="ReadMore" Tag="{Binding Link}" Click="ReadMore_Click" Margin="0,10,0,0">
-                <Image Source="{Binding StoryImage}" Stretch="UniformToFill" Width="950" Height="534"/>
-            </HyperlinkButton>
-            <TextBlock HorizontalAlignment="Left" Style="{StaticResource ItemTextStyle}" Text="{Binding Description}" Margin="0,10,0,0" TextWrapping="Wrap" />
-        </StackPanel>
+        <Grid Grid.Row="1" Margin="40,10,0,40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Style="{StaticResource SubheaderTextStyle}" Text="{Binding Title}" TextWrapping="Wrap" />
+            <Image Grid.Row="2" Source="{Binding StoryImage}" />
+            <RichTextBlock Grid.Row="3" Grid.Column="0" x:Name="Column1" OverflowContentTarget="{Binding ElementName=Column2}">
+                <Paragraph>
+                    <Run Text="{Binding StoryText}" FontSize="{StaticResource ContentFontSize}" FontFamily="{StaticResource ContentFontFamily}" /> 
+                </Paragraph>
+            </RichTextBlock>
+            <RichTextBlockOverflow Grid.Row="2" Grid.RowSpan="2" Grid.Column="2" x:Name="Column2" />
+        </Grid>
     </Grid>
 </Page>

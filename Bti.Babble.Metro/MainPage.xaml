@@ -321,7 +321,7 @@
             <Frame x:Name="BodyFrame" Grid.Column="2">
                 <Frame.ContentTransitions>
                     <TransitionCollection>
-                        <ContentThemeTransition/>
+                        <EntranceThemeTransition/>
                     </TransitionCollection>
                 </Frame.ContentTransitions>
             </Frame>

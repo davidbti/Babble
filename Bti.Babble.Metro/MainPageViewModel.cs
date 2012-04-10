@@ -90,7 +90,9 @@ namespace Bti.Babble.Metro
                             {
                                 var evt = BabbleEvent.CreateFromXmlReader(reader);
                                 var story = evt as StoryEvent;
-                                if (story != null) { LoadStoryEventImage(story); } 
+                                if (story != null) { LoadStoryEventImage(story); }
+                                var info = evt as InfoEvent;
+                                if (info != null) { LoadInfoEventImage(info); }
                                 LoadBabbleEventImage(evt);
                                 BabbleEvents.Insert(0, evt);
                                 BabbleEvents.RemoveAt(BabbleEvents.Count - 1);
@@ -107,6 +109,12 @@ namespace Bti.Babble.Metro
         {
             var uri = new Uri(evt.Image);
             evt.ImageSource = new BitmapImage(uri);
+        }
+
+        private void LoadInfoEventImage(InfoEvent evt)
+        {
+            var uri = new Uri(evt.InfoImage);
+            evt.InfoImageSource = new BitmapImage(uri);
         }
 
         private void LoadStoryEventImage(StoryEvent evt)

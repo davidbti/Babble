@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Bti.Babble.Metro.Model;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -34,14 +33,15 @@ namespace Bti.Babble.Metro
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var info = DataContext as InfoEvent;
-            if (info != null)
+        }
+
+        private void ReadMore_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (HyperlinkButton) e.OriginalSource;
+            var link = button.Tag.ToString();
+            if (link.Length > 0)
             {
-                if (info.Link.Length > 0)
-                {
-                    var uri = new Uri(info.Link);
-                    ContentView.Navigate(uri);
-                }
+                Windows.System.Launcher.LaunchUriAsync(new Uri(link));
             }
         }
     }
