@@ -16,7 +16,7 @@
         <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Poll" Style="{StaticResource HeaderTextStyle}" Margin="40,20" />
 
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,10,0,0">
-            <Image Height="350" Width="700" Source="Assets/poll_adopt.png" />
+            <Image x:Name="PollImage" Height="350" Width="700" Source="{Binding PollImageSource}" />
             <TextBlock Style="{StaticResource SubheaderTextStyle}" Text="{Binding Question}" 
                        TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,20,0,0" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">

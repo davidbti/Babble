@@ -29,7 +29,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Style="{StaticResource SubheaderTextStyle}" Text="{Binding Title}" TextWrapping="Wrap" />
-            <Image Grid.Row="2" Source="{Binding StoryImage}" />
+            <Image Grid.Row="2" Source="{Binding StoryImageSource}" />
             <RichTextBlock Grid.Row="3" Grid.Column="0" x:Name="Column1" OverflowContentTarget="{Binding ElementName=Column2}">
                 <Paragraph>
                     <Run Text="{Binding StoryText}" FontSize="{StaticResource ContentFontSize}" FontFamily="{StaticResource ContentFontFamily}" /> 

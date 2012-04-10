@@ -16,13 +16,14 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Bti.Babble.Metro.App">
-      <VisualElements DisplayName="My WKRN" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="My WKRN" ForegroundText="light" BackgroundColor="#222222">
+      <VisualElements DisplayName="My News 2" Logo="Assets\Wkrn.jpg" SmallLogo="Assets\WkrnSmall.jpg" Description="My News 2" ForegroundText="light" BackgroundColor="#222222">
         <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="Assets\SplashScreen.png" />
+        <SplashScreen Image="Assets\WkrnSplash.jpg" BackgroundColor="#A4DCF3" />
       </VisualElements>
     </Application>
   </Applications>
   <Capabilities>
+    <Capability Name="picturesLibrary" />
     <Capability Name="internetClient" />
   </Capabilities>
 </Package>

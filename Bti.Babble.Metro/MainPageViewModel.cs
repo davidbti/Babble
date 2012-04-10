@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.System.Threading;
 using Windows.UI.Core;
+using Windows.Storage;
 
 namespace Bti.Babble.Metro
 {
@@ -63,7 +64,7 @@ namespace Bti.Babble.Metro
                             if (reader.NodeType == XmlNodeType.Element && reader.LocalName == "event")
                             {
                                 var evt = BabbleEvent.CreateFromXmlReader(reader);
-                                LoadBabbleEventImage(evt);
+                                LoadEventImages(evt);
                                 BabbleEvents.Add(evt);
                             }
                         }
@@ -89,11 +90,7 @@ namespace Bti.Babble.Metro
                             if (reader.NodeType == XmlNodeType.Element && reader.LocalName == "event")
                             {
                                 var evt = BabbleEvent.CreateFromXmlReader(reader);
-                                var story = evt as StoryEvent;
-                                if (story != null) { LoadStoryEventImage(story); }
-                                var info = evt as InfoEvent;
-                                if (info != null) { LoadInfoEventImage(info); }
-                                LoadBabbleEventImage(evt);
+                                LoadEventImages(evt);
                                 BabbleEvents.Insert(0, evt);
                                 BabbleEvents.RemoveAt(BabbleEvents.Count - 1);
                                 SelectedEvent = evt;
@@ -105,22 +102,63 @@ namespace Bti.Babble.Metro
             }
         }
 
-        private void LoadBabbleEventImage(BabbleEvent evt)
+        private async void LoadBabbleEventImage(BabbleEvent evt)
         {
             var uri = new Uri(evt.Image);
-            evt.ImageSource = new BitmapImage(uri);
+            evt.ImageSource = await LoadBitmapFromLocal(uri);
         }
 
-        private void LoadInfoEventImage(InfoEvent evt)
+        private async Task<BitmapImage> LoadBitmapFromLocal(Uri uri)
+        {
+            var localpath = uri.LocalPath.Split('/');
+            var b = new BitmapImage();
+            var m = await Windows.Storage.KnownFolders.PicturesLibrary.GetFolderAsync(localpath[1]);
+            var c = await m.GetFolderAsync(localpath[2]);
+            var i = await c.GetFileAsync(localpath[3]);
+            b.SetSource(await i.OpenAsync(FileAccessMode.Read));
+            return b;
+        }
+
+        private void LoadEventImages(BabbleEvent evt)
+        {
+            var story = evt as StoryEvent;
+            if (story != null) { LoadStoryEventImage(story); }
+            var info = evt as InfoEvent;
+            if (info != null) { LoadInfoEventImage(info); }
+            var poll = evt as PollEvent;
+            if (poll != null) { LoadPollEventImage(poll); }
+            LoadBabbleEventImage(evt);
+        }
+
+        private async void LoadInfoEventImage(InfoEvent evt)
         {
             var uri = new Uri(evt.InfoImage);
-            evt.InfoImageSource = new BitmapImage(uri);
+            evt.InfoImageSource = await LoadBitmapFromLocal(uri);
         }
 
-        private void LoadStoryEventImage(StoryEvent evt)
+        private async void LoadPollEventImage(PollEvent evt)
+        {
+            switch (evt.Question.ToLower())
+            {
+                case "would you adopt a child with a heart condition?":
+                    var uri1 = new Uri("http://prod.bti.tv/media/content/poll_heart.png");
+                    evt.PollImageSource = await LoadBitmapFromLocal(uri1);
+                    break;
+                case "is middle tennessee a good place to raise an adopted child?":
+                    var uri2 = new Uri("http://prod.bti.tv/media/content/poll_adopt.png");
+                    evt.PollImageSource = await LoadBitmapFromLocal(uri2);
+                    break;
+                case "have you been enjoying these warmer than usual days?":
+                    var uri3 = new Uri("http://prod.bti.tv/media/content/poll_weather.png");
+                    evt.PollImageSource = await LoadBitmapFromLocal(uri3);
+                    break;
+            }
+        }
+
+        private async void LoadStoryEventImage(StoryEvent evt)
         {
             var uri = new Uri(evt.StoryImage);
-            evt.StoryImageSource = new BitmapImage(uri);
+            evt.StoryImageSource = await LoadBitmapFromLocal(uri);
         }
     }
 }

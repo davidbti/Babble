@@ -27,7 +27,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="0" HorizontalAlignment="Center" Style="{StaticResource SubheaderTextStyle}" Text="{Binding Description}" TextWrapping="Wrap" />
             <HyperlinkButton Grid.Row="2" x:Name="ReadMore" Tag="{Binding Link}" Click="ReadMore_Click">
-                <Image HorizontalAlignment="Center" Source="{Binding InfoImage}" Stretch="Uniform"/>
+                <Image HorizontalAlignment="Center" Source="{Binding InfoImageSource}" Stretch="UniformToFill"/>
             </HyperlinkButton>
         </Grid>
     </Grid>
