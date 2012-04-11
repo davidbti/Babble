@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="11be5455-ee64-44f8-b4d7-a3d64a750c5d" Publisher="CN=matt" Version="1.0.0.0" />
+  <Properties>
+    <DisplayName>Bti.Babble.Dashboard</DisplayName>
+    <PublisherDisplayName>matt</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+    <Description>Bti.Babble.Dashboard</Description>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2</OSMinVersion>
+    <OSMaxVersionTested>6.2</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Bti.Babble.Dashboard.App">
+      <VisualElements DisplayName="Social Television" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Social Television" ForegroundText="light" BackgroundColor="#222222">
+        <DefaultTile ShowName="allLogos" />
+        <SplashScreen Image="Assets\SplashScreen.png" />
+      </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>
