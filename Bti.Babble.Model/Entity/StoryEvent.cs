@@ -21,6 +21,7 @@ namespace Bti.Babble.Model.Entity
                 PubDate = this.PubDate,
                 StoryImage = this.StoryImage,
                 StoryText = this.StoryText,
+                Time = ConvertTimeToTimespan(this.Time),
                 Title = this.Title,
                 Type = this.Type,
                 User = this.User
@@ -41,6 +42,7 @@ namespace Bti.Babble.Model.Entity
                 StoryImage = o.StoryImage,
                 StoryText = o.StoryText,
                 Title = o.Title,
+                Time = ConvertTimespanToTime(o.Time),
                 Type = o.Type,
                 User = o.User
             };

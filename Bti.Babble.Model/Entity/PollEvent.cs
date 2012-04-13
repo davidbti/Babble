@@ -19,6 +19,7 @@ namespace Bti.Babble.Model.Entity
                 PubDate = this.PubDate,
                 Question = this.Question,
                 Responses = (from o in this.PollResponses select o.ToModelObject()).ToList(),
+                Time = ConvertTimeToTimespan(this.Time),
                 Type = this.Type,
                 User = this.User,
                 Votes = this.Votes
@@ -36,6 +37,7 @@ namespace Bti.Babble.Model.Entity
                 PubDate = o.PubDate,
                 Question = o.Question,
                 PollResponses = ToEntityCollection(o.Responses),
+                Time = ConvertTimespanToTime(o.Time),
                 Type = o.Type,
                 User = o.User,
                 Votes = o.Votes

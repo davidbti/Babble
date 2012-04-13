@@ -21,6 +21,7 @@ namespace Bti.Babble.Model.Entity
                 Message = this.Message,
                 PubDate = this.PubDate,
                 Store = this.Store,
+                Time = ConvertTimeToTimespan(this.Time),
                 Type = this.Type,
                 User = this.User
             };
@@ -39,6 +40,7 @@ namespace Bti.Babble.Model.Entity
                 Message = o.Message,
                 PubDate = o.PubDate,
                 Store = o.Store,
+                Time = ConvertTimespanToTime(o.Time),
                 Type = o.Type,
                 User = o.User
             };
