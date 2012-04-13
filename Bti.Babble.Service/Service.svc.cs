@@ -8,6 +8,8 @@ using System.Xml.Serialization;
 using System.IO;
 using Bti.Babble.Model;
 using Bti.Babble.Model.Entity;
+using System.Xml;
+using System.Text;
 
 namespace Bti.Babble.Service
 {
@@ -60,6 +62,53 @@ namespace Bti.Babble.Service
         public babble GetBabbleEventsSinceAsJson(string viewerId, string id)
         {
             return GetBabbleEventsSince(viewerId, id);
+        }
+
+        private babble GetTwitterEvents(int resultsPerPage, string query)
+        {
+            var events = new babble();
+            var request = new TwitterRequest(resultsPerPage, query);
+            foreach (var evt in request.Download())
+            {
+                events.Add(evt);
+            }
+            return events;
+        }
+
+        public babble GetTwitterEventsAsXml(int resultsPerPage, string query)
+        {
+            return GetTwitterEvents(resultsPerPage, query);
+        }
+
+        public babble GetTwitterEventsAsJson(int resultsPerPage, string query)
+        {
+            return GetTwitterEvents(resultsPerPage, query);
+        }
+
+        private void PostBabbleEvents(XmlElement events)
+        {
+            var response = new babble();
+            var buffer = Encoding.UTF8.GetBytes(events.OuterXml);
+            using (var stream = new MemoryStream(buffer))
+            {
+                using (var reader = XmlReader.Create(stream))
+                {
+                    response.ReadXml(reader);
+                }
+            }
+            using (var context = new BabbleContainer())
+            {
+                var repository = new BabbleEventRepository(context);
+                foreach (var evt in response)
+                {
+                    repository.Save(evt);
+                }
+            }
+        }
+
+        public void PostBabbleEventsAsXml(XmlElement events)
+        {
+            PostBabbleEvents(events);
         }
     }
 }

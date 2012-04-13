@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 04/09/2012 09:29:11
+-- Date Created: 04/12/2012 16:53:00
 -- Generated from EDMX file: C:\BTi\Projects\Babble\Bti.Babble.Model\Entity\Babble.edmx
 -- --------------------------------------------------
 
@@ -73,7 +73,8 @@ CREATE TABLE [dbo].[BabbleEvents] (
     [Type] nvarchar(max)  NOT NULL,
     [User] nvarchar(max)  NOT NULL,
     [Message] nvarchar(max)  NOT NULL,
-    [Image] nvarchar(max)  NOT NULL
+    [Image] nvarchar(max)  NOT NULL,
+    [Time] nvarchar(max)  NOT NULL
 );
 GO
 

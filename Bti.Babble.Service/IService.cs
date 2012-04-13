@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.IO;
+using System.Xml;
 
 namespace Bti.Babble.Service
 {
@@ -30,6 +31,7 @@ namespace Bti.Babble.Service
             ResponseFormat = WebMessageFormat.Xml,
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "xml/babble/{viewer}/{id}")]
+        [return: MessageParameter(Name = "babble")]
         babble GetBabbleEventsSinceAsXml(string viewer, string id);
 
         [OperationContract]
@@ -38,6 +40,29 @@ namespace Bti.Babble.Service
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "json/babble/{viewer}/{id}")]
         babble GetBabbleEventsSinceAsJson(string viewer, string id);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Xml,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "xml/twitter?rpp={resultsPerPage}&q={query}")]
+        [return: MessageParameter(Name = "babble")]
+        babble GetTwitterEventsAsXml(int resultsPerPage, string query);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "json/twitter?rpp={resultsPerPage}&q={query}")]
+        babble GetTwitterEventsAsJson(int resultsPerPage, string query);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+            ResponseFormat = WebMessageFormat.Xml,
+            RequestFormat = WebMessageFormat.Xml,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "xml/babble/")]
+        void PostBabbleEventsAsXml(XmlElement events);
 
     }
 }

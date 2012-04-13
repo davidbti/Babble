@@ -89,11 +89,17 @@ namespace Bti.Babble.Model
             writer.WriteStartElement("header");
             writer.WriteElementString("id", Id.ToString());
             writer.WriteElementString("pubDate", PubDate.ToUniversalTime().ToString());
+            writer.WriteElementString("time", ConvertTimespanToTime(Time));
             writer.WriteElementString("type", Type);
             writer.WriteElementString("user", User);
             writer.WriteElementString("message", Message);
             writer.WriteElementString("image", Image);
             writer.WriteEndElement();
+        }
+
+        internal static string ConvertTimespanToTime(TimeSpan timespan)
+        {
+            return timespan.Hours.ToString("D2") + ":" + timespan.Minutes.ToString("D2") + ":" + timespan.Seconds.ToString("D2");
         }
 
         public virtual void WriteXml(System.Xml.XmlWriter writer)

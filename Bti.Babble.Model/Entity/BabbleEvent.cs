@@ -17,9 +17,21 @@ namespace Bti.Babble.Model.Entity
                 Image = this.Image,
                 Message = this.Message,
                 PubDate = this.PubDate,
+                Time = ConvertTimeToTimespan(this.Time),
                 Type = this.Type,
                 User = this.User
             };
+        }
+
+        internal TimeSpan ConvertTimeToTimespan(string time)
+        {
+            var timesplit = time.Split(':');
+            return new TimeSpan(int.Parse(timesplit[0]), int.Parse(timesplit[1]), int.Parse(timesplit[2]));
+        }
+
+        internal static string ConvertTimespanToTime(TimeSpan timespan)
+        {
+            return timespan.Hours.ToString("D2") + ":" + timespan.Minutes.ToString("D2") + ":" + timespan.Seconds.ToString("D2");
         }
     }
 }
