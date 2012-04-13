@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using Windows.UI.Xaml.Media;
 
 namespace Bti.Babble.Metro.Model
 {
@@ -8,6 +9,7 @@ namespace Bti.Babble.Metro.Model
     {
         public string Question { get; set; }
         public int Votes { get; set; }
+        public ImageSource PollImageSource { get; set; }
         public List<PollResponse> Responses { get; set; }
 
         public PollEvent()

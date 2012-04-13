@@ -11,6 +11,7 @@ namespace Bti.Babble.Metro.Model
         public string Link { get; set; }
         public string StoryImage { get; set; }
         public ImageSource StoryImageSource { get; set; }
+        public string StoryText { get; set; }
 
         public StoryEvent() { }
 
@@ -26,6 +27,8 @@ namespace Bti.Babble.Metro.Model
             StoryImage = reader.ReadElementContentAsString();
             reader.MoveToContent();
             Link = reader.ReadElementContentAsString();
+            reader.MoveToContent();
+            StoryText = reader.ReadElementContentAsString();
             reader.ReadEndElement();
         }
 
@@ -38,6 +41,9 @@ namespace Bti.Babble.Metro.Model
             writer.WriteElementString("description", Description);
             writer.WriteElementString("image", StoryImage);
             writer.WriteElementString("link", Link);
+            writer.WriteStartElement("text");
+            writer.WriteCData(StoryText);
+            writer.WriteEndElement();
             writer.WriteEndElement();
             writer.WriteEndElement();
         }

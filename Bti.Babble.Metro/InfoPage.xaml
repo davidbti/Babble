@@ -9,14 +9,26 @@
 
     <Grid Background="{StaticResource ApplicationPageBackgroundBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="140" />
+            <RowDefinition Height="80" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Info" Style="{StaticResource PageHeaderTextStyle}" Margin="40" />
+        <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{Binding Title}" Style="{StaticResource HeaderTextStyle}" Margin="40,20" />
 
-        <Grid Grid.Row="1" Background="{StaticResource ApplicationPageBackgroundBrush}">
-            <WebView x:Name="ContentView" />
+        <Grid Grid.Row="1" Margin="40,10,0,40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" HorizontalAlignment="Center" Style="{StaticResource SubheaderTextStyle}" Text="{Binding Description}" TextWrapping="Wrap" />
+            <HyperlinkButton Grid.Row="2" x:Name="ReadMore" Tag="{Binding Link}" Click="ReadMore_Click">
+                <Image HorizontalAlignment="Center" Source="{Binding InfoImageSource}" Stretch="UniformToFill"/>
+            </HyperlinkButton>
         </Grid>
     </Grid>
 </Page>
