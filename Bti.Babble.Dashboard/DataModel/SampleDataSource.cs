@@ -10,6 +10,11 @@ using Windows.Foundation.Collections;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+using Bti.Babble.Dashboard.Model;
+using System.Net.Http;
+using System.Xml;
+using System.Threading.Tasks;
+using Windows.Storage;
 
 // The data model defined by this file serves as a representative example of a strongly-typed
 // model that supports notification when members are added, removed, or modified.  The property
@@ -91,6 +96,50 @@ namespace Bti.Babble.Dashboard.Data
             this._image = null;
             this._imagePath = path;
             this.OnPropertyChanged("Image");
+        }
+
+        private ObservableCollection<BabbleEvent> events;
+        
+        public ObservableCollection<BabbleEvent> BabbleEvents
+        {
+            get { return this.events; }
+            set
+            {
+                this.events = value;
+                OnPropertyChanged("BabbleEvents");
+            }
+        }
+
+        public async void LoadBabbleEvents()
+        {
+            var query = this.Subtitle;
+            this.BabbleEvents = new ObservableCollection<BabbleEvent>();
+            var client = new HttpClient();
+            var response = await client.GetAsync("http://prod.bti.tv/babble/service.svc/xml/twitter?rpp=48&q=" + System.Net.WebUtility.UrlEncode(query));
+            if (response.IsSuccessStatusCode)
+            {
+                using (var stream = response.Content.ReadAsStreamAsync().Result)
+                {
+                    using (var reader = XmlReader.Create(stream))
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader.NodeType == XmlNodeType.Element && reader.LocalName == "event")
+                            {
+                                var evt = BabbleEvent.CreateFromXmlReader(reader);
+                                LoadBabbleEventImage(evt);
+                                BabbleEvents.Add(evt);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private async void LoadBabbleEventImage(BabbleEvent evt)
+        {
+            var uri = new Uri(evt.Image);
+            evt.ImageSource = new BitmapImage(uri);
         }
     }
 

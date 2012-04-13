@@ -23,7 +23,7 @@
 
             <!-- Scenario #1 Resources -->
             <Style x:Key="SmallContentTextStyle" TargetType="TextBlock">
-                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="Foreground" Value="{StaticResource ApplicationTextBrush}"/>
                 <Setter Property="FontSize" Value="14.667"/>
                 <Setter Property="FontFamily" Value="{StaticResource ContentFontFamily}"/>
                 <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -33,21 +33,22 @@
             </Style>
             
             <DataTemplate x:Key="StoreFrontTileTemplate">
-                <Grid HorizontalAlignment="Left" Background="White">
-                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
-                        <Image Source="{Binding Image}" Height="60" Width="60" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <Grid HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal" Margin="10,14,0,0">
+                        <Image Source="{Binding ImageSource}" Height="48" Width="48" Stretch="Fill" VerticalAlignment="Center" Margin="0,0,10,0"/>
                         <StackPanel Margin="0,0,0,0" Orientation="Vertical">
-                            <TextBlock TextWrapping="Wrap" Style="{StaticResource SmallContentTextStyle}" Width="200" VerticalAlignment="Center" Text="{Binding Title}" HorizontalAlignment="Left" FontFamily="Segoe UI" />
-                            <TextBlock TextWrapping="Wrap" Width="200" MaxHeight="20" VerticalAlignment="Center" Text="{Binding Category}" HorizontalAlignment="Left" Foreground="Black" FontFamily="Segoe UI" FontSize="12"/>
+                            <TextBlock TextWrapping="Wrap" Style="{StaticResource SmallContentTextStyle}" Width="200" VerticalAlignment="Center" Text="{Binding User}" HorizontalAlignment="Left" FontFamily="Segoe UI" />
+                            <TextBlock TextWrapping="Wrap" Width="200" VerticalAlignment="Center" Text="{Binding Message}" HorizontalAlignment="Left" Foreground="{StaticResource ApplicationTextBrush}" FontFamily="Segoe UI" FontSize="12"/>
                         </StackPanel>
                     </StackPanel>
+                    <TextBlock Width="200" Text="{Binding PubDate}" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="{StaticResource ApplicationSecondaryTextBrush}" FontFamily="Segoe UI" FontSize="10" />
                 </Grid>
             </DataTemplate>
 
             <Style x:Key="StoreFrontTileStyle"  TargetType="ListViewItem">
                 <Setter Property="FontFamily" Value="Segoe UI" />
                 <Setter Property="Foreground" Value="White" />
-                <Setter Property="Height" Value="80" />
+                <Setter Property="Height" Value="140" />
                 <Setter Property="Width" Value="292" />
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="Margin" Value="0,0,8,8" />
@@ -58,7 +59,7 @@
             </Style>
 
             <ItemsPanelTemplate x:Key="StoreFrontGridItemsPanelTemplate">
-                <WrapGrid MaximumRowsOrColumns="3" VerticalChildrenAlignment="Top"
+                <WrapGrid VerticalChildrenAlignment="Top"
 					  HorizontalChildrenAlignment="Left" Margin="0,0,0,0"/>
             </ItemsPanelTemplate>
 

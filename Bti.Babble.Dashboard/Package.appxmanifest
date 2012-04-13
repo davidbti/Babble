@@ -16,13 +16,14 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Bti.Babble.Dashboard.App">
-      <VisualElements DisplayName="Social Television" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Social Television" ForegroundText="light" BackgroundColor="#222222">
+      <VisualElements DisplayName="Social Television" Logo="Assets\TheVoice_Logo.jpg" SmallLogo="Assets\TheVoice_Small.jpg" Description="Social Television" ForegroundText="light" BackgroundColor="#222222">
         <DefaultTile ShowName="allLogos" />
         <SplashScreen Image="Assets\SplashScreen.png" />
       </VisualElements>
     </Application>
   </Applications>
   <Capabilities>
+    <Capability Name="picturesLibrary" />
     <Capability Name="internetClient" />
   </Capabilities>
 </Package>

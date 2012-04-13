@@ -51,7 +51,7 @@
                     <Rectangle Grid.Row="0" Grid.ColumnSpan="6" Grid.RowSpan="2" Fill="#DDDDDD" />
                     <Rectangle Grid.Row="4" Grid.ColumnSpan="6" Grid.RowSpan="2" Fill="#DDDDDD" />
 
-                    <Image Grid.Row="0" Grid.RowSpan="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="48" Source="{Binding ImageSource}" />
+                    <Image Grid.Row="0" Grid.RowSpan="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="48" Source="{Binding Image}" />
                     <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource ItemTextStyle}" Text="Store" />
                     <TextBlock Grid.Row="0" Grid.Column="5" Style="{StaticResource ItemTextStyle}" Text="{Binding Store}" />
                     <TextBlock Grid.Row="2" Grid.Column="3" Style="{StaticResource ItemTextStyle}" Text="Coupon" />

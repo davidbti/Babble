@@ -49,7 +49,7 @@
             one item at a time, allowing the user to flip through all items in the chosen
             group
         -->
-        <GridView Grid.Row="1" x:Name="ItemGridView" BorderBrush="Gray" BorderThickness="1" Width="900" Height="Auto" Background="White"
+        <GridView Grid.Row="1" x:Name="ItemGridView" Height="Auto"
             ItemTemplate="{StaticResource StoreFrontTileTemplate}" 
             ItemContainerStyle="{StaticResource StoreFrontTileStyle}" 
             ItemsPanel="{StaticResource StoreFrontGridItemsPanelTemplate}" 

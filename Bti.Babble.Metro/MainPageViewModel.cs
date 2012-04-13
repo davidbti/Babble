@@ -105,7 +105,7 @@ namespace Bti.Babble.Metro
         private async void LoadBabbleEventImage(BabbleEvent evt)
         {
             var uri = new Uri(evt.Image);
-            evt.ImageSource = await LoadBitmapFromLocal(uri);
+            evt.ImageSource = LoadBitmapFromRemote(uri);
         }
 
         private async Task<BitmapImage> LoadBitmapFromLocal(Uri uri)
@@ -117,6 +117,11 @@ namespace Bti.Babble.Metro
             var i = await c.GetFileAsync(localpath[3]);
             b.SetSource(await i.OpenAsync(FileAccessMode.Read));
             return b;
+        }
+
+        private BitmapImage LoadBitmapFromRemote(Uri uri)
+        {
+            return new BitmapImage(uri);
         }
 
         private void LoadEventImages(BabbleEvent evt)

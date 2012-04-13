@@ -3,7 +3,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using Windows.UI.Xaml.Media;
 
-namespace Bti.Babble.Metro.Model
+namespace Bti.Babble.Dashboard.Model
 {
     public class BabbleEvent : IXmlSerializable
     {
@@ -18,7 +18,7 @@ namespace Bti.Babble.Metro.Model
 
         public BabbleEvent() { }
 
-        public BabbleEvent(BabbleEvent evt) 
+        public BabbleEvent(BabbleEvent evt)
         {
             Id = evt.Id;
             Time = evt.Time;
