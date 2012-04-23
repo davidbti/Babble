@@ -20,16 +20,28 @@ namespace Bti.Babble.Metro
 {
     class MainPageViewModel : BindableBase 
     {
-        private ObservableCollection<BabbleEvent> events;
+        private ObservableCollection<BabbleEvent> commentEvents;
+        private BabbleEvent lastEvent;
+        private ObservableCollection<BabbleEventGroup> shareEvents;
         private BabbleEvent selectedEvent;
-        
-        public ObservableCollection<BabbleEvent> BabbleEvents
+
+        public ObservableCollection<BabbleEvent> CommentEvents
         {
-            get { return this.events; }
+            get { return this.commentEvents; }
             set
             {
-                this.events = value;
-                OnPropertyChanged("BabbleEvents");
+                this.commentEvents = value;
+                OnPropertyChanged("CommentEvents");
+            }
+        }
+
+        public ObservableCollection<BabbleEventGroup> ShareEvents
+        {
+            get { return this.shareEvents; }
+            set
+            {
+                this.shareEvents = value;
+                OnPropertyChanged("ShareEvents");
             }
         }
 
@@ -50,7 +62,9 @@ namespace Bti.Babble.Metro
 
         private async void LoadBabbleEvents()
         {
-            this.BabbleEvents = new ObservableCollection<BabbleEvent>();
+            this.CommentEvents = new ObservableCollection<BabbleEvent>();
+            this.ShareEvents = new ObservableCollection<BabbleEventGroup>();
+            this.ShareEvents.Add(new BabbleEventGroup() { Title = "Shared Items", Events = new ObservableCollection<BabbleEvent>() });
             var client = new HttpClient();
             var response = await client.GetAsync("http://prod.bti.tv/babble/service.svc/xml/babble/amit");
             if (response.IsSuccessStatusCode)
@@ -65,7 +79,15 @@ namespace Bti.Babble.Metro
                             {
                                 var evt = BabbleEvent.CreateFromXmlReader(reader);
                                 LoadEventImages(evt);
-                                BabbleEvents.Add(evt);
+                                if (evt.Type == "comment")
+                                {
+                                    CommentEvents.Add(evt);
+                                }
+                                else
+                                {
+                                    ShareEvents[0].Events.Add(evt);
+                                }
+                                this.lastEvent = evt;
                             }
                         }
                     }
@@ -76,9 +98,8 @@ namespace Bti.Babble.Metro
 
         private async void LoadBabbleEventsSince()
         {
-            var lastEvent = BabbleEvents[0];
             var client = new HttpClient();
-            var response = await client.GetAsync("http://prod.bti.tv/babble/service.svc/xml/babble/amit/" + lastEvent.Id.ToString());
+            var response = await client.GetAsync("http://prod.bti.tv/babble/service.svc/xml/babble/amit/" + this.lastEvent.Id.ToString());
             if (response.IsSuccessStatusCode)
             {
                 using (var stream = response.Content.ReadAsStreamAsync().Result)
@@ -91,9 +112,32 @@ namespace Bti.Babble.Metro
                             {
                                 var evt = BabbleEvent.CreateFromXmlReader(reader);
                                 LoadEventImages(evt);
-                                BabbleEvents.Insert(0, evt);
-                                BabbleEvents.RemoveAt(BabbleEvents.Count - 1);
-                                SelectedEvent = evt;
+                                if (evt.Type == "comment")
+                                {
+                                    if (CommentEvents.Count >= 10)
+                                    {
+                                        CommentEvents.Insert(0, evt);
+                                        CommentEvents.RemoveAt(CommentEvents.Count - 1);
+                                    }
+                                    else
+                                    {
+                                        CommentEvents.Insert(0, evt);
+                                    }
+                                }
+                                else
+                                {
+                                    if (ShareEvents[0].Events.Count >= 12)
+                                    {
+                                        ShareEvents[0].Events.Insert(0, evt);
+                                        ShareEvents[0].Events.RemoveAt(ShareEvents[0].Events.Count - 1);
+                                    }
+                                    else
+                                    {
+                                        ShareEvents[0].Events.Insert(0, evt);
+                                    }
+
+                                }
+                                this.lastEvent = evt;
                             }
                         }
                     }

@@ -38,6 +38,7 @@ namespace Bti.Babble.Metro
 
         private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            /*
             if (e.AddedItems.Count > 0)
             {
                 var coupon = e.AddedItems[0] as CouponEvent;
@@ -71,6 +72,19 @@ namespace Bti.Babble.Metro
                     BodyFrame.Navigate(typeof(StoryPage));
                 }
             }
+            */
+        }
+
+        void ItemView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+        }
+
+        void Header_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void PostButton_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

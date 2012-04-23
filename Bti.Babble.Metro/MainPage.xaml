@@ -8,6 +8,14 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+        <!-- Collection of grouped items displayed by this page -->
+        <CollectionViewSource
+            x:Name="groupedItemsViewSource"
+            Source="{Binding ShareEvents}"
+            IsSourceGrouped="true"
+            ItemsPath="Events" />
+        
+        
         <Style x:Key="MyListViewItemStyle" TargetType="ListViewItem">
             <Setter Property="FontFamily" Value="{StaticResource ContentFontFamily}"/>
             <Setter Property="FontSize" Value="{StaticResource ContentFontSize}"/>
@@ -294,30 +302,56 @@
         <!-- Content -->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" MinWidth="320" />
+                <ColumnDefinition Width="1*" MinWidth="320" />
                 <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
 
             <!-- Left column -->
-            <!-- The default value of Grid.Column is 0, so we do not need to set it   
-                 to make the ListView show up in the first column. -->
-            <ListView x:Name="ItemListView" ItemsSource="{Binding BabbleEvents}" Margin="60,0,0,10" ItemContainerStyle="{StaticResource MyListViewItemStyle}"
+            <StackPanel Orientation="Vertical">
+                <Button
+                    AutomationProperties.Name="Group Title"
+                    Content="{Binding Title}"
+                    Style="{StaticResource TextButtonStyle}"/>
+                <ListView x:Name="ItemListView" ItemsSource="{Binding CommentEvents}" Margin="40,0,0,10" ItemContainerStyle="{StaticResource MyListViewItemStyle}"
                       SelectionChanged="ItemListView_SelectionChanged" SelectedItem="{Binding Path=SelectedEvent, Mode=TwoWay}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
-                                <Image Source="{Binding ImageSource}" Width="48" Height="48"  />
-                                <TextBlock Text="{Binding User}" Margin="5,5,0,0" Style="{StaticResource SubheaderTextStyle}" />
-                            </StackPanel>
-                            <TextBlock Text="{Binding Message}" Style="{StaticResource ItemTextStyle}" Margin="15,0,0,0" TextWrapping="Wrap"/>
-                            <TextBlock Text="{Binding PubDate}" Style="{StaticResource ItemTextStyle}" FontSize="8" Margin="15,0,0,10"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="56" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Image Grid.RowSpan="2" Margin="0,0,0,0" Source="{Binding ImageSource}" Width="48" Height="48" VerticalAlignment="Top" HorizontalAlignment="Center"  />
+                                <TextBlock Grid.Column="1" Margin="0,0,0,0" Text="{Binding User}" Style="{StaticResource ItemTextStyle}" FontWeight="Bold" />
+                                <TextBlock Grid.Column="2" Margin="0,0,0,0" Text="{Binding PubDate}" Style="{StaticResource ItemTextStyle}" FontSize="8" />
+                                <TextBlock Grid.Column="1" Margin="0,0,0,0" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Message}" Style="{StaticResource ItemTextStyle}" TextWrapping="Wrap"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+            
+            <Grid Grid.Row="1" Margin="40,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBox Text="Type your message here..." Foreground="Gray" TextWrapping="Wrap" />
+                <Button Grid.Column="1" x:Name="PostButton" Click="PostButton_Click" Margin="10">
+                    <TextBlock Text="Send"/>
+                </Button>
+            </Grid>
 
-            <!-- We use a Grid here instead of a StackPanel so that the WebView sizes correctly. -->
+            <!-- We use a Grid here instead of a StackPanel so that the WebView sizes correctly.
             <Frame x:Name="BodyFrame" Grid.Column="2">
                 <Frame.ContentTransitions>
                     <TransitionCollection>
@@ -325,6 +359,44 @@
                     </TransitionCollection>
                 </Frame.ContentTransitions>
             </Frame>
+            -->
+            <GridView Grid.Column="2"
+                x:Name="itemGridView"
+                AutomationProperties.AutomationId="ItemGridView"
+                AutomationProperties.Name="Grouped Items"
+                Margin="46,0,46,46"
+                ItemsSource="{Binding Source={StaticResource groupedItemsViewSource}}"
+                ItemTemplate="{StaticResource Standard250x250ItemTemplate}"
+                SelectionMode="None"
+                IsItemClickEnabled="True"
+                ItemClick="ItemView_ItemClick">
+
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+                <GridView.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid Margin="1,0,0,6">
+                                    <Button
+                                        AutomationProperties.Name="Group Title"
+                                        Content="{Binding Title}"
+                                        Click="Header_Click"
+                                        Style="{StaticResource TextButtonStyle}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                        <GroupStyle.Panel>
+                            <ItemsPanelTemplate>
+                                <VariableSizedWrapGrid Orientation="Vertical" Margin="0,0,80,0"/>
+                            </ItemsPanelTemplate>
+                        </GroupStyle.Panel>
+                    </GroupStyle>
+                </GridView.GroupStyle>
+            </GridView>
         </Grid>
     </Grid>
 

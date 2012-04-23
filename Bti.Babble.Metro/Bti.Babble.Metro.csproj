@@ -124,6 +124,7 @@
     <Compile Include="InfoPage.xaml.cs">
       <DependentUpon>InfoPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\BabbleEventGroup.cs" />
     <Compile Include="PollPage.xaml.cs">
       <DependentUpon>PollPage.xaml</DependentUpon>
     </Compile>

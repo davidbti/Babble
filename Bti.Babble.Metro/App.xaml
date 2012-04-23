@@ -16,6 +16,49 @@
                 <ResourceDictionary Source="Common/StandardStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <!-- Scenario #1 Resources -->
+            <Style x:Key="SmallContentTextStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource ApplicationTextBrush}"/>
+                <Setter Property="FontSize" Value="14.667"/>
+                <Setter Property="FontFamily" Value="{StaticResource ContentFontFamily}"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+                <Setter Property="TextTrimming" Value="WordEllipsis"/>
+            </Style>
+
+            <DataTemplate x:Key="StoreFrontTileTemplate">
+                <Grid HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal" Margin="10,14,0,0">
+                        <Image Source="{Binding ImageSource}" Height="48" Width="48" Stretch="Fill" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <StackPanel Margin="0,0,0,0" Orientation="Vertical">
+                            <TextBlock TextWrapping="Wrap" Style="{StaticResource SmallContentTextStyle}" Width="200" VerticalAlignment="Center" Text="{Binding User}" HorizontalAlignment="Left" FontFamily="Segoe UI" />
+                            <TextBlock TextWrapping="Wrap" Width="200" VerticalAlignment="Center" Text="{Binding Message}" HorizontalAlignment="Left" Foreground="{StaticResource ApplicationTextBrush}" FontFamily="Segoe UI" FontSize="12"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBlock Width="200" Text="{Binding PubDate}" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="{StaticResource ApplicationSecondaryTextBrush}" FontFamily="Segoe UI" FontSize="10" />
+                </Grid>
+            </DataTemplate>
+
+            <Style x:Key="StoreFrontTileStyle"  TargetType="ListViewItem">
+                <Setter Property="FontFamily" Value="Segoe UI" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Height" Value="140" />
+                <Setter Property="Width" Value="292" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0,0,8,8" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="VerticalContentAlignment" Value="Top" />
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="TabNavigation" Value="Local" />
+            </Style>
+
+            <ItemsPanelTemplate x:Key="StoreFrontGridItemsPanelTemplate">
+                <WrapGrid VerticalChildrenAlignment="Top"
+					  HorizontalChildrenAlignment="Left" Margin="0,0,0,0"/>
+            </ItemsPanelTemplate>
+
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
