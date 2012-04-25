@@ -1,21 +1,30 @@
-﻿<Page
+﻿<common:LayoutAwarePage
     x:Class="Bti.Babble.Metro.PollPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Bti.Babble.Metro"
+    xmlns:common="using:Bti.Babble.Metro.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ApplicationPageBackgroundBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="72"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Poll" Style="{StaticResource HeaderTextStyle}" Margin="40,20" />
+        <!-- Back button and page title -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
+            <TextBlock x:Name="pageTitle" VerticalAlignment="Center" Text="{Binding User}" Style="{StaticResource SubheaderTextStyle}" Grid.Column="1"/>
+        </Grid>
 
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,10,0,0">
+        <StackPanel Grid.Row="1" Margin="40,10,0,40" HorizontalAlignment="Left">
             <Image x:Name="PollImage" Height="350" Width="700" Source="{Binding PollImageSource}" />
             <TextBlock Style="{StaticResource SubheaderTextStyle}" Text="{Binding Question}" 
                        TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,20,0,0" />
@@ -29,4 +38,4 @@
             </StackPanel>
         </StackPanel>
     </Grid>
-</Page>
+</common:LayoutAwarePage>

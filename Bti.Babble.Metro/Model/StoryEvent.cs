@@ -30,6 +30,7 @@ namespace Bti.Babble.Metro.Model
             reader.MoveToContent();
             StoryText = reader.ReadElementContentAsString();
             reader.ReadEndElement();
+            Large = "http://prod.bti.tv/media/users/large/story1.jpg";
         }
 
         public override void WriteXml(System.Xml.XmlWriter writer)

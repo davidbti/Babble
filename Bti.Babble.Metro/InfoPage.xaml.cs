@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Bti.Babble.Metro.Model;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -19,7 +20,7 @@ namespace Bti.Babble.Metro
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class InfoPage : Page
+    public sealed partial class InfoPage : Bti.Babble.Metro.Common.LayoutAwarePage
     {
         public InfoPage()
         {
@@ -33,6 +34,8 @@ namespace Bti.Babble.Metro
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            var info = (InfoEvent)e.Parameter;
+            this.DataContext = info;
         }
 
         private void ReadMore_Click(object sender, RoutedEventArgs e)
@@ -43,6 +46,11 @@ namespace Bti.Babble.Metro
             {
                 Windows.System.Launcher.LaunchUriAsync(new Uri(link));
             }
+        }
+
+        protected override void GoBack(object sender, RoutedEventArgs e)
+        {
+            base.GoBack(sender, e);
         }
     }
 }

@@ -48,10 +48,10 @@ namespace Bti.Babble.Metro
 
             // Create a Frame to act navigation context and navigate to the first page
             var rootFrame = new Frame();
+            rootFrame.DataContext = new MainPageViewModel();
             rootFrame.Navigate(typeof(MainPage));
 
             // Place the frame in the current Window and ensure that it is active
-            rootFrame.DataContext = new MainPageViewModel();
             Window.Current.Content = rootFrame;
             Window.Current.Activate();
         }

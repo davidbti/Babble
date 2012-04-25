@@ -14,7 +14,7 @@
             Source="{Binding ShareEvents}"
             IsSourceGrouped="true"
             ItemsPath="Events" />
-        
+        <!--
         
         <Style x:Key="MyListViewItemStyle" TargetType="ListViewItem">
             <Setter Property="FontFamily" Value="{StaticResource ContentFontFamily}"/>
@@ -253,7 +253,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
+        </Style>-->
     </Page.Resources>
 
     <Grid Background="{StaticResource ApplicationPageBackgroundBrush}">
@@ -307,22 +307,27 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="100" />
             </Grid.RowDefinitions>
 
             <!-- Left column -->
-            <StackPanel Orientation="Vertical">
-                <Button
-                    AutomationProperties.Name="Group Title"
-                    Content="{Binding Title}"
-                    Style="{StaticResource TextButtonStyle}"/>
-                <ListView x:Name="ItemListView" ItemsSource="{Binding CommentEvents}" Margin="40,0,0,10" ItemContainerStyle="{StaticResource MyListViewItemStyle}"
+            <StackPanel Orientation="Vertical" VerticalAlignment="Stretch">
+                <Grid Margin="46,0,0,6">
+                    <Button
+                        Content="Comments"
+                        Style="{StaticResource TextButtonStyle}"/>
+                </Grid>
+                <ListView x:Name="ItemListView" ItemsSource="{Binding CommentEvents}" Margin="46,4,0,0"
                       SelectionChanged="ItemListView_SelectionChanged" SelectedItem="{Binding Path=SelectedEvent, Mode=TwoWay}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="56" />
+                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
@@ -330,36 +335,27 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Image Grid.RowSpan="2" Margin="0,0,0,0" Source="{Binding ImageSource}" Width="48" Height="48" VerticalAlignment="Top" HorizontalAlignment="Center"  />
-                                <TextBlock Grid.Column="1" Margin="0,0,0,0" Text="{Binding User}" Style="{StaticResource ItemTextStyle}" FontWeight="Bold" />
-                                <TextBlock Grid.Column="2" Margin="0,0,0,0" Text="{Binding PubDate}" Style="{StaticResource ItemTextStyle}" FontSize="8" />
-                                <TextBlock Grid.Column="1" Margin="0,0,0,0" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Message}" Style="{StaticResource ItemTextStyle}" TextWrapping="Wrap"/>
+                                <Image Grid.Row="1" Margin="4,-12,0,0" Source="{Binding ImageSource}" Width="48" Height="48" VerticalAlignment="Top" />
+                                <TextBlock Grid.Column="1" Margin="5,0,0,0" Text="{Binding User}" Style="{StaticResource ItemTextStyle}" FontWeight="Bold" />
+                                <TextBlock Grid.Column="2" Margin="0,0,0,0" Text="{Binding PubDate}" Style="{StaticResource ItemTextStyle}" FontSize="8" HorizontalAlignment="Right" />
+                                <TextBlock Grid.Column="1" Margin="5,0,0,0" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Message}" Style="{StaticResource ItemTextStyle}" TextWrapping="Wrap" />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Grid Margin="46,0,0,10" Height="100" VerticalAlignment="Bottom">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBox Text="Type your message here..." Foreground="Gray" TextWrapping="Wrap" />
+                    <Button Grid.Column="1" x:Name="PostButton" Click="PostButton_Click" Margin="10">
+                        <TextBlock Text="Send"/>
+                    </Button>
+                </Grid>
             </StackPanel>
-            
-            <Grid Grid.Row="1" Margin="40,0,0,10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <TextBox Text="Type your message here..." Foreground="Gray" TextWrapping="Wrap" />
-                <Button Grid.Column="1" x:Name="PostButton" Click="PostButton_Click" Margin="10">
-                    <TextBlock Text="Send"/>
-                </Button>
-            </Grid>
 
-            <!-- We use a Grid here instead of a StackPanel so that the WebView sizes correctly.
-            <Frame x:Name="BodyFrame" Grid.Column="2">
-                <Frame.ContentTransitions>
-                    <TransitionCollection>
-                        <EntranceThemeTransition/>
-                    </TransitionCollection>
-                </Frame.ContentTransitions>
-            </Frame>
-            -->
+            <!--
             <GridView Grid.Column="2"
                 x:Name="itemGridView"
                 AutomationProperties.AutomationId="ItemGridView"
@@ -397,6 +393,16 @@
                     </GroupStyle>
                 </GridView.GroupStyle>
             </GridView>
+            -->
+            
+            <Frame x:Name="BodyFrame" Grid.Column="2">
+                <Frame.ContentTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition/>
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+            </Frame>
+            
         </Grid>
     </Grid>
 

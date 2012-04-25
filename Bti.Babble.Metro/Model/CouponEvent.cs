@@ -25,6 +25,7 @@ namespace Bti.Babble.Metro.Model
             reader.MoveToContent();
             Link = reader.ReadElementContentAsString();
             reader.ReadEndElement();
+            Large = "http://prod.bti.tv/media/users/large/coupon1.jpg";
         }
 
         public override void WriteXml(System.Xml.XmlWriter writer)

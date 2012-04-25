@@ -34,6 +34,7 @@ namespace Bti.Babble.Metro
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            BodyFrame.Navigate(typeof(SharePage), this.DataContext);
         }
 
         private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -77,6 +78,11 @@ namespace Bti.Babble.Metro
 
         void ItemView_ItemClick(object sender, ItemClickEventArgs e)
         {
+            var story = e.ClickedItem as StoryEvent;
+            if (story != null)
+            {
+                this.Frame.Navigate(typeof(StoryPage), story);
+            }
         }
 
         void Header_Click(object sender, RoutedEventArgs e)

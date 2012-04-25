@@ -14,6 +14,7 @@ namespace Bti.Babble.Metro.Model
         public string User { get; set; }
         public string Message { get; set; }
         public string Image { get; set; }
+        public string Large { get; set; }
         public ImageSource ImageSource { get; set; }
 
         public BabbleEvent() { }

@@ -20,7 +20,7 @@ namespace Bti.Babble.Metro
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class StoryPage : Page
+    public sealed partial class StoryPage : Bti.Babble.Metro.Common.LayoutAwarePage
     {
         public StoryPage()
         {
@@ -34,6 +34,13 @@ namespace Bti.Babble.Metro
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            var story = (StoryEvent)e.Parameter;
+            this.DataContext = story;
+        }
+
+        protected override void GoBack(object sender, RoutedEventArgs e)
+        {
+            base.GoBack(sender, e);
         }
 
         private void ReadMore_Click(object sender, RoutedEventArgs e)

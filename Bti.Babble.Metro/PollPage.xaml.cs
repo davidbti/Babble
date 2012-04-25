@@ -21,7 +21,7 @@ namespace Bti.Babble.Metro
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class PollPage : Page
+    public sealed partial class PollPage : Bti.Babble.Metro.Common.LayoutAwarePage
     {
         public PollPage()
         {
@@ -34,7 +34,14 @@ namespace Bti.Babble.Metro
         /// <param name="e">Event data that describes how this page was reached.  The Parameter
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
-        {   
+        {
+            var poll = (PollEvent)e.Parameter;
+            this.DataContext = poll;
+        }
+
+        protected override void GoBack(object sender, RoutedEventArgs e)
+        {
+            base.GoBack(sender, e);
         }
     }
 }

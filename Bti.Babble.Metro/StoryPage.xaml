@@ -1,24 +1,33 @@
-﻿<Page
+﻿<common:LayoutAwarePage
     x:Class="Bti.Babble.Metro.StoryPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Bti.Babble.Metro"
+    xmlns:common="using:Bti.Babble.Metro.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ApplicationPageBackgroundBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="72"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Story" Style="{StaticResource HeaderTextStyle}" Margin="40,20" />
-
+        <!-- Back button and page title -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
+            <TextBlock x:Name="pageTitle" VerticalAlignment="Center" Text="{Binding Title}" Style="{StaticResource SubheaderTextStyle}" Grid.Column="1"/>
+        </Grid>
+        
         <Grid Grid.Row="1" Margin="40,10,0,40">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="20" />
+                <RowDefinition Height="0" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -28,7 +37,6 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Style="{StaticResource SubheaderTextStyle}" Text="{Binding Title}" TextWrapping="Wrap" />
             <Image Grid.Row="2" Source="{Binding StoryImage}" />
             <RichTextBlock Grid.Row="3" Grid.Column="0" x:Name="Column1" OverflowContentTarget="{Binding ElementName=Column2}">
                 <Paragraph>
@@ -38,4 +46,4 @@
             <RichTextBlockOverflow Grid.Row="2" Grid.RowSpan="2" Grid.Column="2" x:Name="Column2" />
         </Grid>
     </Grid>
-</Page>
+</common:LayoutAwarePage>

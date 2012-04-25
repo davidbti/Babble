@@ -560,7 +560,7 @@
         <Setter Property="MinWidth" Value="0"/>
         <Setter Property="Width" Value="48"/>
         <Setter Property="Height" Value="48"/>
-        <Setter Property="Margin" Value="36,0,36,36"/>
+        <Setter Property="Margin" Value="12,0,12,12"/>
         <Setter Property="VerticalAlignment" Value="Bottom"/>
         <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
         <Setter Property="FontWeight" Value="Normal"/>
@@ -777,11 +777,12 @@
     <DataTemplate x:Key="Standard250x250ItemTemplate">
         <Grid HorizontalAlignment="Left" Width="250" Height="250">
             <Border Background="{StaticResource ListViewItemPlaceholderRectBrush}">
-                <Image Source="{Binding Image}" Stretch="UniformToFill"/>
+                <Image Source="{Binding Large}" Width="210" Height="210" Stretch="Uniform" />
             </Border>
+            <TextBlock VerticalAlignment="Top" Text="{Binding User}" Foreground="{StaticResource ListViewItemOverlayTextBrush}" Style="{StaticResource SubheaderTextStyle}" FontSize="16" Margin="15,0,15,0"/>
             <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundBrush}">
-                <TextBlock Text="{Binding Title}" Foreground="{StaticResource ListViewItemOverlayTextBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
-                <TextBlock Text="{Binding Subtitle}" Foreground="{StaticResource ListViewItemOverlaySecondaryTextBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                <TextBlock Text="{Binding Message}" Foreground="{StaticResource ListViewItemOverlayTextBrush}" Style="{StaticResource TitleTextStyle}" Height="60" TextWrapping="Wrap" Margin="15,0,15,0"/>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding PubDate}" Foreground="{StaticResource ListViewItemOverlaySecondaryTextBrush}" Style="{StaticResource CaptionTextStyle}" FontSize="8" Margin="15,0,15,10"/>
             </StackPanel>
         </Grid>
     </DataTemplate>
@@ -794,7 +795,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Border Background="{StaticResource ListViewItemPlaceholderRectBrush}" Width="110" Height="110">
-                <Image Source="{Binding Image}" Stretch="UniformToFill"/>
+                <Image Source="{Binding Image}" Stretch="Fill"/>
             </Border>
             <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
                 <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextStyle}" TextWrapping="NoWrap"/>

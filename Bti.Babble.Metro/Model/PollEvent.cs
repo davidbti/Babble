@@ -39,6 +39,7 @@ namespace Bti.Babble.Metro.Model
                 Responses.Add(response);
             }
             reader.ReadEndElement();
+            Large = "http://prod.bti.tv/media/users/large/poll1.jpg";
         }
 
         public override void WriteXml(System.Xml.XmlWriter writer)

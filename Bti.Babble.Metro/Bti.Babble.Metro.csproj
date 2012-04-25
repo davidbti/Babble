@@ -121,10 +121,14 @@
     <Compile Include="CommentPage.xaml.cs">
       <DependentUpon>CommentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SharePage.xaml.cs">
+      <DependentUpon>SharePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InfoPage.xaml.cs">
       <DependentUpon>InfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\BabbleEventGroup.cs" />
+    <Compile Include="Model\ShareEventCollection.cs" />
     <Compile Include="PollPage.xaml.cs">
       <DependentUpon>PollPage.xaml</DependentUpon>
     </Compile>
@@ -193,6 +197,10 @@
     <Content Include="Assets\wkrn_main.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Page Include="SharePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="InfoPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

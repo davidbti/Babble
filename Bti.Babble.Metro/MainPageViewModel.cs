@@ -22,7 +22,7 @@ namespace Bti.Babble.Metro
     {
         private ObservableCollection<BabbleEvent> commentEvents;
         private BabbleEvent lastEvent;
-        private ObservableCollection<BabbleEventGroup> shareEvents;
+        private ShareEventCollection shareEvents;
         private BabbleEvent selectedEvent;
 
         public ObservableCollection<BabbleEvent> CommentEvents
@@ -35,7 +35,7 @@ namespace Bti.Babble.Metro
             }
         }
 
-        public ObservableCollection<BabbleEventGroup> ShareEvents
+        public ShareEventCollection ShareEvents
         {
             get { return this.shareEvents; }
             set
@@ -63,10 +63,19 @@ namespace Bti.Babble.Metro
         private async void LoadBabbleEvents()
         {
             this.CommentEvents = new ObservableCollection<BabbleEvent>();
-            this.ShareEvents = new ObservableCollection<BabbleEventGroup>();
-            this.ShareEvents.Add(new BabbleEventGroup() { Title = "Shared Items", Events = new ObservableCollection<BabbleEvent>() });
+            this.ShareEvents = new ShareEventCollection()
+            {
+                LiveCount = 9,
+                StoryCount = 5,
+                PollCount = 3,
+                CouponCount = 6
+            };
             var client = new HttpClient();
-            var response = await client.GetAsync("http://prod.bti.tv/babble/service.svc/xml/babble/amit");
+            var response = await client.GetAsync("http://prod.bti.tv/babble/service.svc/xml/babble?viewer=amit&" +
+                                                 "comment=10&" + 
+                                                 "story=" + ShareEvents.StoryCount + "&" +
+                                                 "poll=" + ShareEvents.PollCount + "&" + 
+                                                 "coupon=" + ShareEvents.CouponCount);
             if (response.IsSuccessStatusCode)
             {
                 using (var stream = response.Content.ReadAsStreamAsync().Result)
@@ -85,14 +94,14 @@ namespace Bti.Babble.Metro
                                 }
                                 else
                                 {
-                                    ShareEvents[0].Events.Add(evt);
+                                    ShareEvents.AddEvent(evt);
                                 }
                                 this.lastEvent = evt;
                             }
                         }
                     }
                 }
-                LoadBabbleEventsSince();
+                //LoadBabbleEventsSince();
             }
         }
 
@@ -126,16 +135,7 @@ namespace Bti.Babble.Metro
                                 }
                                 else
                                 {
-                                    if (ShareEvents[0].Events.Count >= 12)
-                                    {
-                                        ShareEvents[0].Events.Insert(0, evt);
-                                        ShareEvents[0].Events.RemoveAt(ShareEvents[0].Events.Count - 1);
-                                    }
-                                    else
-                                    {
-                                        ShareEvents[0].Events.Insert(0, evt);
-                                    }
-
+                                    ShareEvents.AddEvent(evt);
                                 }
                                 this.lastEvent = evt;
                             }
