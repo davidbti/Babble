@@ -24,18 +24,80 @@
             <TextBlock x:Name="pageTitle" VerticalAlignment="Center" Text="{Binding User}" Style="{StaticResource SubheaderTextStyle}" Grid.Column="1"/>
         </Grid>
 
-        <StackPanel Grid.Row="1" Margin="40,10,0,40" HorizontalAlignment="Left">
-            <Image x:Name="PollImage" Height="350" Width="700" Source="{Binding PollImageSource}" />
-            <TextBlock Style="{StaticResource SubheaderTextStyle}" Text="{Binding Question}" 
-                       TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,20,0,0" />
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-                <Button>
-                    <TextBlock Text="Yes"/>
-                </Button>
-                <Button Margin="20,0,0,0">
-                    <TextBlock Text="No"/>
-                </Button>
-            </StackPanel>
-        </StackPanel>
+        <Canvas x:Name="ContainerCanvas" Grid.Row="1"  Margin="100,0,0,0">
+            <Canvas x:Name="ContentCanvas">
+            <Canvas.Resources>
+                <Storyboard x:Name="MyStoryboard">
+                    <DoubleAnimation
+                                Storyboard.TargetName="ContentCanvas"
+                                Storyboard.TargetProperty="(Canvas.RenderTransform).(ScaleTransform.ScaleX)"
+                                Duration="0:0:0.25"
+                                To=".75"
+                                />
+                    <DoubleAnimation
+                                Storyboard.TargetName="ContentCanvas"
+                                Storyboard.TargetProperty="(Canvas.RenderTransform).(ScaleTransform.ScaleY)"
+                                Duration="0:0:0.25"
+                                To=".75"
+                                />
+                    <DoubleAnimation
+                                Storyboard.TargetName="ContentCanvas"
+                                Storyboard.TargetProperty="(Canvas.Top)"
+                                BeginTime="0:0:0.45"
+                                Duration="0:0:0.25"
+                                To="-500"
+                                />
+                    <DoubleAnimation
+                                Storyboard.TargetName="ContentCanvas"
+                                Storyboard.TargetProperty="(Canvas.Opacity)"
+                                BeginTime="0:0:0.70"
+                                Duration="0:0:0.0"
+                                To="0"
+                                />
+                </Storyboard>
+            </Canvas.Resources>
+            <Canvas.RenderTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1" />
+            </Canvas.RenderTransform>
+           <Grid x:Name="ContentGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Image x:Name="MyImage"  Margin="10,0,0,0" Source="{Binding PollImage}" Width="700" Height="500" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <TextBlock Grid.Row="1" Grid.Column="2" Margin="0,10,0,10" Text="{Binding Question}" Style="{StaticResource ItemTextStyle}" FontWeight="Bold" FontSize="26.6667" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <Button x:Name="ButtonA" Background="Red" Click="ButtonA_Click">
+                        <StackPanel Orientation="Vertical">
+                            <Image Width="135" Height="187.5" Source="Assets/thumbprint.jpg" />
+                                <TextBlock Width="135" Height="60" x:Name="TextA" Text="A" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" TextAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="ButtonB" Margin="20,0,0,0" Background="Blue" Click="ButtonB_Click">
+                        <StackPanel Orientation="Vertical">
+                            <Image Width="135" Height="187.5" Source="Assets/thumbprint.jpg" />
+                                <TextBlock Width="135" Height="60" x:Name="TextB" Text="B" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" TextAlignment="Center" />
+                            </StackPanel>
+                    </Button>
+                    <Button x:Name="ButtonC" Margin="20,0,0,0" Background="Yellow" Click="ButtonC_Click">
+                        <StackPanel Orientation="Vertical">
+                            <Image Width="135" Height="187.5" Source="Assets/thumbprint.jpg" />
+                                <TextBlock Width="135" Height="60" x:Name="TextC" Text="C" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" TextAlignment="Center" />
+                            </StackPanel>
+                    </Button>
+                    <Button x:Name="ButtonD" Margin="20,0,0,0" Background="Green" Click="ButtonD_Click">
+                        <StackPanel Orientation="Vertical">
+                            <Image Width="135" Height="187.5" Source="Assets/thumbprint.jpg" />
+                                <TextBlock Width="135" Height="60" x:Name="TextD" Text="D" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" TextAlignment="Center" />
+                            </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Canvas>
+        </Canvas>
     </Grid>
 </common:LayoutAwarePage>

@@ -10,7 +10,7 @@
 
     <Grid Background="{StaticResource ApplicationPageBackgroundBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="140"/>
+            <RowDefinition Height="72"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -21,7 +21,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Text="{Binding Title}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1"/>
+            <TextBlock x:Name="pageTitle" VerticalAlignment="Center" Text="{Binding Title}" Style="{StaticResource SubheaderTextStyle}" Grid.Column="1"/>
         </Grid>
 
         <Grid Grid.Row="1" Margin="40,10,0,40">

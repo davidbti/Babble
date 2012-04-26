@@ -71,11 +71,12 @@ namespace Bti.Babble.Metro
                 CouponCount = 6
             };
             var client = new HttpClient();
-            var response = await client.GetAsync("http://prod.bti.tv/babble/service.svc/xml/babble?viewer=amit&" +
-                                                 "comment=10&" + 
+            var uri = "http://prod.bti.tv/babble/service.svc/xml/babble?viewer=amit&" +
+                                                 "comment=10&" +
                                                  "story=" + ShareEvents.StoryCount + "&" +
-                                                 "poll=" + ShareEvents.PollCount + "&" + 
-                                                 "coupon=" + ShareEvents.CouponCount);
+                                                 "poll=" + ShareEvents.PollCount + "&" +
+                                                 "coupon=" + ShareEvents.CouponCount;
+            var response = await client.GetAsync(uri);
             if (response.IsSuccessStatusCode)
             {
                 using (var stream = response.Content.ReadAsStreamAsync().Result)
@@ -101,7 +102,7 @@ namespace Bti.Babble.Metro
                         }
                     }
                 }
-                //LoadBabbleEventsSince();
+                LoadBabbleEventsSince();
             }
         }
 
@@ -179,35 +180,22 @@ namespace Bti.Babble.Metro
             LoadBabbleEventImage(evt);
         }
 
-        private async void LoadInfoEventImage(InfoEvent evt)
+        private void LoadInfoEventImage(InfoEvent evt)
         {
             var uri = new Uri(evt.InfoImage);
-            evt.InfoImageSource = await LoadBitmapFromLocal(uri);
+            evt.InfoImageSource = LoadBitmapFromRemote(uri);
         }
 
-        private async void LoadPollEventImage(PollEvent evt)
+        private void LoadPollEventImage(PollEvent evt)
         {
-            switch (evt.Question.ToLower())
-            {
-                case "would you adopt a child with a heart condition?":
-                    var uri1 = new Uri("http://prod.bti.tv/media/content/poll_heart.png");
-                    evt.PollImageSource = await LoadBitmapFromLocal(uri1);
-                    break;
-                case "is middle tennessee a good place to raise an adopted child?":
-                    var uri2 = new Uri("http://prod.bti.tv/media/content/poll_adopt.png");
-                    evt.PollImageSource = await LoadBitmapFromLocal(uri2);
-                    break;
-                case "have you been enjoying these warmer than usual days?":
-                    var uri3 = new Uri("http://prod.bti.tv/media/content/poll_weather.png");
-                    evt.PollImageSource = await LoadBitmapFromLocal(uri3);
-                    break;
-            }
+            var uri = new Uri(evt.PollImage);
+            evt.PollImageSource = LoadBitmapFromRemote(uri);
         }
 
-        private async void LoadStoryEventImage(StoryEvent evt)
+        private void LoadStoryEventImage(StoryEvent evt)
         {
             var uri = new Uri(evt.StoryImage);
-            evt.StoryImageSource = await LoadBitmapFromLocal(uri);
+            evt.StoryImageSource = LoadBitmapFromRemote(uri);
         }
     }
 }
