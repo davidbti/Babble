@@ -410,7 +410,7 @@
     </Style>
     <Style x:Key="EditAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="EditAppBarButton"/>
-        <Setter Property="AutomationProperties.Name" Value="Edit"/>
+        <Setter Property="AutomationProperties.Name" Value="Comment"/>
         <Setter Property="Content" Value="&#xE104;"/>
     </Style>
     <Style x:Key="SaveAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource AppBarButtonStyle}">
@@ -490,7 +490,7 @@
     </Style>
     <Style x:Key="PhotoAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="PhotoAppBarButton"/>
-        <Setter Property="AutomationProperties.Name" Value="Photo"/>
+        <Setter Property="AutomationProperties.Name" Value="Share"/>
         <Setter Property="Content" Value="&#xE114;"/>
     </Style>
     <Style x:Key="SettingsAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource AppBarButtonStyle}">
@@ -530,7 +530,7 @@
     </Style>
     <Style x:Key="UploadAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="UploadAppBarButton"/>
-        <Setter Property="AutomationProperties.Name" Value="Upload"/>
+        <Setter Property="AutomationProperties.Name" Value="Share"/>
         <Setter Property="Content" Value="&#xE11C;"/>
     </Style>
 

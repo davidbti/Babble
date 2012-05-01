@@ -16,6 +16,8 @@ using System.Xml;
 using System.Text;
 using System.Net.Http;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.Storage.Pickers;
+using Windows.Storage;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -56,10 +58,10 @@ namespace Bti.Babble.Metro
 
         private void PostButton_Click(object sender, RoutedEventArgs e)
         {
-            SendComment();
-            CommentTextBox.Text = "";
+            //SendComment();
+            //CommentTextBox.Text = "";
         }
-
+        /*
         private async void SendComment()
         {
             var evt = new CommentEvent()
@@ -85,6 +87,29 @@ namespace Bti.Babble.Metro
             var client = new HttpClient();
             var url = "http://prod.bti.tv/babble/Service.svc/xml/babble";
             var response = await client.PostAsync(url, new StringContent(sb.ToString(), System.Text.Encoding.UTF8, "application/xml"));
+        }
+         */
+
+        private async void ShareButton_Click(object sender, RoutedEventArgs e)
+        {
+            FileOpenPicker openPicker = new FileOpenPicker();
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            openPicker.FileTypeFilter.Add(".jpg");
+            openPicker.FileTypeFilter.Add(".jpeg");
+            openPicker.FileTypeFilter.Add(".png");
+            StorageFile file = await openPicker.PickSingleFileAsync();
+            /*
+            if (null != file)
+            {
+                // Application now has read/write access to the picked file
+                Scenario1FileName.Text = file.Name;
+            }
+            else
+            {
+                Scenario1FileName.Text = "File was not returned";
+            }
+            */
         }
     }
 }
