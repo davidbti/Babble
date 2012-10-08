@@ -15,6 +15,7 @@ namespace Bti.Babble.Model.Entity
             {
                 Id = this.Id,
                 Image = this.Image,
+                Large = this.Large,
                 Message = this.Message,
                 PubDate = this.PubDate,
                 Time = ConvertTimeToTimespan(this.Time),

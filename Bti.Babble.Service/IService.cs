@@ -15,16 +15,16 @@ namespace Bti.Babble.Service
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Xml,
             BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "xml/babble/{viewer}")]
-        [return: MessageParameter(Name = "babble")] 
-        babble GetBabbleEventsAsXml(string viewer);
+            UriTemplate = "xml/babble?viewer={viewer}&comment={commentCount}&story={storyCount}&poll={pollCount}&coupon={couponCount}")]
+        [return: MessageParameter(Name = "babble")]
+        babble GetBabbleEventsAsXml(string viewer, int commentCount, int storyCount, int pollCount, int couponCount);
 
         [OperationContract]
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "json/babble/{viewer}")]
-        babble GetBabbleEventsAsJson(string viewer);
+            UriTemplate = "json/babble?viewer={viewer}&comment={commentCount}&story={storyCount}&poll={pollCount}&coupon={couponCount}")]
+        babble GetBabbleEventsAsJson(string viewer, int commentCount, int storyCount, int pollCount, int couponCount);
 
         [OperationContract]
         [WebInvoke(Method = "GET",

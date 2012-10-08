@@ -7,7 +7,7 @@ namespace Bti.Babble.Model
 {
     public interface IBabbleEventRepository
     {
-        List<BabbleEvent> GetEvents(int count);
+        List<BabbleEvent> GetEvents(int commentCount, int storyCount, int pollCount, int couponCount);
         List<BabbleEvent> GetEventsSince(int id);
         void DeleteOldEvents();
         void Save(BabbleEvent evt);

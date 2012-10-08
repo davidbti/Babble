@@ -16,13 +16,13 @@ namespace Bti.Babble.Service
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service" in code, svc and config file together.
     public class Service : IService
     {
-        private babble GetBabbleEvents(string viewerId)
+        private babble GetBabbleEvents(string viewer, int commentCount, int storyCount, int pollCount, int couponCount)
         {
             var events = new babble();
             using (var context = new BabbleContainer())
             {
                 var repository = new BabbleEventRepository(context);
-                foreach (var evt in repository.GetEvents(10))
+                foreach (var evt in repository.GetEvents(commentCount, storyCount, pollCount, couponCount))
                 {
                     events.Add(evt);
                 }
@@ -30,14 +30,14 @@ namespace Bti.Babble.Service
             return events;
         }
 
-        public babble GetBabbleEventsAsXml(string viewerId)
+        public babble GetBabbleEventsAsXml(string viewer, int commentCount, int storyCount, int pollCount, int couponCount)
         {
-            return GetBabbleEvents(viewerId);
+            return GetBabbleEvents(viewer, commentCount, storyCount, pollCount, couponCount);
         }
 
-        public babble GetBabbleEventsAsJson(string viewerId)
+        public babble GetBabbleEventsAsJson(string viewer, int commentCount, int storyCount, int pollCount, int couponCount)
         {
-            return GetBabbleEvents(viewerId);
+            return GetBabbleEvents(viewer, commentCount, storyCount, pollCount, couponCount);
         }
 
         private babble GetBabbleEventsSince(string viewerId, string id)

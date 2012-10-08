@@ -13,6 +13,7 @@ namespace Bti.Babble.Model
         public string User { get; set; }
         public string Message { get; set; }
         public string Image { get; set; }
+        public string Large { get; set; }
 
         public BabbleEvent() { }
 
@@ -25,6 +26,7 @@ namespace Bti.Babble.Model
             User = evt.User;
             Message = evt.Message;
             Image = evt.Image;
+            Large = evt.Large;
         }
 
         public static BabbleEvent CreateFromXmlReader(System.Xml.XmlReader reader)
@@ -75,6 +77,8 @@ namespace Bti.Babble.Model
             Message = reader.ReadElementContentAsString();
             reader.MoveToContent();
             Image = reader.ReadElementContentAsString();
+            reader.MoveToContent();
+            Large = reader.ReadElementContentAsString();
             reader.ReadEndElement();
         }
 
@@ -94,6 +98,7 @@ namespace Bti.Babble.Model
             writer.WriteElementString("user", User);
             writer.WriteElementString("message", Message);
             writer.WriteElementString("image", Image);
+            writer.WriteElementString("large", Large);
             writer.WriteEndElement();
         }
 

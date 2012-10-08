@@ -7,7 +7,7 @@ namespace Bti.Babble.Model.Mock
 {
     public class BabbleEventRepository : IBabbleEventRepository
     {
-        public List<BabbleEvent> GetEvents(int count)
+        public List<BabbleEvent> GetEvents(int commentCount, int storyCount, int pollCount, int couponCount)
         {
             return new List<BabbleEvent>();
         }

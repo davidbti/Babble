@@ -49,6 +49,7 @@
     <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Image" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Time" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Large" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="PollResponses">
     <Key>
@@ -65,6 +66,7 @@
     </Key>
     <Property Name="Question" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Votes" Type="int" Nullable="false" />
+    <Property Name="PollImage" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="BabbleEvents_CommentEvent">
@@ -201,6 +203,7 @@
           <Property Type="String" Name="Message" Nullable="false" />
           <Property Type="String" Name="Image" Nullable="false" />
           <Property Type="String" Name="Time" Nullable="false" />
+          <Property Type="String" Name="Large" Nullable="false" />
         </EntityType>
         <EntityType Name="CommentEvent" BaseType="Babble.BabbleEvent" />
         <EntityType Name="CouponEvent" BaseType="Babble.BabbleEvent" >
@@ -213,6 +216,7 @@
           <Property Type="String" Name="Question" Nullable="false" />
           <Property Type="Int32" Name="Votes" Nullable="false" />
           <NavigationProperty Name="PollResponses" Relationship="Babble.PollEventPollResponse" FromRole="PollEvent" ToRole="PollResponse" />
+          <Property Type="String" Name="PollImage" Nullable="false" />
         </EntityType>
         <EntityType Name="PollResponse">
           <Key>
@@ -267,6 +271,7 @@
           <ScalarProperty Name="Message" ColumnName="Message" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Large" ColumnName="Large" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Babble.PollEvent)">
@@ -274,6 +279,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Question" ColumnName="Question" />
           <ScalarProperty Name="Votes" ColumnName="Votes" />
+          <ScalarProperty Name="PollImage" ColumnName="PollImage" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Babble.CommentEvent)">
@@ -339,37 +345,37 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="Babble" >
-        <EntityTypeShape EntityType="Babble.BabbleEvent" Width="1.5" PointX="6.875" PointY="1.875" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="Babble.BabbleEvent" Width="1.5" PointX="6.875" PointY="1.875" Height="2.5571907552083326" />
         <EntityTypeShape EntityType="Babble.CommentEvent" Width="1.5" PointX="4.5" PointY="6.25" Height="1.018779296875" />
         <InheritanceConnector EntityType="Babble.CommentEvent" ManuallyRouted="false" >
-          <ConnectorPoint PointX="7.625" PointY="4.2398893229166656" />
+          <ConnectorPoint PointX="7.625" PointY="4.4321907552083326" />
           <ConnectorPoint PointX="7.625" PointY="6.058" />
           <ConnectorPoint PointX="5.25" PointY="6.058" />
           <ConnectorPoint PointX="5.25" PointY="6.25" />
         </InheritanceConnector>
         <EntityTypeShape EntityType="Babble.CouponEvent" Width="1.5" PointX="9.75" PointY="3.5" Height="1.7879850260416665" />
         <InheritanceConnector EntityType="Babble.CouponEvent" ManuallyRouted="false" >
-          <ConnectorPoint PointX="8.375" PointY="3.8699446614583328" />
-          <ConnectorPoint PointX="9.75" PointY="3.8699446614583328" />
+          <ConnectorPoint PointX="8.375" PointY="3.9660953776041667" />
+          <ConnectorPoint PointX="9.75" PointY="3.9660953776041667" />
         </InheritanceConnector>
-        <EntityTypeShape EntityType="Babble.PollEvent" Width="1.5" PointX="4.375" PointY="1.375" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="Babble.PollEvent" Width="1.5" PointX="4.375" PointY="1.375" Height="1.787985026041667" />
         <InheritanceConnector EntityType="Babble.PollEvent" ManuallyRouted="false" >
-          <ConnectorPoint PointX="6.875" PointY="2.422841796875" />
-          <ConnectorPoint PointX="5.875" PointY="2.422841796875" />
+          <ConnectorPoint PointX="6.875" PointY="2.5189925130208337" />
+          <ConnectorPoint PointX="5.875" PointY="2.5189925130208337" />
         </InheritanceConnector>
         <EntityTypeShape EntityType="Babble.PollResponse" Width="1.5" PointX="4.375" PointY="3.875" Height="1.9802864583333335" />
         <AssociationConnector Association="Babble.PollEventPollResponse">
-          <ConnectorPoint PointX="5.125" PointY="2.9706835937499996" />
+          <ConnectorPoint PointX="5.125" PointY="3.162985026041667" />
           <ConnectorPoint PointX="5.125" PointY="3.875" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Babble.StoryEvent" Width="1.5" PointX="9.75" PointY="1.125" Height="1.9802864583333331" />
         <InheritanceConnector EntityType="Babble.StoryEvent" ManuallyRouted="false" >
-          <ConnectorPoint PointX="8.375" PointY="2.4901432291666667" />
-          <ConnectorPoint PointX="9.75" PointY="2.4901432291666667" />
+          <ConnectorPoint PointX="8.375" PointY="2.4901432291666663" />
+          <ConnectorPoint PointX="9.75" PointY="2.4901432291666663" />
         </InheritanceConnector>
         <EntityTypeShape EntityType="Babble.InfoEvent" Width="1.5" PointX="9.75" PointY="5.625" Height="1.0187792968749996" />
         <InheritanceConnector EntityType="Babble.InfoEvent" ManuallyRouted="false" >
-          <ConnectorPoint PointX="7.625" PointY="4.2398893229166656" />
+          <ConnectorPoint PointX="7.625" PointY="4.4321907552083326" />
           <ConnectorPoint PointX="7.625" PointY="5.433" />
           <ConnectorPoint PointX="10.5" PointY="5.433" />
           <ConnectorPoint PointX="10.5" PointY="5.625" />

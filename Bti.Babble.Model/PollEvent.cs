@@ -9,6 +9,7 @@ namespace Bti.Babble.Model
         public string Question { get; set; }
         public int Votes { get; set; }
         public List<PollResponse> Responses { get; set; }
+        public string PollImage { get; set; }
 
         public PollEvent()
         {
@@ -22,7 +23,9 @@ namespace Bti.Babble.Model
 
         public override void ReadXml(System.Xml.XmlReader reader)
         {
-            reader.ReadToDescendant("question");
+            reader.ReadToDescendant("image");
+            PollImage = reader.ReadElementContentAsString();
+            reader.MoveToContent();
             reader.MoveToAttribute("text");
             Question = reader.Value;
             reader.MoveToAttribute("votes");
@@ -44,9 +47,11 @@ namespace Bti.Babble.Model
             writer.WriteStartElement("event");
             base.WriteHeader(writer);
             writer.WriteStartElement("body");
+            writer.WriteElementString("image", PollImage);
             writer.WriteStartElement("question");
             writer.WriteAttributeString("text", Question);
             writer.WriteAttributeString("votes", Votes.ToString());
+            writer.WriteEndElement();
             foreach (var response in Responses)
             {
                 writer.WriteStartElement("response");
@@ -54,7 +59,6 @@ namespace Bti.Babble.Model
                 writer.WriteAttributeString("votes", response.Votes.ToString());
                 writer.WriteEndElement();
             }
-            writer.WriteEndElement();
             writer.WriteEndElement();
             writer.WriteEndElement();
         }

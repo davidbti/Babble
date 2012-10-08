@@ -15,7 +15,9 @@ namespace Bti.Babble.Model.Entity
             {
                 Id = this.Id,
                 Image = this.Image,
+                Large = this.Large,
                 Message = this.Message,
+                PollImage = this.PollImage,
                 PubDate = this.PubDate,
                 Question = this.Question,
                 Responses = (from o in this.PollResponses select o.ToModelObject()).ToList(),
@@ -33,7 +35,9 @@ namespace Bti.Babble.Model.Entity
             {
                 Id = o.Id,
                 Image = o.Image,
+                Large = o.Large,
                 Message = o.Message,
+                PollImage = o.PollImage,
                 PubDate = o.PubDate,
                 Question = o.Question,
                 PollResponses = ToEntityCollection(o.Responses),

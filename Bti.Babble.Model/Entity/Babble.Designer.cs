@@ -154,7 +154,8 @@ namespace Bti.Babble.Model.Entity
         /// <param name="message">Initial value of the Message property.</param>
         /// <param name="image">Initial value of the Image property.</param>
         /// <param name="time">Initial value of the Time property.</param>
-        public static BabbleEvent CreateBabbleEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String time)
+        /// <param name="large">Initial value of the Large property.</param>
+        public static BabbleEvent CreateBabbleEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String time, global::System.String large)
         {
             BabbleEvent babbleEvent = new BabbleEvent();
             babbleEvent.Id = id;
@@ -164,6 +165,7 @@ namespace Bti.Babble.Model.Entity
             babbleEvent.Message = message;
             babbleEvent.Image = image;
             babbleEvent.Time = time;
+            babbleEvent.Large = large;
             return babbleEvent;
         }
 
@@ -340,6 +342,30 @@ namespace Bti.Babble.Model.Entity
         private global::System.String _Time;
         partial void OnTimeChanging(global::System.String value);
         partial void OnTimeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Large
+        {
+            get
+            {
+                return _Large;
+            }
+            set
+            {
+                OnLargeChanging(value);
+                ReportPropertyChanging("Large");
+                _Large = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Large");
+                OnLargeChanged();
+            }
+        }
+        private global::System.String _Large;
+        partial void OnLargeChanging(global::System.String value);
+        partial void OnLargeChanged();
 
         #endregion
     
@@ -365,7 +391,8 @@ namespace Bti.Babble.Model.Entity
         /// <param name="message">Initial value of the Message property.</param>
         /// <param name="image">Initial value of the Image property.</param>
         /// <param name="time">Initial value of the Time property.</param>
-        public static CommentEvent CreateCommentEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String time)
+        /// <param name="large">Initial value of the Large property.</param>
+        public static CommentEvent CreateCommentEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String time, global::System.String large)
         {
             CommentEvent commentEvent = new CommentEvent();
             commentEvent.Id = id;
@@ -375,6 +402,7 @@ namespace Bti.Babble.Model.Entity
             commentEvent.Message = message;
             commentEvent.Image = image;
             commentEvent.Time = time;
+            commentEvent.Large = large;
             return commentEvent;
         }
 
@@ -402,11 +430,12 @@ namespace Bti.Babble.Model.Entity
         /// <param name="message">Initial value of the Message property.</param>
         /// <param name="image">Initial value of the Image property.</param>
         /// <param name="time">Initial value of the Time property.</param>
+        /// <param name="large">Initial value of the Large property.</param>
         /// <param name="store">Initial value of the Store property.</param>
         /// <param name="coupon">Initial value of the Coupon property.</param>
         /// <param name="code">Initial value of the Code property.</param>
         /// <param name="link">Initial value of the Link property.</param>
-        public static CouponEvent CreateCouponEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String time, global::System.String store, global::System.String coupon, global::System.String code, global::System.String link)
+        public static CouponEvent CreateCouponEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String time, global::System.String large, global::System.String store, global::System.String coupon, global::System.String code, global::System.String link)
         {
             CouponEvent couponEvent = new CouponEvent();
             couponEvent.Id = id;
@@ -416,6 +445,7 @@ namespace Bti.Babble.Model.Entity
             couponEvent.Message = message;
             couponEvent.Image = image;
             couponEvent.Time = time;
+            couponEvent.Large = large;
             couponEvent.Store = store;
             couponEvent.Coupon = coupon;
             couponEvent.Code = code;
@@ -546,11 +576,12 @@ namespace Bti.Babble.Model.Entity
         /// <param name="message">Initial value of the Message property.</param>
         /// <param name="image">Initial value of the Image property.</param>
         /// <param name="time">Initial value of the Time property.</param>
+        /// <param name="large">Initial value of the Large property.</param>
         /// <param name="title">Initial value of the Title property.</param>
         /// <param name="description">Initial value of the Description property.</param>
         /// <param name="link">Initial value of the Link property.</param>
         /// <param name="infoImage">Initial value of the InfoImage property.</param>
-        public static InfoEvent CreateInfoEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String time, global::System.String title, global::System.String description, global::System.String link, global::System.String infoImage)
+        public static InfoEvent CreateInfoEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String time, global::System.String large, global::System.String title, global::System.String description, global::System.String link, global::System.String infoImage)
         {
             InfoEvent infoEvent = new InfoEvent();
             infoEvent.Id = id;
@@ -560,6 +591,7 @@ namespace Bti.Babble.Model.Entity
             infoEvent.Message = message;
             infoEvent.Image = image;
             infoEvent.Time = time;
+            infoEvent.Large = large;
             infoEvent.Title = title;
             infoEvent.Description = description;
             infoEvent.Link = link;
@@ -690,9 +722,11 @@ namespace Bti.Babble.Model.Entity
         /// <param name="message">Initial value of the Message property.</param>
         /// <param name="image">Initial value of the Image property.</param>
         /// <param name="time">Initial value of the Time property.</param>
+        /// <param name="large">Initial value of the Large property.</param>
         /// <param name="question">Initial value of the Question property.</param>
         /// <param name="votes">Initial value of the Votes property.</param>
-        public static PollEvent CreatePollEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String time, global::System.String question, global::System.Int32 votes)
+        /// <param name="pollImage">Initial value of the PollImage property.</param>
+        public static PollEvent CreatePollEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String time, global::System.String large, global::System.String question, global::System.Int32 votes, global::System.String pollImage)
         {
             PollEvent pollEvent = new PollEvent();
             pollEvent.Id = id;
@@ -702,8 +736,10 @@ namespace Bti.Babble.Model.Entity
             pollEvent.Message = message;
             pollEvent.Image = image;
             pollEvent.Time = time;
+            pollEvent.Large = large;
             pollEvent.Question = question;
             pollEvent.Votes = votes;
+            pollEvent.PollImage = pollImage;
             return pollEvent;
         }
 
@@ -757,6 +793,30 @@ namespace Bti.Babble.Model.Entity
         private global::System.Int32 _Votes;
         partial void OnVotesChanging(global::System.Int32 value);
         partial void OnVotesChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PollImage
+        {
+            get
+            {
+                return _PollImage;
+            }
+            set
+            {
+                OnPollImageChanging(value);
+                ReportPropertyChanging("PollImage");
+                _PollImage = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("PollImage");
+                OnPollImageChanged();
+            }
+        }
+        private global::System.String _PollImage;
+        partial void OnPollImageChanging(global::System.String value);
+        partial void OnPollImageChanged();
 
         #endregion
     
@@ -981,12 +1041,13 @@ namespace Bti.Babble.Model.Entity
         /// <param name="message">Initial value of the Message property.</param>
         /// <param name="image">Initial value of the Image property.</param>
         /// <param name="time">Initial value of the Time property.</param>
+        /// <param name="large">Initial value of the Large property.</param>
         /// <param name="title">Initial value of the Title property.</param>
         /// <param name="description">Initial value of the Description property.</param>
         /// <param name="link">Initial value of the Link property.</param>
         /// <param name="storyImage">Initial value of the StoryImage property.</param>
         /// <param name="storyText">Initial value of the StoryText property.</param>
-        public static StoryEvent CreateStoryEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String time, global::System.String title, global::System.String description, global::System.String link, global::System.String storyImage, global::System.String storyText)
+        public static StoryEvent CreateStoryEvent(global::System.Int32 id, global::System.DateTime pubDate, global::System.String type, global::System.String user, global::System.String message, global::System.String image, global::System.String time, global::System.String large, global::System.String title, global::System.String description, global::System.String link, global::System.String storyImage, global::System.String storyText)
         {
             StoryEvent storyEvent = new StoryEvent();
             storyEvent.Id = id;
@@ -996,6 +1057,7 @@ namespace Bti.Babble.Model.Entity
             storyEvent.Message = message;
             storyEvent.Image = image;
             storyEvent.Time = time;
+            storyEvent.Large = large;
             storyEvent.Title = title;
             storyEvent.Description = description;
             storyEvent.Link = link;
