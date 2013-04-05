@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="js no-flexbox flexbox-legacy canvas canvastext webgl touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths ui-mobile">
+<head>
+    <meta charset="utf-8">
+    <title>BabbleR Simple Promo</title>
+    <meta name="viewport" content="width=device-width">
+    <link href="/Content/jquery.mobile.structure-1.1.1.css" rel="stylesheet">
+    <link href="/Content/BTi/jquery.mobile.theme-prod.css" rel="stylesheet">
+</head>
+<body class="ui-mobile-viewport ui-overlay-b">
+    <div data-role="content" class="ui-body-b wrappedWidth ui-content" role="main">
+        <form action="" method="post">
+            <div class="container">
+                <img src="/Content/Big_Bang_Theory_Logo.jpg" alt="Home Image">
+                <div id="welcome">
+                    <h3>Welcome to a demo of "Project Babble"</h3>
+                    <p>"Project Babble" generates a second screen event to accompany and enhance a primary screen programming event. Once these events have been triggered, they remain connected, allowing for realtime, bi-directional interactivity. Give it a try!</p>
+                </div>
+                <div id="episode">
+                    <h3>Season 6: Episode 19</h3>
+                    <p><b>The Closet Reconfiguration:</b> Bernadette & Wolowitz host a dinner party, but Sheldon brings take-out Thai food out of habit since the party fell on his Thai food night. As punishment for being rude, they make Sheldon organize Wolowitz’ extremely cluttered closet, and he finds an unread letter addressed to Wolowitz from Wolowitz’ father when he was 18 years old. After much debating, Wolowitz opts to not read the letter and burns it instead. Later, Bernadette, Amy, and Penny want to hear what the letter said, so they try to convince Sheldon to recite it to them, since he read it as he was cleaning. Sheldon winds up revealing the contents of the letter to everyone but Wolowitz, which infuriates him. Later, everyone offers to recite a different rendition of the letter, including the real one, and then let Wolowitz pick the one he prefers the most. Touched by the heartfelt renditions his friends provided, Wolowitz opts not to choose, and instead focuses on the happy memory they all helped him create</p>
+                </div>
+                <div id="quote">
+                    <p><label id="quoteline1">Complete this quote from the Big Bang Theory for a chance to win a DVD Box set</label></p>
+                    <p><label id="quoteline2">Peace is to mind, Lizards is to _____</label></p>
+                    <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+                        <li data-role="fieldcontain" class="ui-field-contain ui-body ui-br ui-li ui-li-static ui-body-b">
+                            <label class="ui-input-text">Fill in the blank</label>
+                            <input id="message" type="text" class="ui-input-text ui-body-b ui-corner-all ui-shadow-inset ui-focus">
+                        </li>
+                        <li data-role="fieldcontain" class="ui-field-contain ui-body ui-br ui-li ui-li-static ui-body-b">
+                            <input type="button" id="sendquote" value="Submit" class="ui-btn-hidden" aria-disabled="false">
+                        </li>
+                    </ul>
+                </div>
+                <div id="trivia">
+                    <p><label id="trivialine1">Complete this quote from the Big Bang Theory for a chance to win a DVD Box set</label></p>
+                    <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+                        <li class="ui-li ui-li-static ui-btn-up-b"><input id="answer-klingon" name="answer" type="radio" value="klingon"><label for="answer-klingon">Klingon</label></li>
+                        <li class="ui-li ui-li-static ui-btn-up-b"><input id="answer-chinese" name="answer" type="radio" value="chinese"><label for="answer-chinese">Chinese</label></li>
+                        <li class="ui-li ui-li-static ui-btn-up-b"><input id="answer-wookie" name="answer" type="radio" value="wookie"><label for="answer-wookie">Wookie</label></li>
+                        <li data-role="fieldcontain" class="ui-field-contain ui-body ui-br ui-li ui-li-static ui-body-b">
+                            <input type="button" id="sendtrivia" value="Submit" class="ui-btn-hidden" aria-disabled="false">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--Script references. -->
+    <!--Reference the jQuery library. -->
+    <script src="/Scripts/jquery-1.9.1.min.js" ></script>
+    <!--Reference the SignalR library. -->
+    <script src="/Scripts/jquery.signalR-1.0.1.js"></script>
+    <!--Reference the autogenerated SignalR hub script. -->
+    <script src="/signalr/hubs"></script>
+    <!--Add script to update the page and send messages.--> 
+    <script type="text/javascript">
+        $(function () {
+            // Declare a proxy to reference the hub. 
+            var babble = $.connection.babbleHub;
+            // Create a function that the hub can call to broadcast messages.
+            babble.client.take = function (webid, webline1, webline2) {
+                switch (webid) {
+                    case "episode":
+                        $('#welcome').hide();
+                        $('#episode').show();
+                        $('#quote').hide();
+                        $('#trivia').hide();
+                        break;
+                    case "quote":
+                        $('#quoteline1').text(webline1);
+                        $('#quoteline2').text(webline2);
+                        $('#welcome').hide();
+                        $('#episode').hide();
+                        $('#quote').show();
+                        $('#trivia').hide();
+                        $('#message').focus();
+                        break;
+                    case "trivia":
+                        $('#trivialine1').text(webline2);
+                        $('#welcome').hide();
+                        $('#episode').hide();
+                        $('#quote').hide();
+                        $('#trivia').show();
+                        break;
+                }
+            };
+            $('#welcome').show();
+            $('#episode').hide();
+            $('#quote').hide();
+            $('#trivia').hide();
+            // Start the connection.
+            $.connection.hub.start().done(function () {
+                $('#sendquote').click(function () {
+                    // Call the Send method on the hub. 
+                    babble.server.answerQuote($('#message').val());
+                    // Clear text box and reset focus for next comment. 
+                    $('#message').val('').focus();
+                });
+                $('#sendtrivia').click(function () {
+                    // Call the Send method on the hub. 
+                    babble.server.answerTrivia($('input:radio[name=answer]:checked').val());
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).bind("mobileinit", function () {
+            // As of Beta 2, jQuery Mobile's Ajax navigation does not work in all cases (e.g., 
+            // when navigating from a mobile to a non-mobile page, or when clicking "back" 
+            // after a form post), hence disabling it. 
+            $.mobile.ajaxEnabled = false;
+        });
+    </script>
+    <script src="/Scripts/jquery.mobile-1.3.0.min.js" ></script>
+</body>
+</html>
